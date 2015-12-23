@@ -226,4 +226,12 @@ figcaption:hover {
     color: #2F4254;
 }
 
+div.color-icons > a:hover {
+    color:#16A085;
+}
 
+div.color-icons > a {
+    background-color:transparent;
+	color:#FFFFFF;
+	transition-duration:1s;
+}
