@@ -235,3 +235,9 @@ div.color-icons > a {
 	color:#FFFFFF;
 	transition-duration:1s;
 }
+
+.thumbnail a img{
+    min-height:100px;
+    height:100px;"
+}
+
