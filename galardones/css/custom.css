@@ -1,0 +1,9 @@
+.reveal section img
+{
+  border:0px none white;
+  box-shadow:0 0 0px rgba(0, 0, 0, 1) !important;
+}
+
+.withbackground {
+  font-size: 10pt;
+}
