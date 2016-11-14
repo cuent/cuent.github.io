@@ -57,23 +57,23 @@
 <p><img src="images/uc.png" alt="" /></p>
 </section>
 <section >
-<h3>Introducción</h3>
-<ul>
-<li>¿Quién trabaja en líneas de investigación parecidas?</li>
-<li>¿Cómo se puede crear una red de investigadores de un área en común, cuando no conocemos si estas existen?</li>
-<li>Obtener sus artículos, conocer revistas en las que fueron aceptados, entre otros.</li>
-<li>Proyectos interinstitucionales.</li>
-</ul>
-</section>
-<section >
-<h3>Problemas comunes</h3>
+<h3>Problema</h3>
 <p><img src="images/problema.png" alt="Common problem" /></p>
+<aside class="notes">
+¿Quién trabaja en líneas de investigación parecidas?<br/>
+¿Cómo se puede crear una red de investigadores de un área en común, cuando no conocemos si estas existen?<br/>
+Obtener sus artículos, conocer revistas en las que fueron aceptados, entre otros.<br/>
+Proyectos interinstitucionales.<br/>
+</aside>
 </section>
 <section >
-<h3>Arquitectura General</h3>
+<h3>Arquitectura</h3>
 <img src="images/platformDiagram.png" width="70%">
 </section>
 <section >
+<section >
+<h1>Resultados</h1>
+</section>
 <section >
 <p><img src="images/areas.png" alt="" /></p>
 </section>
@@ -93,7 +93,7 @@
     google.setOnLoadCallback(drawChart);
 function drawChart() {
     var data = new google.visualization.DataTable({"cols": [{"type": "string" ,"id": "Column 1" ,"label": "Column 1" }, {"type": "number" ,"id": "Column 2" ,"label": "Publicaciones" }], "rows" : [{"c" : [{"v": "Carvallo Vega, Juan Pablo"}, {"v": 75}]}, {"c" : [{"v": "Conci, Aura"}, {"v": 72}]}, {"c" : [{"v": "Díaz Contreras, Jessica"}, {"v": 46}]}, {"c" : [{"v": "Vanegas, Pablo"}, {"v": 42}]}, {"c" : [{"v": "Espinoza, Mauricio"}, {"v": 42}]}, {"c" : [{"v": "Saquicela, Víctor"}, {"v": 35}]}, {"c" : [{"v": "Goethals, Peter L. M"}, {"v": 34}]}, {"c" : [{"v": "Castro Riera, Carlos "}, {"v": 31}]}, {"c" : [{"v": "Torres, Maria Eugenia"}, {"v": 30}]}, {"c" : [{"v": "Veronica Mora"}, {"v": 28}]}]});
-    var options = {"hAxis":{"title":"Número de publicaciones","viewWindowMode":"explicit","viewWindow":{"min":0}},"legend":{"position":"none"},"title":"Investigadores con mayor número de publicaciones de la UCUENCA","width":1000,"height":600}
+    var options = {"hAxis":{"title":"Número de publicaciones","viewWindowMode":"explicit","viewWindow":{"min":0}},"legend":{"position":"none"},"title":"Investigadores con mayor número de publicaciones en la UCUENCA","width":1000,"height":600}
     var chart = new google.visualization.BarChart(document.getElementById('d58646cc-a055-47d1-8d4f-d9a17025c2d1'));
     chart.draw(data, options);
 }
@@ -108,17 +108,16 @@ function drawChart() {
 <section >
 <h3>Conclusiones</h3>
 <ul>
-<li>Procesos como el de desambiguación y etiquetado necesitan un trabajo mas exhaustivo, debido a que aun se tienen ciertas inconsistencias en los resultados.</li>
-<li>Considerar que incluso para una persona es complicado determinar cierta información sobre un investigador o varios investigadores que pueden trabajar en conjunto. Por lo que aun es un reto a nivel computacional.</li>
-<li>Además como resultado se cuenta con un repositorio centralizado y se provee el uso de estos datos a cualquier persona.</li>
+<li>Aporte a la comunidad cientifíca nacional con información actualizada de investigadores que pueden trabajar en conjunto.</li>
+<li>Cualquier persona/institución puede hacer uso de los datos almacenados en el Repositorio Central.</li>
+<li>Incentivar la generación de proyectos interinstitucionales, ayuda en la asignación de recursos y generación de indicadores que pueden ser útiles para gobiernos u otras instituciones.</li>
 </ul>
 </section>
 <section >
 <h3>Trabajos Futuros</h3>
 <ul>
-<li>Mejorar procesos de extracción de datos.</li>
-<li>Incluir el abstract para analizar redes de colaboración.</li>
-<li>Mejorar el proceso de etiquetado.</li>
+<li>Mejorar procesos de extracción de datos e etiquetado.</li>
+<li>Incluir abstract para analizar redes de colaboración.</li>
 <li>Analizar nuevos algoritmos de clustering o otras técnicas para encontrar agrupaciones.</li>
 </ul>
 </section>
