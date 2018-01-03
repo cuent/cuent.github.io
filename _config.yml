@@ -25,8 +25,9 @@ twitter_username: xavier_sumba
 github_username:  cuent
 
 # Build settings
+destination: _sites
 markdown: kramdown
-theme: minima
+#theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
 
