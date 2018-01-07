@@ -6,39 +6,97 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Xavier Sumba</title>
+  <title>
+    Xavier Sumba |
+    c.uent
+  </title>
   <meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search resu...">
 
   <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
   <link rel="canonical" href="http://localhost:4000/">
   <link rel="alternate" type="application/rss+xml" title="Xavier Sumba" href="/feed.xml">
-  
+
+  <link rel="shortcut icon" href="http://www.justinwhall.com/wp-content/themes/justinwhallv4/assets/img/ca_code.png">
+
   
 </head>
 
 
   <body>
 
-    <header class="site-header" role="banner">
+    <header id="mainHeader" class="container-full">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <img src="/images/me-xs.png" class="navbar-logo pull-left img-circle" />
+                <a class="navbar-brand" href="index.html">Xavier Sumba</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">About me</a></li>
+                    <li><a href="#reference">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="prime">
+        <img src="/images/me-xs.png" class="img-responsive img-circle animated bounceInDown">
+        <div class="social-prime">
+            <ul class="brands brands-inline animated bounceInRight">
+                <li><a property="schema:url" href="https://www.facebook.com/xavier.sumba" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a property="schema:url" href="https://twitter.com/Xavier_Sumba" target="_blank"><i class="fa fa-twitter"></i></a></li>
+            </ul>
+            <h2 property="foaf:name schema:givenName" class="animated bounceInDown">Xavier Sumba</h2>
+            <ul class="brands brands-inline animated bounceInLeft">
+                <li><a property="schema:url" href="https://plus.google.com/u/0/+xaviersumba/posts" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                <li><a property="schema:url" href="https://github.com/cuent" target="_blank"><i class="fa fa-github"></i></a></li>
+            </ul>
+        </div>
+        <div id="my-carousel" class="carousel slide vertical animated bounceInUp" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <h3>Developer <i class="fa fa-code icon-color"></i></h3></div>
+                <div class="item">
+                    <h3>I <i class="fa fa-heart icon-heart"></i> sports</h3></div>
+                <div class="item">
+                    <h3>Let's go ride <i class="fa fa-bicycle icon-color"></i></h3></div>
+                <div class="item">
+                    <h3><i class="fa fa-user icon-color"></i> a.k.a: c.uent</h3></div>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+            <div class="col-xs-12 col-sm-6 position-button-right">
+                <a href="#about" class="btn animated bounceInUp" role="button"><i class="fa fa-smile-o"></i> Know me better</a>
+            </div>
+            <div class="col-xs-12 col-sm-6 position-button-left">
+                <a href="mailto:c.uent@hotmail.com?Subject=Contact%20from%20portfolio" class="btn btn-active animated bounceInUp" role="button"><i class="fa fa-envelope"></i> Contact me</a>
+            </div>
+        </div>
+</header>
+
+<!-- <header class="site-header" role="banner">
 
   <div class="wrapper">
     
     
-    <a class="site-title" href="/">Xavier Sumba</a>
-  
+
+    <a class="site-title" href="/">
+      <img src="/images/me-xs.png" class="img-circle"></img>
+      Xavier Sumba
+    </a>
+
     
       <nav class="site-nav">
-        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
-        <label for="nav-trigger">
-          <span class="menu-icon">
-            <svg viewBox="0 0 18 15" width="18px" height="15px">
-              <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
-              <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
-              <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
-            </svg>
-          </span>
-        </label>
-
         <div class="trigger">
           
             
@@ -46,12 +104,12 @@
           
             
             
-            <a class="page-link" href="/about/">About</a>
+            <a class="page-link1" href="/about/">About</a>
             
           
             
             
-            <a class="page-link" href="/blog/">Blog</a>
+            <a class="page-link1" href="/blog/">Blog</a>
             
           
             
@@ -67,7 +125,7 @@
       </nav>
     
   </div>
-</header>
+</header> -->
 
 
     <main class="page-content" aria-label="Content">
@@ -76,7 +134,7 @@
 
   <h1 class="page-heading">Posts</h1>
   
-  
+  <p>s</p>
 
 
   <ul class="post-list">
@@ -87,6 +145,15 @@
 
         <h2>
           <a class="post-link" href="/jekyll/update/2018/01/01/welcome-to-jekyll.html">Welcome to Jekyll!</a>
+        </h2>
+      </li>
+    
+      <li>
+        
+        <span class="post-meta">Jan 1, 2018</span>
+
+        <h2>
+          <a class="post-link" href="/jekyll/random/2018/01/01/random-post.html">Random Post</a>
         </h2>
       </li>
     

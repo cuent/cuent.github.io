@@ -1,6 +1,174 @@
 /**
  * Site header
  */
+ .prime{
+     background-color: #2f4254;
+     text-align: center;
+ }
+
+ .prime img {
+     border-color: white;
+     border-width: 5px;
+     border-style: solid;
+     margin: 0px auto 0px auto;
+ }
+
+ .navbar-logo {
+    padding: px 0 0 0;
+    width: 50px;
+}
+
+header {
+    background-color: #2f4254;
+    height: auto;
+    padding: 20px 0px 20px 0px;
+}
+
+
+.brands{
+    display: inline;
+}
+
+.brands > li > a {
+	background-color:transparent;
+	color:#FFFFFF;
+	border-top:3px solid #16A085;
+	transition-duration:1s;
+}
+
+.brands > li > a:hover {
+	color:#16A085;
+	border-top:3px solid #2F4254;
+}
+
+
+.social-prime{
+    color: white;
+    font-weight: 100;
+}
+
+.social-prime h2{
+    display: inline;
+    padding:0 15px 0 15px;
+	font-size:78px;
+}
+
+#my-carousel {
+    color: white;
+}
+
+#my-carousel .icon-heart{
+    color: red;
+}
+
+#my-carousel .icon-color {
+    color: #16A085;
+}
+
+.content-style {
+    background-color: #34495A;
+    min-height: 300;
+    padding: 20px 0px 20px;
+    color: white;
+}
+
+.text-format {
+    border-bottom: 3px solid white;
+    max-width: 315px;
+}
+
+/*
+    For Carousel Vertical
+*/
+.vertical .carousel-inner {
+  height: 100%;
+}
+
+.carousel.vertical .item {
+  -webkit-transition: 0.6s ease-in-out top;
+     -moz-transition: 0.6s ease-in-out top;
+      -ms-transition: 0.6s ease-in-out top;
+       -o-transition: 0.6s ease-in-out top;
+          transition: 0.6s ease-in-out top;
+}
+
+.carousel.vertical .active {
+  top: 0;
+}
+
+.carousel.vertical .next {
+  top: 100%;
+}
+
+.carousel.vertical .prev {
+  top: -100%;
+}
+
+.carousel.vertical .next.left,
+.carousel.vertical .prev.right {
+  top: 0;
+}
+
+.carousel.vertical .active.left {
+  top: -100%;
+}
+
+.carousel.vertical .active.right {
+  top: 100%;
+}
+
+.carousel.vertical .item {
+    left: 0;
+}
+
+/*
+    Buttons
+*/
+.btn{
+    border: 1px solid #fff;
+    border-bottom: 3px solid #fff;
+    color: white;
+}
+
+.btn:hover {
+    color: #16A085;
+    border: 1px solid #16A085;
+    border-bottom: 3px solid #16A085;
+    font-size: 15px;
+}
+
+.btn:visited {
+    border: 1px solid #fff;
+    border-bottom: 3px solid #fff;
+    color: white;
+}
+
+.btn-active{
+    color: #16A085;
+    border: 1px solid #16A085;
+    border-bottom: 3px solid #16A085;
+}
+
+.btn-active:link {
+    color: #16A085;
+}
+.btn-active:hover{
+    border: 1px solid #fff;
+    border-bottom: 3px solid #fff;
+    color: white;
+}
+
+.position-button-right {
+    text-align: right;
+}
+
+.position-button-left {
+    text-align: left;
+}
+
+
+// Old header
+
 .site-header {
   border-top: 5px solid $grey-color-dark;
   border-bottom: 1px solid $grey-color-light;
@@ -36,7 +204,7 @@
     display: none;
   }
 
-  .page-link {
+  .page-link1 {
     color: $text-color;
     line-height: $base-line-height;
 
