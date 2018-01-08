@@ -1,0 +1,42 @@
+.brands {
+	list-style:none;
+	padding-left:0;
+}
+
+.brands > li {
+	margin:0 0 8px;
+}
+
+.brands > li > a {
+	background-color:#ebebeb;
+	text-align:center;
+	color:#555555;
+	display:inline-block;
+	font-size:20px;
+	padding-top:11px;
+	width:50px;
+	height:50px;
+}
+
+.brands-inline > li {
+	display:inline-block;
+	margin-right:5px;
+}
+
+.brands-inline > li:last-child {
+	margin-right:0;
+}
+
+.brands > li > a:hover {
+	color:#ffffff;
+}
+
+// @media (max-width:767px) {
+// 	.brands > li > a {color:#ffffff;}
+//
+//
+// 	.brands-spin > li > a:hover i {
+// 		animation:none;
+// 		-webkit-animation: none;
+// 	}
+// }

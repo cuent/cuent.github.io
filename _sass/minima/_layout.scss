@@ -1,29 +1,47 @@
-/**
- * Site header
- */
- .prime{
-     background-color: #2f4254;
-     text-align: center;
- }
+/* Adjust some navbar defaults */
 
- .prime img {
-     border-color: white;
-     border-width: 5px;
-     border-style: solid;
-     margin: 0px auto 0px auto;
- }
-
- .navbar-logo {
-    padding: px 0 0 0;
-    width: 50px;
+.navbar-brand {
+    padding: 5px 15px;
 }
 
+.navbar-toggle {
+  border-color: white;
+  margin-right: 25px;
+}
+
+.navbar-toggle .icon-bar{
+  background-color: white;
+}
+
+/* Principal header classes */
 header {
-    background-color: #2f4254;
+  font-family: 'Play', sans-serif;
+
     height: auto;
-    padding: 20px 0px 20px 0px;
 }
 
+.prime{
+    background-color: #2f4254;
+    text-align: center;
+}
+
+.prime img {
+    border-color: white;
+    border-width: 5px;
+    border-style: solid;
+    margin: 0px auto 0px auto;
+}
+
+.social-prime{
+    color: white;
+    font-weight: 100;
+}
+
+.social-prime h2{
+    display: inline;
+    padding:0 15px 0 15px;
+	font-size: 78px;
+}
 
 .brands{
     display: inline;
@@ -41,40 +59,16 @@ header {
 	border-top:3px solid #2F4254;
 }
 
-
-.social-prime{
-    color: white;
-    font-weight: 100;
-}
-
-.social-prime h2{
-    display: inline;
-    padding:0 15px 0 15px;
-	font-size:78px;
-}
-
-#my-carousel {
+#activities {
     color: white;
 }
 
-#my-carousel .icon-heart{
+#activities .icon-heart{
     color: red;
 }
 
-#my-carousel .icon-color {
+#activities .icon-color {
     color: #16A085;
-}
-
-.content-style {
-    background-color: #34495A;
-    min-height: 300;
-    padding: 20px 0px 20px;
-    color: white;
-}
-
-.text-format {
-    border-bottom: 3px solid white;
-    max-width: 315px;
 }
 
 /*
@@ -165,6 +159,33 @@ header {
 .position-button-left {
     text-align: left;
 }
+
+/*
+    For mobile phones extra small
+*/
+@media (max-width: 767px){
+    .prime img {
+        max-height: 100px;
+    }
+
+    .position-button-right {
+    text-align: center;
+    }
+
+    .position-button-left {
+        text-align: center;
+    }
+
+    .prime .social-prime h2{
+        font-size: 50px;
+    }
+
+    .prime .social-prime ul{
+        display: none;
+    }
+}
+
+
 
 
 // Old header
