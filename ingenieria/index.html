@@ -1,0 +1,190 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Detecting similar areas of knowledge using Semantic and Data Mining technologies</title>
+    <meta name="description" content="Thesis presentation in order to obtain the degree of Computer Scientist from the University of Cuenca.">
+    <meta name="author" content="Xavier Sumba">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="//code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="//code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/white.css" id="theme">
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/style.css" />
+    <link type="text/css" rel="stylesheet" href="fsharp.formatting/styles/deedle.css" />
+    <link type="text/css" rel="stylesheet" href="css/custom.css" />
+    <script src="fsharp.formatting/styles/tips.js" type="text/javascript"></script>
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <link rel="stylesheet" href="css/fsreveal.css">
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+    <script language="javascript" type="text/javascript">
+        function init()
+        {
+            websocket = new WebSocket("ws://"+window.location.host+"/websocket");
+            websocket.onmessage = function(evt) { location.reload(); };
+        }
+        window.addEventListener("load", init, false);
+    </script>
+</head>
+<body>
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section >
+<h3>Repositorio Ecuatoriano de Investigadores</h3>
+<br><hr><br>
+<h5><div style="font-size:18pt;"><a style="color: black;" href="#">Victor Saquicela, Ph.D.</a> </div></h5>
+<div style="font-size:15pt;"><i>Universidad de Cuenca, Departamento de Ciencias de la Computación, Cuenca, Ecuador.</i></div>
+<p><img src="images/uc.png" alt="" /></p>
+</section>
+<section >
+<h3>Problema</h3>
+<p><img src="images/problema.png" alt="Common problem" /></p>
+<aside class="notes">
+¿Quién trabaja en líneas de investigación parecidas?<br/>
+¿Cómo se puede crear una red de investigadores de un área en común, cuando no conocemos si estas existen?<br/>
+Obtener sus artículos, conocer revistas en las que fueron aceptados, entre otros.<br/>
+Proyectos interinstitucionales.<br/>
+</aside>
+</section>
+<section >
+<h3>Arquitectura</h3>
+<img src="images/platformDiagram.png" width="70%">
+</section>
+<section >
+<section >
+<h1>Resultados</h1>
+</section>
+<section >
+<p><img src="images/areas.png" alt="" /></p>
+</section>
+<section >
+<img src="images/colaboracion.png" width="60%">
+</section>
+<section >
+<img src="images/mapa.png" width="60%">
+</section>
+<section >
+<p><img src="images/estadisticas.png" alt="" /></p>
+</section>
+<section >
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]})
+    google.setOnLoadCallback(drawChart);
+function drawChart() {
+    var data = new google.visualization.DataTable({"cols": [{"type": "string" ,"id": "Column 1" ,"label": "Column 1" }, {"type": "number" ,"id": "Column 2" ,"label": "Publicaciones" }], "rows" : [{"c" : [{"v": "Carvallo Vega, Juan Pablo"}, {"v": 75}]}, {"c" : [{"v": "Conci, Aura"}, {"v": 72}]}, {"c" : [{"v": "Díaz Contreras, Jessica"}, {"v": 46}]}, {"c" : [{"v": "Vanegas, Pablo"}, {"v": 42}]}, {"c" : [{"v": "Espinoza, Mauricio"}, {"v": 42}]}, {"c" : [{"v": "Saquicela, Víctor"}, {"v": 35}]}, {"c" : [{"v": "Goethals, Peter L. M"}, {"v": 34}]}, {"c" : [{"v": "Castro Riera, Carlos "}, {"v": 31}]}, {"c" : [{"v": "Torres, Maria Eugenia"}, {"v": 30}]}, {"c" : [{"v": "Veronica Mora"}, {"v": 28}]}]});
+    var options = {"hAxis":{"title":"Número de publicaciones","viewWindowMode":"explicit","viewWindow":{"min":0}},"legend":{"position":"none"},"title":"Investigadores con mayor número de publicaciones en la UCUENCA","width":1000,"height":600}
+    var chart = new google.visualization.BarChart(document.getElementById('d58646cc-a055-47d1-8d4f-d9a17025c2d1'));
+    chart.draw(data, options);
+}
+</script>
+<div id="d58646cc-a055-47d1-8d4f-d9a17025c2d1" style="width: 800px; height: 600px;"></div>
+</section>
+<section >
+<h3><strong>¿Más?</strong></h3>
+<a href="http://redi.cedia.org.ec/" target="blank"><img src="images/redi.png" alt=""></a>
+</section>
+</section>
+<section >
+<h3>Conclusiones</h3>
+<ul>
+<li>Aporte a la comunidad cientifíca nacional con información actualizada de investigadores que pueden trabajar en conjunto.</li>
+<li>Cualquier persona/institución puede hacer uso de los datos almacenados en el Repositorio Central.</li>
+<li>Incentivar la generación de proyectos interinstitucionales, ayuda en la asignación de recursos y generación de indicadores que pueden ser útiles para gobiernos u otras instituciones.</li>
+</ul>
+</section>
+<!-- <section >
+<h3>Trabajos Futuros</h3>
+<ul>
+<li>Mejorar procesos de extracción de datos e etiquetado.</li>
+<li>Incluir abstract para analizar redes de colaboración.</li>
+<li>Analizar nuevos algoritmos de clustering o otras técnicas para encontrar agrupaciones.</li>
+</ul>
+</section> -->
+<!-- <section >
+<table style="width:100%;">
+  <tr>
+    <th><h2 style="text-align: center">CLEI 2016</h2></th>
+    <th><h2 style="text-align: center">ENTCS</h2></th>
+    <th><h2 style="text-align: center">TICAL</h2></th>
+  </tr>
+  <tr>
+    <th style="width: 33%; vertical-align: middle;">
+      <img src="images/clei.png" alt="">
+    </th>
+    <th style="width: 33%; text-align:center; vertical-align: middle;">
+      <img src="images/entcs.gif" alt="">
+    </th>
+    <th style="width: 33%; text-align:center; vertical-align: middle;">
+      <img src="images/tical.png" alt="">
+    </th>
+  </tr>
+</table>
+</section> -->
+<section >
+<h3>Agradecimientos</h3>
+<img src="images/cedia.png" alt="" style="width:300px; height:100px"  >
+<img src="images/logo_dcc.png" alt="" style="width:280px; height:200px">
+<img src="images/logo_u.png" alt="" style="width:280px; height:200px">
+</section>
+<section >
+<h1>¿PREGUNTAS?</h1>
+</section>
+
+
+        </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+        // Add the nohighlight class and data-noescape attribute to code elements that have already been formatted by FSharp.Formatting
+        $('pre.highlighted code').addClass('nohighlight').attr('data-noescape', '');
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+
+            transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Parallax scrolling
+            // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+            // parallaxBackgroundSize: '2100px 900px',
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: 'lib/js/classList.js', condition: function () { return !document.body.classList; } },
+                { src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                { src: 'plugin/highlight/highlight.js', async: true, callback: function () { hljs.initHighlightingOnLoad(); } },
+                { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () { return !!document.body.classList; } },
+                { src: 'plugin/notes/notes.js', async: true, condition: function () { return !!document.body.classList; } }
+            ]
+        });
+
+    </script>
+</body>
+</html>
