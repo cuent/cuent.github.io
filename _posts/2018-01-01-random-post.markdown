@@ -1,8 +1,15 @@
 ---
 layout: post
-title:  "Random Post"
+title:  "Introduction to java 9"
 date:   2018-01-01 20:41:19 -0500
-categories: jekyll random
+categories: jdk9 jigsaw
 ---
 
-New post
+# Java modularity
+
+## Compiling
+```bash
+javac -d out/module src/module/com/github/cuent/Main.java src/module/module-info.java
+```
+
+## Packing
