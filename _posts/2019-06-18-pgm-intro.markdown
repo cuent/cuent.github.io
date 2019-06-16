@@ -35,12 +35,16 @@ A graphical model is a method for modeling probability distributions under certa
 
 ### Bayesian Network
 
+![Bayesian Network](/assets/images/bayesian-network.png)
+
 - It is a directed acyclic graph (DAG) where each node has a [Markov blanked][2] (its parents, children and children's parents).
 - A node is _conditionally independent_ of the nodes **outside** its Markov Blanket.
 - _Joint probability distribution_ is determined by the local conditional probabilities as well as the graph structure.
 - Model _can_ be used to generate new data.
 
 ### Markov Random Field
+
+![Markov Random Field](/assets/images/markov-random-field.png)
 
 - It is an undirected graph.
 - A node is conditionally independent of the other graph nodes, except for its **immediate neighbors**.

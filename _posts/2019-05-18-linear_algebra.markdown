@@ -1,9 +1,11 @@
 ---
 layout: post
 title:  "Linear Algebra"
-date:   2019-05-05 21:41:19 -0500
-categories: math
+date:   2019-05-15 21:41:19 -0500
+categories: math notes
 ---
+
+Notes of [chapter 2][1] of Deep Learning book.
 
 #### Mathematical objects
 
@@ -26,6 +28,7 @@ categories: math
   - Mirror across _main diagonal_ $$\mathbf{A} \rightarrow \mathbf{A}^\intercal$$
   - Scalar matrix, one item $$\mathbf{a}=\mathbf{a}^\intercal$$
   - Vector $$\mathbf{x}^\intercal$$
+  - Matrix product $$(\mathbf{A}\mathbf{B})^\intercal=\mathbf{B}^\intercal\mathbf{A}^\intercal$$
 
 #### Addition
    If $$\mathbf{A}$$ and $$\mathbf{B}$$ same shape, $$\mathbf{C}=\mathbf{A}+\mathbf{B}$$, where $$\mathbf{C}_{i,j}=\mathbf{A}_{i,j}+\mathbf{B}_{i,j}$$.
@@ -50,3 +53,42 @@ categories: math
   - Commutative: **not** $$\mathbf{A}\mathbf{B}\neq \mathbf{B}\mathbf{A}$$ (not always)
 
     **yes** for vectors $$\rightarrow$$ $$\mathbf{x}^\intercal \mathbf{y}=\mathbf{y}^\intercal\mathbf{x}$$
+
+#### Linear equations
+
+$$\mathbf{A}\mathbf{x}=\mathbf{b}$$ (notation compact)
+ - $$\mathbf{A}\in\mathbb{R}^{m\times n}$$ known
+ - $$\mathbf{x}\in\mathbb{R}^m$$ variable
+ - $$\mathbf{b}\in\mathbb{R}^m$$ known
+
+ Notation not compact, equations:
+
+ $$A_{1,:}\mathbf{x}=b_1 \rightarrow A_{1,1}x_1+\dots+A_{1,n}x_n=b_1\\
+ \vdots\\
+ A_{m,:}\mathbf{x}=b_m \rightarrow A_{m,1}x_1+\dots+A_{m,n}x_n=b_m$$
+
+#### Identity matrix
+$$\mathbf{I}_n\in\mathbb{R}^{nxn} \rightarrow \mathbf{I}_n\mathbf{x}=\mathbf{x}\:\:\:\:\:\:\: \forall_{\mathbf{x}}\in\mathbb{R}^n$$
+
+#### Inverse Matrix
+$$A^{-1}A=\mathbf{I}_n$$, $$AA^{-1}=\mathbf{I}_n$$, for square matrix left and right are the same.
+
+For example:
+$$A\mathbf{x}=\mathbf{b} \rightarrow A^{-1}A\mathbf{x}=A^{-1}\mathbf{b} \rightarrow \mathbf{I}_n\mathbf{x}=A^{-1}\mathbf{b} \rightarrow \mathbf{x}=A^{-1}\mathbf{b}$$
+
+- Should **not** be used in practical applications because **limited precision**
+- $$A^{-1} might not be possible to find (singular matrix).
+
+#### Linear Combination
+
+##### Span
+
+
+#### Linear Dependece
+#### Linear Independece
+#### Square matrix
+#### Singular matrix
+#### Norms
+
+
+[1]: (http://www.deeplearningbook.org/contents/linear_algebra.html)
