@@ -5,6 +5,10 @@ date:   2019-05-15 21:41:19 -0500
 categories: math notes
 ---
 
+Some interesting links:
+- [Matrix cookbook][2]
+- [Matrix derivatives][3]
+
 Notes of [chapter 2][1] of Deep Learning book.
 
 #### Mathematical objects
@@ -74,21 +78,49 @@ $$\mathbf{I}_n\in\mathbb{R}^{nxn} \rightarrow \mathbf{I}_n\mathbf{x}=\mathbf{x}\
 $$A^{-1}A=\mathbf{I}_n$$, $$AA^{-1}=\mathbf{I}_n$$, for square matrix left and right are the same.
 
 For example:
-$$A\mathbf{x}=\mathbf{b} \rightarrow A^{-1}A\mathbf{x}=A^{-1}\mathbf{b} \rightarrow \mathbf{I}_n\mathbf{x}=A^{-1}\mathbf{b} \rightarrow \mathbf{x}=A^{-1}\mathbf{b}$$
+$$
+\begin{align}
+A\mathbf{x}&=\mathbf{b} \\
+A^{-1}A\mathbf{x}&=A^{-1}\mathbf{b} \\
+\mathbf{I}_n\mathbf{x}&=A^{-1}\mathbf{b}\\
+\mathbf{x}&=A^{-1}\mathbf{b}
+\end{align}
+$$
 
 - Should **not** be used in practical applications because **limited precision**
-- $$A^{-1} might not be possible to find (singular matrix).
+- $$A^{-1}$$ might not be possible to find (singular matrix).
 
+**Note:** Matrix should be **square and singular**. If not, we cannot get $$A^{-1}$$.
 #### Linear Combination
+$${\mathbf{v}^{(1)},\dots,\mathbf{v}^{(n)}}$$ Given by multiplying each vector $$\mathbf{v}^{(i)}$$ by a scalar and adding.
+
+$$\sum_i c_i\mathbf{v}^{(i)}$$
 
 ##### Span
+Set of all points obtained by linear combination of the original vectors
 
+$$A\mathbf{x}=\mathbf{b} \rightarrow$$ solution if $$\mathbf{b}$$ is in the **span** (known as __column space__ / __range__ of $$A$$) of columns $$A$$
 
-#### Linear Dependece
-#### Linear Independece
+$$A$$ square matrix $$m=n$$ and all columns linear independent.
+
+#### Linear Dependence
+Same column space / a combination
+#### Linear Independence
+No vector in the set is a **linear combination** of the other vectors.
 #### Square matrix
+$$A \in\mathbb{R}^{m\times n} m=n$$
 #### Singular matrix
+Matrix with linear independent columns
 #### Norms
+Measure the size of a vector
 
+- $$L^p$$ norm: $$\mid\mid x\mid\mid_p=(\sum_i\mid x_i\mid)^{\frac{1}{p}}$$ where $$p\in\mathbb{R}, p\geq 1$$
+
+### Special kind of matrices and Vectors
+### Eigendecomposition
+### Singular Value Decomposition
+### The Moore-Penrose Pseudoinverse
 
 [1]: (http://www.deeplearningbook.org/contents/linear_algebra.html)
+[2]: (https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf)
+[3]: (https://people.maths.ox.ac.uk/gilesm/files/NA-08-01.pdf)
