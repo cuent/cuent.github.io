@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Sampling methods"
+title:  "Sampling methods notes"
 date:   2019-05-17 20:41:19 -0500
 categories: sampling notes
 ---
@@ -27,13 +27,22 @@ $$\hat s_n=\frac{1}{n}\sum_{i=1}^n f(x^{(i)})$$
 Some properties:
 - Estimator $$\hat s$$ is unbiased.
 - By the *[law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers)*, we say that if $$x^{(i)}$$ are i.i.d. the average converges to the expected values ($$\lim_{n\to\infty} \hat s_n=s$$).
-- MC sampling relies in sampling from $$p$$, when is not possible, Importance Sampling or MCMC can be used.
+- By calculating the variance $$Var[\hat s_n]$$ as $$n$$ increases, we can estimate the uncertainty of the Monte Carlo approximation.
+- MC sampling relies in sampling from $$p$$. When *sampling* $$p$$ *is not possible*, importance sampling or MCMC can be used.
 
 
 ## Importance Sampling
+In Monte Carlo, we can use any decomposition of $$p(\mathbf{x})$$ and $$f(\mathbf{x})$$ since $$f$$ can also be a probability (what factor plays which role of $$p$$ or $$f$$). We can even have a different decomposition as follows (i.e. we sample $$q$$ and average $$\frac{pf}{q})$$:
 
+$$p(\mathbf{x})f(\mathbf{x})=q(\mathbf{x})\frac{p(\mathbf{x})f(\mathbf{x})}{q(\mathbf{x})}$$
 
-Biased Importance Sampling
+However, we might not be able to sample from $$p$$ or we can pick another distribution to reach an optimal approximation. This optimal choice is $$q*$$, know as **optimal importance sampling**. So, we replace the empirical average with an **importance sampling estimator**:
+
+$$\hat s_q=\frac{1}{n}\sum_{i=1, \mathbf{x}^{(i)}\sim q}^n \frac{p(\mathbf{x}^{(i)})f(\mathbf{x}^{(i)})}{q(\mathbf{x}^{(i)})}$$
+
+Essentially, any distribution $$q$$ is valid. However, the choice of $$q$$ can be sensitive to the variance of the _importance sampling estimator_.
+
+####  Biased Importance Sampling
 
 ## MCMC
 ## Gibbs Sampling
