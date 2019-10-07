@@ -1,0 +1,61 @@
+---
+layout: post
+title:  "Bayesian reasoning"
+date:   2019-05-17 20:41:19 -0500
+categories: bayes notes
+---
+Some tools:
+- Stochastic variational inference
+- Variance reduction
+- Normalizing flows
+- Gaussian processes
+- Scalable MCMC algorithms
+- Semi-implicit variational inference
+
+# Bayesian framework
+- Bayes theorem:
+
+$$conditional = \frac{joint}{marginal}$$
+
+$$p(x\midy)=\frac{p(x,y)}{p(y)}$$
+
+it defines a rule for uncertainty conversion when new information arrives
+
+$$posterior = \frac{likelihood x prior}{evidence}$$
+
+- Product rule: any joint distribution can be expressed with conditional distributions
+
+$$p(x,y,z)=p(x\mid y,z)p(y\mid z)p(z)$$
+
+- Sum rule: any marginal distribution can be obtained from the joint distribution by integrating out
+
+$$p(y)=\int p(x,y)dx$$
+
+- Statistical inference
+
+Problem: given i.i.d. data $$X={x_i}_{i=1}^n$$ from distribution $$p(x\mid\theta)$$, estimate $$\theta$$
+
+  - Frequentist framework: use maximum likelihood estimation (MLE)
+
+  $$\theta_{ML}=\argmax p(X\mid\theta)=\argmax\prod_{i=1}^n p(x_i\mid\theta)=\argmax\sum_i^n\log p(x_i\mid\theta)$$
+
+  Applicability: $$n\lld$$
+
+  - Bayesian framework: encode uncertainty about $$\theta$$ in a prior $$p(\theta)$$ and apply Bayesian inference
+
+  $$p(\theta\mid X)=\frac{\prod_i^n p(x_i\mid\theta)p(\theta)}{\int\prod_i^n p(x_i\mid\theta)p(\theta)d\theta}$$
+
+  Applicability: $$\forall_nd$$
+
+  Advantages:
+  - we can encode prior knowledge/desired properties into a prior distribution
+  - prior is a form of regularization
+  - additionally to the point estimate of $$\theta$$, posterior contains information about the uncertainty of the estimate
+  - frequentist case is a limit case of Bayesian one
+    $$\lim_{n/d\to\infty}p(\theta\mid x_1,\dots,x_n)=\delta(\theta-\theta_{ML})
+
+# Bayesian ML models
+
+# Full Bayesian inference
+
+# Conjugate distributions
