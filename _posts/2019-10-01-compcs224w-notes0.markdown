@@ -17,11 +17,11 @@ Some tools:
 
 $$conditional = \frac{joint}{marginal}$$
 
-$$p(x\midy)=\frac{p(x,y)}{p(y)}$$
+$$p(x\mid y)=\frac{p(x,y)}{p(y)}$$
 
 it defines a rule for uncertainty conversion when new information arrives
 
-$$posterior = \frac{likelihood x prior}{evidence}$$
+$$posterior = \frac{likelihood \times prior}{evidence}$$
 
 - Product rule: any joint distribution can be expressed with conditional distributions
 
@@ -37,9 +37,9 @@ Problem: given i.i.d. data $$X={x_i}_{i=1}^n$$ from distribution $$p(x\mid\theta
 
   - Frequentist framework: use maximum likelihood estimation (MLE)
 
-  $$\theta_{ML}=\argmax p(X\mid\theta)=\argmax\prod_{i=1}^n p(x_i\mid\theta)=\argmax\sum_i^n\log p(x_i\mid\theta)$$
+  $$\theta_{ML}=\argmax  p(X\mid\theta)=\argmax\prod_{i=1}^n p(x_i\mid\theta)=\argmax\sum_i^n\log p(x_i\mid\theta)$$
 
-  Applicability: $$n\lld$$
+  Applicability: $$n\ll d$$
 
   - Bayesian framework: encode uncertainty about $$\theta$$ in a prior $$p(\theta)$$ and apply Bayesian inference
 
@@ -52,10 +52,44 @@ Problem: given i.i.d. data $$X={x_i}_{i=1}^n$$ from distribution $$p(x\mid\theta
   - prior is a form of regularization
   - additionally to the point estimate of $$\theta$$, posterior contains information about the uncertainty of the estimate
   - frequentist case is a limit case of Bayesian one
-    $$\lim_{n/d\to\infty}p(\theta\mid x_1,\dots,x_n)=\delta(\theta-\theta_{ML})
+    $$\lim_{n/d\to\infty}p(\theta\mid x_1,\dots,x_n)=\delta(\theta-\theta_{ML})$$
 
 # Bayesian ML models
+In ML, we have $$x$$ features (observed variables) and $$y$$ class labels or hidden representations (hidden or latent variables) with some model parameters $$\theta$$ (e.g. weights of a linear model).
+
+- Discriminative approach, models $$p(y,\theta\mid x)$$
+
+  - Cannot generate new objects since it needs $$x$$ as an input and assumes that the prior over $$\theta$$ does not depend on $$x$$: $$p(y,\theta)=p(y\mid x,\theta)p(\theta)$$
+  - Examples: 1) classification/regression (hidden space is small) 2) Machine translation (complex hidden space)
+
+- Generative approach, models $$p(x,y,\theta)=p(x,y\mid\theta)p(\theta)$$
+
+  - It can generate objects (pairs $$p(x,y)$$), but it can be hard to train since the observed space is most often more complicated.
+  - Example: Generation of text, speech, images, etc.
+
+- Training
+Given data points $$(X_{tr}, Y_{tr})$$ and a discriminative model $$p(y,\theta\mid x)$$.
+
+Use the Bayesian framework:
+
+$$p(\theta\mid X_{tr}, Y_{tr})=\frac{p(Y_{tr}\mid X_{tr},\theta)p(\theta)}{\int p(Y_{tr}\mid X_{tr},\theta)p(\theta) d\theta}$$
+
+This results in a ensemble of algorithms rather than a single one $$\theta_{ML}$$. Ensembles usually performs better than a single model.
+
+In addition, the posterior captures all dependencies from the training data and can be used later as a new prior.
+
+- Testing
+  We have the posterior $$p(\theta\mid X_{tr},Y_{tr})$$ and a new data point $$x$$. We can use the predictive distribution on its hidden value $$y$$
+
+  $$p(y\mid x, X_{tr},Y_{tr}) = \int p(y\mid x,\theta)p(\theta\mid X_{tr},Y_{tr})d\theta$$
+
 
 # Full Bayesian inference
 
+ During training the evidence $$\int p(Y_{tr}\mid X_{tr},\theta)p(\theta) d\theta$$ or in testing the predictive distribution $$\int p(y\mid x,\theta)p(\theta\mid X_{tr},Y_{tr})d\theta$$ might be intractable, so it is impractical or impossible to perform full Bayesian inference. In other words, there is not closed form.
+
 # Conjugate distributions
+
+Distribution $$p(y)$$ and $$p(x\mid y)$$ are conjugate $$iff$$ $$p(y\mid x)$$ belongs to the same parametric family as $$p(y)$$
+
+$$p(y)\in\mathcal{A}(\alpha), p(x\mid y)\in\mathcal{B}(y) \rightarrow p(y\mid x)\in\mathcal{A}(\alpha')$$
