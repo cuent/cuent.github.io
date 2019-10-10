@@ -90,6 +90,137 @@ In addition, the posterior captures all dependencies from the training data and 
 
 # Conjugate distributions
 
-Distribution $$p(y)$$ and $$p(x\mid y)$$ are conjugate $$iff$$ $$p(y\mid x)$$ belongs to the same parametric family as $$p(y)$$
+Distribution $$p(y)$$ and $$p(x\mid y)$$ are [conjugate][1] $$\iff$$ $$p(y\mid x)$$ belongs to the same parametric family as $$p(y)$$
 
 $$p(y)\in\mathcal{A}(\alpha), p(x\mid y)\in\mathcal{B}(y) \rightarrow p(y\mid x)\in\mathcal{A}(\alpha')$$
+
+- **There's not conjugacy** We can perform MAP to approximate the posterior with $$\theta_{MP}$$ since we don't need to calculate the normalization constant, but we cannot compute the true posterior.
+
+$$\theta_{MP}=\operatorname*{arg\,max}p(\theta\mid X_{tr},Y_{tr})=\operatorname*{arg\,max}p(Y_{tr}\mid X_{tr},\theta)p(\theta)$$
+
+During testing:
+
+$$p(y\mid x,X_{tr},Y_{tr})=\int p(y\mid x,\theta)p(\theta\mid X_{tr},Y_{tr})d\theta\approx p(y\mid x,\theta_{MP})$$
+
+# Conditional conjugacy
+Given the model: $$p(x,\theta)=p(x\mid\theta)p(\theta)$$ where $$\theta=\[\theta_1,\dots,\theta_m]$$
+
+Conditional conjugacy of likelihood and prior on each $$\theta_j$$ conditional on all other $$\{\theta_i\}_{i\neq j}$$
+
+$$p(\theta_j\mid\theta_{i\neq j})\in\mathcal{A}(\alpha), p(x\mid\theta_j,\theta_{i\neq j})\in\mathcal{B}(\theta_j) \rightarrow p(\theta_j\mid x,\theta_{i\neq j})\in\mathcal{A}(\alpha')$$
+
+Check conditional conjugacy in practice:
+For each $$\theta_j$$
+- Fix all other $$\{\theta_i\}_{i\neq j}$$ (look at them as constants)
+- Check whether $$p(x\mid\theta)$$ and $$p(\theta)$$ are conjugate w.r.t. $$\theta_j$$
+
+
+# Variational Inference
+Given the model $$p(x,\theta)=p(x\mid \theta)p(\theta), find a posterior approximation $$p(\theta\mid x) \approx q(\theta)\in\mathcal{Q}$$, such that:
+
+$$KL(q(\theta)\parallel p(\theta\mid x)) \rightarrow \min_{q(\theta)\in\mathcal{Q}}$$
+
+KL is a good mismatch measure between two distributions over the **same domain** (see figure). And it has the following properties:
+
+- $$KL(q\parallel p) \geq 0$$
+- $$KL(q\parallel p)=0 \Leftrightarrow q=p$$
+- $$KL(q\parallel p \neq KL(p\parallel q))$$
+
+![KL](/images/kl/kl_mismatch.png)
+
+## Evidence Lower Bound (ELBO) derivation
+
+- **Posterior**: $$p(\theta\mid x)$$
+- **Evidence**: $$p(x)$$, shows the total probability of the observing data.
+- **Lower bound**: $$\log p(x) \geq \mathcal{L}(q(\theta))$$
+
+$$
+   \begin{align*)
+     log p(x) &= \int q(\theta) \log p(x)d\theta
+            &= \int q(\theta) \log\frac{p(x,\theta)}{p(\theta\mid x)}d\theta
+            &= \int q(\theta) \log\frac{p(x,\theta)q(\theta)}{p(\theta\mid x)q(\theta)}d\theta
+            &= \int q(\theta) \log\frac{p(x,\theta)}{q(\theta)}d\theta + \int q(\theta) \log\frac{q(\theta)}{p(\theta\mid x)}d\theta
+            &= \mathcal{L}(q(\theta)) + KL(q(\theta)\parallel p(\theta\mid x))
+    \end{align*}
+  $$
+
+**note**:
+- $$log p(x)$$ does **not depend** on $$q$$
+- $$\mathcal{L}$$ and $$KL$$ **depend** on $$q$$
+- minimizing $$KL$$ is the same as maximizing $$\mathcal{L}$$.
+
+$$KL(q(\theta)\parallel p(\theta\mid x)) \rightarrow \min_{q(\theta)\in\mathcal{Q}} \Leftrightarrow \mathcal{L}(q(\theta)) \rightarrow\max_{q(\theta)\in\mathcal{Q}}$$
+
+### Optimizing ELBO $$\mathcal{L}$$
+**Goal:** $$\mathcal{L}(q(\theta)) \rightarrow\max_{q(\theta)\in\mathcal{Q}}$$
+
+$$
+  \begin{align*}
+      \mathcal{L}(q(\theta)) &= \int q(\theta) \log\frac{p(x,\theta)}{q(\theta)}d\theta    
+                             &= \int q(\theta) \log p(x\mid\theta)d\theta +
+                                \int q(\theta) \log\frac{p(\theta)}{q(\theta)}d\theta
+                             &= \mathbb{E}_{q(\theta)} \log p(x\mid\theta)
+                                - KL(q(\theta)\parallel p(\theta))
+  \end{align*}
+$$
+
+- Data term: $$\mathbb{E}_{q(\theta)} \log p(x\mid\theta)$$
+- Regularizer: $$KL(q(\theta)\parallel p(\theta))$$
+
+Necessary to perform optimization w.r.t. a distribution $$\max_{q(\theta)\in\mathcal{Q}} \mathcal{L}(q(\theta))$$. Hard problem! In VI, we approximate with an approximate distribution $$q$$. This approximate distribution can belong to a factorized or parametric family.
+1. **Mean field approximation**: Factorized family, $$q(\theta)=\prod_{j=1}^m q_j(\theta_j)$$, $$\theta=[\theta_1,\dots,\theta_m]$$
+2. **Parametric approximation**: Parametric family, $$q(\theta)=q(\theta\mid \lambda)$$
+
+#### Mean Field Approximation
+Mean field assumes that $$\theta_1,\dots,\theta_m$$ are independent.
+- Apply product rule to distribution $$q$$: $$q(\theta)=\prod_{j=1}^m q_j(\theta_j\mid\theta_{<j})$$
+- Apply i.i.d. assumption: $$q(\theta)=\prod_{j=1}^m q_j(\theta_j)$$
+
+The optimization problem becomes:
+
+$$\max_{\prod_{j=1}^m q_j(\theta_j)\in\mathcal{Q}} \mathcal{L}(q(\theta))$$
+
+This can be solved with **block coordinate assent** as follows: **at each step fix all factors $$\{q_i(\theta_i)\}_{i\neq j}$$ except one and optimize w.r.t. to it $$\max_{q_j(\theta_j)}\mathcal{L}(q(\theta))$$**
+
+**Derivation**
+
+$$
+  \begin{align*}
+      \mathcal{L}(q(\theta)) &= \mathbb{E}_{q(\theta)} \log p(x,\theta)
+                              - \mathbb{E}_{q(\theta)} \log q(\theta) \\
+                             &= \mathbb{E}_{q(\theta)} \log p(x,\theta)
+                                -  \sum_{k=1}^m \mathbb{E}_{q_k(\theta_k)} \log q_k(\theta_k) \\
+                             &= \mathbb{E}_{q(\theta)} \log p(x,\theta)
+                                -  \mathbb{E}_{q_j(\theta_j)} \log q_j(\theta_j) + C \\
+                             &= \{r_j(\theta_j)=\frac{1}{Z_j}\exp(\mathbb{E}_{q_{i\neq j}} \log p(x,\theta))\}
+                             &= \mathbb{E}_{q_j(\theta_j)} \log r_j(\theta_j)
+                                -  \mathbb{E}_{q_j(\theta_j)} \log q_j(\theta_j) + C \\
+                             &= - KL(q_j(\theta_j)\parallel r_j(\theta_j)) + C
+  \end{align*}
+$$
+
+So, the optimization problem for step $$j$$ is:
+
+$$\max_{q_j(\theta_j)}\mathcal{L}(q(\theta)) = \max_{q_j(\theta_j)} - KL(q_j(\theta_j)\parallel r_j(\theta_j)) + C$$
+
+Where this happens when:
+
+$$q_j(\theta_j) = r_j(\theta_j) = \frac{1}{Z_j}\exp(\mathbb{E}_{q_{i\neq j}} \log p(x,\theta))$$
+
+$$log q_j(\theta_j) = \mathbb{E}_{q_{i\neq j}} \log p(x,\theta) + C$$
+
+Block coordinate assent can be described in two steps 1) initialize; 2) iterate
+
+1. Initialize: $$q(\theta)=\prod_{j=1}^m q_j(\theta_j)$$
+2. Iterate (repeat until ELBO converge):
+  - Update each factor $$q_1,\dots,q_m$$: $$q_j(\theta_j)=\frac{1}{Z_j}\exp(\mathbb{E}_{q_{i\neq j}} \log p(x,\theta))$$
+  - Compute ELBO $$\mathcal{L}(q(\theta))$$
+
+**note:** Mean-field can be applied when we can compute analytically $$\mathbb{E}_{q_{i\neq j}} \log p(x,\theta)$$. In other words, applicable when we can compute the conditional conjugacy.
+
+#### Parametric Approximation
+
+
+
+
+[1]: (https://en.wikipedia.org/wiki/Conjugate_prior)
