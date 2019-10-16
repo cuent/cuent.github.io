@@ -220,6 +220,24 @@ Block coordinate assent can be described in two steps 1) initialize; 2) iterate
 **note:** Mean-field can be applied when we can compute analytically $$\mathbb{E}_{q_{i\neq j}} \log p(x,\theta)$$. In other words, applicable when we can compute the conditional conjugacy.
 
 #### Parametric Approximation
+Select a parametric family of variational distributions, $$q(\theta)=q(\theta\mid\lambda)$$, where $$\lambda$$ is a variational parameter.
+
+The restriction is that we need to select a family of some fixed form, and as a result:
+- it might be too simple and insufficient to model the data
+- if it is complex enough then there is no guarantee we can train it well to fit the data
+
+The ELBO is:
+
+$$\max_{\lambda}\mathcal{L}(q\theta\mid\lambda)=\int q(\theta\mid\lambda)\log\frac{p(x\mid\theta)}{q(\theta\mid\lambda)}d\theta$$
+
+If we're able to calculate derivatives of ELBO w.r.t $$\theta$$, then we can solve this problem using some numerical optimization solver.
+
+### Inference methods
+So we have:
+1. Full Bayesian inference: $$p(\theta\mid x)$$
+2. MAP inference: $$p(\theta\mid x)\approx \delta (\theta-\theta_{MP})$$
+3. Mean field variational inference: $$p(\theta\mid x)\approx q(\theta)=\prod_{j=1}^m q_j(\theta_j)$$
+4. Parametric variational inference: $$p(\theta\mid x)\approx q(\theta)=q(\theta\mid\lambda)$$
 
 
 
