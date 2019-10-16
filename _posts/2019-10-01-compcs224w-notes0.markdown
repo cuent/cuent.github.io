@@ -137,13 +137,15 @@ KL is a good mismatch measure between two distributions over the **same domain**
 - **Evidence**: $$p(x)$$, shows the total probability of the observing data.
 - **Lower bound**: $$\log p(x) \geq \mathcal{L}(q(\theta))$$
 
-$$\begin{align*)
-     \log p(x) &= \int q(\theta) \log p(x)d\theta\\
-            &= \int q(\theta) \log\frac{p(x,\theta)}{p(\theta\mid x)}d\theta\\
-            &= \int q(\theta) \log\frac{p(x,\theta)q(\theta)}{p(\theta\mid x)q(\theta)}d\theta\\
-            &= \int q(\theta) \log\frac{p(x,\theta)}{q(\theta)}d\theta + \int q(\theta) \log\frac{q(\theta)}{p(\theta\mid x)}d\theta\\
-            &= \mathcal{L}(q(\theta)) + KL(q(\theta)\parallel p(\theta\mid x))\\
-    \end{align*}$$
+$$
+\begin{align*)
+     \log p(x)  &= \int q(\theta) \log p(x)d\theta\\
+                &= \int q(\theta) \log\frac{p(x,\theta)}{p(\theta\mid x)}d\theta\\
+                &= \int q(\theta) \log\frac{p(x,\theta)q(\theta)}{p(\theta\mid x)q(\theta)}d\theta\\
+                &= \int q(\theta) \log\frac{p(x,\theta)}{q(\theta)}d\theta + \int q(\theta) \log\frac{q(\theta)}{p(\theta\mid x)}d\theta\\
+                &= \mathcal{L}(q(\theta)) + KL(q(\theta)\parallel p(\theta\mid x))\\
+    \end{align*}
+    $$
 
 **Note**:
 - $$\log p(x)$$ does **not depend** on $$q$$
@@ -217,7 +219,7 @@ Block coordinate assent can be described in two steps 1) initialize; 2) iterate
   - Update each factor $$q_1,\dots,q_m$$: $$q_j(\theta_j)=\frac{1}{Z_j}\exp(\mathbb{E}_{q_{i\neq j}} \log p(x,\theta))$$
   - Compute ELBO $$\mathcal{L}(q(\theta))$$
 
-**note:** Mean-field can be applied when we can compute analytically $$\mathbb{E}_{q_{i\neq j}} \log p(x,\theta)$$. In other words, applicable when we can compute the conditional conjugacy.
+**Note:** Mean-field can be applied when we can compute analytically $$\mathbb{E}_{q_{i\neq j}} \log p(x,\theta)$$. In other words, applicable when we can compute the conditional conjugacy.
 
 #### Parametric Approximation
 Select a parametric family of variational distributions, $$q(\theta)=q(\theta\mid\lambda)$$, where $$\lambda$$ is a variational parameter.
