@@ -138,14 +138,14 @@ KL is a good mismatch measure between two distributions over the **same domain**
 - **Lower bound**: $$\log p(x) \geq \mathcal{L}(q(\theta))$$
 
 $$
-\begin{align*)
-     \log p(x)  &= \int q(\theta) \log p(x)d\theta\\
-                &= \int q(\theta) \log\frac{p(x,\theta)}{p(\theta\mid x)}d\theta\\
-                &= \int q(\theta) \log\frac{p(x,\theta)q(\theta)}{p(\theta\mid x)q(\theta)}d\theta\\
-                &= \int q(\theta) \log\frac{p(x,\theta)}{q(\theta)}d\theta + \int q(\theta) \log\frac{q(\theta)}{p(\theta\mid x)}d\theta\\
-                &= \mathcal{L}(q(\theta)) + KL(q(\theta)\parallel p(\theta\mid x))\\
-    \end{align*}
-    $$
+\begin{align*}
+  \log p(x)  &= \int q(\theta) \log p(x)d\theta\\
+            &= \int q(\theta) \log\frac{p(x,\theta)}{p(\theta\mid x)}d\theta\\
+            &= \int q(\theta) \log\frac{p(x,\theta)q(\theta)}{p(\theta\mid x)q(\theta)}d\theta\\
+            &= \int q(\theta) \log\frac{p(x,\theta)}{q(\theta)}d\theta + \int q(\theta) \log\frac{q(\theta)}{p(\theta\mid x)}d\theta\\
+            &= \mathcal{L}(q(\theta)) + KL(q(\theta)\parallel p(\theta\mid x))
+\end{align*}
+$$
 
 **Note**:
 - $$\log p(x)$$ does **not depend** on $$q$$
@@ -195,10 +195,10 @@ $$
                                 -  \sum_{k=1}^m \mathbb{E}_{q_k(\theta_k)} \log q_k(\theta_k) \\
                              &= \mathbb{E}_{q(\theta)} \log p(x,\theta)
                                 -  \mathbb{E}_{q_j(\theta_j)} \log q_j(\theta_j) + C \\
-                             &= \{r_j(\theta_j)=\frac{1}{Z_j}\exp(\mathbb{E}_{q_{i\neq j}} \log p(x,\theta))\}\\
-                             &= \mathbb{E}_{q_j(\theta_j)} \log r_j(\theta_j)
-                                -  \mathbb{E}_{q_j(\theta_j)} \log q_j(\theta_j) + C \\
-                             &= - KL(q_j(\theta_j)\parallel r_j(\theta_j)) + C
+                                &= \{r_j(\theta_j)=\frac{1}{Z_j}\exp(\mathbb{E}_{q_{i\neq j}} \log p(x,\theta))\}\\
+                                &= \mathbb{E}_{q_j(\theta_j)} \log r_j(\theta_j)
+                                   -  \mathbb{E}_{q_j(\theta_j)} \log q_j(\theta_j) + C \\
+                                &= - KL(q_j(\theta_j)\parallel r_j(\theta_j)) + C
   \end{align*}
 $$
 
