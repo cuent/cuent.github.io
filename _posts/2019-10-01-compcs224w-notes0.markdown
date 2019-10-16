@@ -13,82 +13,85 @@ Some tools:
 - Semi-implicit variational inference
 
 # Bayesian framework
-- Bayes theorem:
+- **Bayes theorem**:
 
 $$conditional = \frac{joint}{marginal}$$
 
 $$p(x\mid y)=\frac{p(x,y)}{p(y)}$$
 
-it defines a rule for uncertainty conversion when new information arrives
+  It defines a rule for uncertainty conversion when new information arrives
 
 $$posterior = \frac{likelihood \times prior}{evidence}$$
 
-- Product rule: any joint distribution can be expressed with conditional distributions
+- **Product rule**: any joint distribution can be expressed with conditional distributions
 
 $$p(x,y,z)=p(x\mid y,z)p(y\mid z)p(z)$$
 
-- Sum rule: any marginal distribution can be obtained from the joint distribution by integrating out
+- **Sum rule**: any marginal distribution can be obtained from the joint distribution by integrating out
 
 $$p(y)=\int p(x,y)dx$$
 
-- Statistical inference
+- **Statistical inference**
 
-Problem: given i.i.d. data $$X={x_i}_{i=1}^n$$ from distribution $$p(x\mid\theta)$$, estimate $$\theta$$
+  **Problem**: given i.i.d. data $$X=\{x_i\}_{i=1}^n$$ from distribution $$p(x\mid\theta)$$, estimate $$\theta$$
 
-  - Frequentist framework: use maximum likelihood estimation (MLE)
+  1. **Frequentist framework**: use maximum likelihood estimation (MLE)
 
-  $$\theta_{ML}=\argmax  p(X\mid\theta)=\argmax\prod_{i=1}^n p(x_i\mid\theta)=\argmax\sum_i^n\log p(x_i\mid\theta)$$
+  $$\theta_{ML}=\operatorname*{arg\,max}p(X\mid\theta)=\operatorname*{arg\,max}\prod_{i=1}^n p(x_i\mid\theta)=\operatorname*{arg\,max}\sum_i^n\log p(x_i\mid\theta)$$
 
-  Applicability: $$n\ll d$$
+    Applicability: $$n\ll d$$
 
-  - Bayesian framework: encode uncertainty about $$\theta$$ in a prior $$p(\theta)$$ and apply Bayesian inference
+  2. **Bayesian framework**: encode uncertainty about $$\theta$$ in a prior $$p(\theta)$$ and apply Bayesian inference
 
-  $$p(\theta\mid X)=\frac{\prod_i^n p(x_i\mid\theta)p(\theta)}{\int\prod_i^n p(x_i\mid\theta)p(\theta)d\theta}$$
+    $$p(\theta\mid X)=\frac{\prod_i^n p(x_i\mid\theta)p(\theta)}{\int\prod_i^n p(x_i\mid\theta)p(\theta)d\theta}$$
 
-  Applicability: $$\forall_nd$$
+    Applicability: $$\forall_nd$$
 
-  Advantages:
-  - we can encode prior knowledge/desired properties into a prior distribution
-  - prior is a form of regularization
-  - additionally to the point estimate of $$\theta$$, posterior contains information about the uncertainty of the estimate
-  - frequentist case is a limit case of Bayesian one
-    $$\lim_{n/d\to\infty}p(\theta\mid x_1,\dots,x_n)=\delta(\theta-\theta_{ML})$$
+    Advantages:
+      - we can encode prior knowledge/desired properties into a prior distribution
+      - prior is a form of regularization
+      - additionally to the point estimate of $$\theta$$, posterior contains information about the uncertainty of the estimate
+      - frequentist case is a limit case of Bayesian one
+        $$\lim_{n/d\to\infty}p(\theta\mid x_1,\dots,x_n)=\delta(\theta-\theta_{ML})$$
 
 # Bayesian ML models
 In ML, we have $$x$$ features (observed variables) and $$y$$ class labels or hidden representations (hidden or latent variables) with some model parameters $$\theta$$ (e.g. weights of a linear model).
 
-- Discriminative approach, models $$p(y,\theta\mid x)$$
+- **Discriminative approach, models $$p(y,\theta\mid x)$$**
 
   - Cannot generate new objects since it needs $$x$$ as an input and assumes that the prior over $$\theta$$ does not depend on $$x$$: $$p(y,\theta)=p(y\mid x,\theta)p(\theta)$$
   - Examples: 1) classification/regression (hidden space is small) 2) Machine translation (complex hidden space)
 
-- Generative approach, models $$p(x,y,\theta)=p(x,y\mid\theta)p(\theta)$$
+- **Generative approach, models $$p(x,y,\theta)=p(x,y\mid\theta)p(\theta)$$**
 
   - It can generate objects (pairs $$p(x,y)$$), but it can be hard to train since the observed space is most often more complicated.
   - Example: Generation of text, speech, images, etc.
 
-- Training
-Given data points $$(X_{tr}, Y_{tr})$$ and a discriminative model $$p(y,\theta\mid x)$$.
+- **Training**
 
-Use the Bayesian framework:
+  Given data points $$(X_{tr}, Y_{tr})$$ and a discriminative model $$p(y,\theta\mid x)$$.
 
-$$p(\theta\mid X_{tr}, Y_{tr})=\frac{p(Y_{tr}\mid X_{tr},\theta)p(\theta)}{\int p(Y_{tr}\mid X_{tr},\theta)p(\theta) d\theta}$$
+  *Use the Bayesian framework:*
 
-This results in a ensemble of algorithms rather than a single one $$\theta_{ML}$$. Ensembles usually performs better than a single model.
+  $$p(\theta\mid X_{tr}, Y_{tr})=\frac{p(Y_{tr}\mid X_{tr},\theta)p(\theta)}{\int p(Y_{tr}\mid X_{tr},\theta)p(\theta) d\theta}$$
 
-In addition, the posterior captures all dependencies from the training data and can be used later as a new prior.
+  This results in a ensemble of algorithms rather than a single one $$\theta_{ML}$$. Ensembles usually performs better than a single model.
 
-- Testing
+  In addition, the posterior captures all dependencies from the training data and can be used later as a new prior.
+
+- **Testing**
+
   We have the posterior $$p(\theta\mid X_{tr},Y_{tr})$$ and a new data point $$x$$. We can use the predictive distribution on its hidden value $$y$$
 
   $$p(y\mid x, X_{tr},Y_{tr}) = \int p(y\mid x,\theta)p(\theta\mid X_{tr},Y_{tr})d\theta$$
 
 
-# Full Bayesian inference
+ - **Full Bayesian inference**
 
- During training the evidence $$\int p(Y_{tr}\mid X_{tr},\theta)p(\theta) d\theta$$ or in testing the predictive distribution $$\int p(y\mid x,\theta)p(\theta\mid X_{tr},Y_{tr})d\theta$$ might be intractable, so it is impractical or impossible to perform full Bayesian inference. In other words, there is not closed form.
+  During training the evidence $$\int p(Y_{tr}\mid X_{tr},\theta)p(\theta) d\theta$$ or in testing the predictive distribution $$\int p(y\mid x,\theta)p(\theta\mid X_{tr},Y_{tr})d\theta$$ might be intractable, so it is impractical or impossible to perform full Bayesian inference. In other words, there is not closed form.
 
-# Conjugate distributions
+# Conjugacy
+## Conjugate distributions
 
 Distribution $$p(y)$$ and $$p(x\mid y)$$ are [conjugate][1] $$\iff$$ $$p(y\mid x)$$ belongs to the same parametric family as $$p(y)$$
 
@@ -102,8 +105,8 @@ During testing:
 
 $$p(y\mid x,X_{tr},Y_{tr})=\int p(y\mid x,\theta)p(\theta\mid X_{tr},Y_{tr})d\theta\approx p(y\mid x,\theta_{MP})$$
 
-# Conditional conjugacy
-Given the model: $$p(x,\theta)=p(x\mid\theta)p(\theta)$$ where $$\theta=\[\theta_1,\dots,\theta_m]$$
+## Conditional conjugacy
+Given the model: $$p(x,\theta)=p(x\mid\theta)p(\theta)$$ where $$\theta=[\theta_1,\dots,\theta_m]$$
 
 Conditional conjugacy of likelihood and prior on each $$\theta_j$$ conditional on all other $$\{\theta_i\}_{i\neq j}$$
 
@@ -116,15 +119,15 @@ For each $$\theta_j$$
 
 
 # Variational Inference
-Given the model $$p(x,\theta)=p(x\mid \theta)p(\theta), find a posterior approximation $$p(\theta\mid x) \approx q(\theta)\in\mathcal{Q}$$, such that:
+Given the model $$p(x,\theta)=p(x\mid \theta)p(\theta)$$, find a posterior approximation $$p(\theta\mid x) \approx q(\theta)\in\mathcal{Q}$$, such that:
 
 $$KL(q(\theta)\parallel p(\theta\mid x)) \rightarrow \min_{q(\theta)\in\mathcal{Q}}$$
 
 KL is a good mismatch measure between two distributions over the **same domain** (see figure). And it has the following properties:
 
-- $$KL(q\parallel p) \geq 0$$
-- $$KL(q\parallel p)=0 \Leftrightarrow q=p$$
-- $$KL(q\parallel p \neq KL(p\parallel q))$$
+1. $$KL(q\parallel p) \geq 0$$
+2. $$KL(q\parallel p)=0 \Leftrightarrow q=p$$
+3. $$KL(q\parallel p \neq KL(p\parallel q))$$
 
 ![KL](/images/kl/kl_mismatch.png)
 
@@ -134,18 +137,16 @@ KL is a good mismatch measure between two distributions over the **same domain**
 - **Evidence**: $$p(x)$$, shows the total probability of the observing data.
 - **Lower bound**: $$\log p(x) \geq \mathcal{L}(q(\theta))$$
 
-$$
-   \begin{align*)
-     log p(x) &= \int q(\theta) \log p(x)d\theta
-            &= \int q(\theta) \log\frac{p(x,\theta)}{p(\theta\mid x)}d\theta
-            &= \int q(\theta) \log\frac{p(x,\theta)q(\theta)}{p(\theta\mid x)q(\theta)}d\theta
-            &= \int q(\theta) \log\frac{p(x,\theta)}{q(\theta)}d\theta + \int q(\theta) \log\frac{q(\theta)}{p(\theta\mid x)}d\theta
-            &= \mathcal{L}(q(\theta)) + KL(q(\theta)\parallel p(\theta\mid x))
-    \end{align*}
-  $$
+$$\begin{align*)
+     \log p(x) &= \int q(\theta) \log p(x)d\theta\\
+            &= \int q(\theta) \log\frac{p(x,\theta)}{p(\theta\mid x)}d\theta\\
+            &= \int q(\theta) \log\frac{p(x,\theta)q(\theta)}{p(\theta\mid x)q(\theta)}d\theta\\
+            &= \int q(\theta) \log\frac{p(x,\theta)}{q(\theta)}d\theta + \int q(\theta) \log\frac{q(\theta)}{p(\theta\mid x)}d\theta\\
+            &= \mathcal{L}(q(\theta)) + KL(q(\theta)\parallel p(\theta\mid x))\\
+    \end{align*}$$
 
-**note**:
-- $$log p(x)$$ does **not depend** on $$q$$
+**Note**:
+- $$\log p(x)$$ does **not depend** on $$q$$
 - $$\mathcal{L}$$ and $$KL$$ **depend** on $$q$$
 - minimizing $$KL$$ is the same as maximizing $$\mathcal{L}$$.
 
@@ -156,9 +157,9 @@ $$KL(q(\theta)\parallel p(\theta\mid x)) \rightarrow \min_{q(\theta)\in\mathcal{
 
 $$
   \begin{align*}
-      \mathcal{L}(q(\theta)) &= \int q(\theta) \log\frac{p(x,\theta)}{q(\theta)}d\theta    
+      \mathcal{L}(q(\theta)) &= \int q(\theta) \log\frac{p(x,\theta)}{q(\theta)}d\theta\\    
                              &= \int q(\theta) \log p(x\mid\theta)d\theta +
-                                \int q(\theta) \log\frac{p(\theta)}{q(\theta)}d\theta
+                                \int q(\theta) \log\frac{p(\theta)}{q(\theta)}d\theta\\
                              &= \mathbb{E}_{q(\theta)} \log p(x\mid\theta)
                                 - KL(q(\theta)\parallel p(\theta))
   \end{align*}
@@ -192,7 +193,7 @@ $$
                                 -  \sum_{k=1}^m \mathbb{E}_{q_k(\theta_k)} \log q_k(\theta_k) \\
                              &= \mathbb{E}_{q(\theta)} \log p(x,\theta)
                                 -  \mathbb{E}_{q_j(\theta_j)} \log q_j(\theta_j) + C \\
-                             &= \{r_j(\theta_j)=\frac{1}{Z_j}\exp(\mathbb{E}_{q_{i\neq j}} \log p(x,\theta))\}
+                             &= \{r_j(\theta_j)=\frac{1}{Z_j}\exp(\mathbb{E}_{q_{i\neq j}} \log p(x,\theta))\}\\
                              &= \mathbb{E}_{q_j(\theta_j)} \log r_j(\theta_j)
                                 -  \mathbb{E}_{q_j(\theta_j)} \log q_j(\theta_j) + C \\
                              &= - KL(q_j(\theta_j)\parallel r_j(\theta_j)) + C
@@ -207,7 +208,7 @@ Where this happens when:
 
 $$q_j(\theta_j) = r_j(\theta_j) = \frac{1}{Z_j}\exp(\mathbb{E}_{q_{i\neq j}} \log p(x,\theta))$$
 
-$$log q_j(\theta_j) = \mathbb{E}_{q_{i\neq j}} \log p(x,\theta) + C$$
+$$\log q_j(\theta_j) = \mathbb{E}_{q_{i\neq j}} \log p(x,\theta) + C$$
 
 Block coordinate assent can be described in two steps 1) initialize; 2) iterate
 
