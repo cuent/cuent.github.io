@@ -241,7 +241,102 @@ So we have:
 3. Mean field variational inference: $$p(\theta\mid x)\approx q(\theta)=\prod_{j=1}^m q_j(\theta_j)$$
 4. Parametric variational inference: $$p(\theta\mid x)\approx q(\theta)=q(\theta\mid\lambda)$$
 
+## Latent variable model
+### Mixture of Gaussians
+Establish a latent variable $$z_i$$ for each data point $$x_i$$ that denotes the $$ith$$ gaussian where the model was generated.
 
+Model:
+
+$$
+  \begin{align*}
+    p(X,Z\mid\theta) &= \prod_i^n p(x_i,z_i\mid\theta)\\
+                     &= \prod_i^n p(x_i\mid z_i,\theta)p(z_i\mid\theta)\\
+                     &= \prod_i^n \pi_{z_i}\mathcal{N}(x_i\mid\mu_{z_i},\sigma_{z_i}^2)
+  \end{align*}
+$$
+
+where $$\pi_j=p(z_i=j)$$ is the prior of the $$jth$$ gaussian and $$\theta=\{\mu_j,\sigma^2_j,\pi_j\}_{j=1}^K$$ are the parameters to estimate.
+
+**Note:** If $$X$$ and $$Z$$ are known, we can use ML. For instance:
+
+$$
+  \begin{align*}
+    \theta_{ML}&=\operatorname*{arg\,max}_{\theta} p(X,Z\mid\theta)\\
+               &=\operatorname*{arg\,max}_{\theta} \log p(X,Z\mid\theta)
+  \end{align*}
+$$
+
+
+- Since $$Z$$ is a latent variable, we need to maximize the log of incomplete likelihood w.r.t. $$\theta$$.
+- Instead of optimizing $$\log p(X\mid \theta)$$, we optimize the variational lower bound w.r.t. to both $$\theta$$ and $$q(Z)$$
+- This can be solved by block-coordinate algorithm a.k.a. EM-algorithm.
+
+> **Variational Lower Bound:** $$g(\xi,\theta)$$ is the variational lower bound function for $$f(x)$$ iff:
+1. For all $$\xi$$ for all $$x$$: $$f(x)\geq g(\xi,x)$$
+2. For any $$x_0$$ exists $$\xi(x_0)$$ such that: $$f(x_0)=g(\xi(x0),x_0)$$
+
+>If we find such variational lower bound, instead of solving
+$$f(x)\rightarrow\max_x$$, we can interatively perform block coordinate updates of $$g(\xi, x)$$.
+1. $$x_n=\operatorname*{arg\,max}_{x}g(\xi_{n-1},x)$$
+2. $$\xi_n=\xi(x_n)=\operatorname*{arg\,max}_{\xi} g(\xi,x_n)$$
+
+**Expectation Maximization algorithm**
+We want to solve:
+
+$$\operatorname*{arg\,max}_{q,\theta}\mathcal{L}(q, \theta) = \operatorname*{arg\,max}_{q,\theta}\int q(Z)\frac{p(X,Z\mid\theta)}{q(Z)}dZ$$
+
+**Algorithm**:
+Set an initial point $$\theta_0$$
+
+Repeat iteratively 1 and 2 until convergence
+1. E-step, find:
+$$
+  \begin{align*}
+    q(Z)&=\operatorname*{arg\,max}_{q}\mathcal{L}(q,\theta_0)\\
+       &=\operatorname*{arg\,max}_{q}{KL}(q\parallel p)\\
+       &=p(Z\mid X,\theta_0)
+  \end{align*}
+$$
+2. M-step, solve:
+$$
+  \begin{align*}
+    \theta_*&=\operatorname*{arg\,max}_{\theta}\mathcal{L}(q,\theta)\\
+       &=\operatorname*{arg\,max}_{\theta}\mathbb{E}_Z \log p(X,Z\mid\theta)
+  \end{align*}
+$$
+- Set $$\theta_0=\theta_*$$ and go to 1
+
+EM monotonically increases the lower bound and converges to a stationary point of $$\log p(X\mid\theta)$$, see figure.
+
+![EM algorithm](/images/em/em_optimize.gif)
+
+**Benefits of EM**
+- In some cases E-step and M-step can be solved in closed-information
+- Allow to build more complicated models
+- If true posterior $$p(Z\mid X,\theta)$$ is intractable, we may search for the closest $$q(Z)$$ *among tractable distributions* by solving optimization problem
+- Allows to process missing data by treating them as latent variables
+  - It can deal with both discrete and latent variables
+
+**Categorical latent variables**
+Since $$z_i\in\{1,\dots,K\}$$ the marginal of a mixture of gaussians is a finite mixture of distributions:
+
+$$p(x_i\mid\theta)=\sum_{k=1}^Kp(x_i\mid k,\theta)p(z_i=k\mid\theta)$$
+
+- E-step is closed-form: $$q(z_i=k)=p(z_i=k\mid x_i,\theta)=\frac{p(x_i\mid k,\theta)p(z_i=k\mid\theta)}{\sum_{l=1}^Kp(x_i\mid l,\theta)p(z_i=l\mid\theta)}$$
+- M-step is a sum of finite terms: $$\mathbb{E}_Z\log p(X,Z\mid\theta)=\sum_{i=1}^n\mathbb{E}_{z_i}\log p(x_i,z_i\mid\theta)=\sum_{i=1}^n\sum_{k=1}^K q(z_i=k)\log p(x_i,k\mid\theta)$$
+
+**Continuous latent variables**
+A mixture of continuous distributions
+
+$$p(x_i\mid\theta)=\int p(x_i\mid z_i,\theta)p(z_i\mid\theta) dz_i$$
+
+- E-step: only done in closed form when **conjugate distributions**, otherwise the true posterior is intractable
+
+  $$
+    q(z_i)=p(z_i\mid x_i,\theta)=\frac{p(x_i\mid z_i,\theta)p(z_i\mid\theta)}{\int p(x_i\mid z_i,\theta)p(z_i\mid\theta) dz_i}
+  $$
+
+Typically continuous latent variable are used for dimensionality reduction a.k.a. *representation learning*
 
 
 [1]: (https://en.wikipedia.org/wiki/Conjugate_prior)
