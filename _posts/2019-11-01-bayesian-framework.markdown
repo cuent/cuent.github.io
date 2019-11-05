@@ -1,9 +1,11 @@
 ---
 layout: post
-title:  "Bayesian reasoning"
-date:   2019-05-17 20:41:19 -0500
+title:  "Notes on the Bayesian Framework"
+date:   2019-11-01 20:41:19 -0500
 categories: bayes notes
+toc: true
 ---
+
 Some tools:
 - Stochastic variational inference
 - Variance reduction
@@ -241,8 +243,8 @@ So we have:
 3. Mean field variational inference: $$p(\theta\mid x)\approx q(\theta)=\prod_{j=1}^m q_j(\theta_j)$$
 4. Parametric variational inference: $$p(\theta\mid x)\approx q(\theta)=q(\theta\mid\lambda)$$
 
-## Latent variable model
-### Mixture of Gaussians
+# Latent variable model
+## Mixture of Gaussians
 Establish a latent variable $$z_i$$ for each data point $$x_i$$ that denotes the $$ith$$ gaussian where the model was generated.
 
 Model:
@@ -338,5 +340,25 @@ $$p(x_i\mid\theta)=\int p(x_i\mid z_i,\theta)p(z_i\mid\theta) dz_i$$
 
 Typically continuous latent variable are used for dimensionality reduction a.k.a. *representation learning*
 
+# Log-derivative trick
+
+$$\frac{\partial}{\partial x}p(y\mid x)=p(y\mid x)\frac{\partial}{\partial x}\log p(y\mid x)$$
+
+For example, we commonly find expressions as follows:
+
+$$
+  \begin{align*}
+    \frac{\partial}{\partial x}\int p(y\mid x)h(x,y)dy &= \int \frac{\partial}{\partial x} p(y\mid x)h(x,y)dy\\
+                                  &= \int \left(h(x,y)\frac{\partial}{\partial x} p(y\mid x) + p(y\mid x)\frac{\partial}{\partial x} h(x,y) \right)dy \\
+                                  &= \int p(y\mid x)\frac{\partial}{\partial x} h(x,y) dy + \int h(x,y)\frac{\partial}{\partial x} p(y\mid x)dy \\
+                                  &= \int p(y\mid x)\frac{\partial}{\partial x} h(x,y) dy + \int p(y\mid x)h(x,y)\frac{\partial}{\partial x} \log p(y\mid x)dy
+  \end{align*}
+$$
+
+Now, the first term can be replaced with Monte Carlo estimate of expectation. Using the log-derivative trick, the second expectation can also be estimated via Monte Carlo.
+
+# Score function
+
+# REINFORCE
 
 [1]: (https://en.wikipedia.org/wiki/Conjugate_prior)
