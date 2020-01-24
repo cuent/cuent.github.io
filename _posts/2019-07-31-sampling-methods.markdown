@@ -43,6 +43,21 @@ $$\hat s_q=\frac{1}{n}\sum_{i=1, \mathbf{x}^{(i)}\sim q}^n \frac{p(\mathbf{x}^{(
 Essentially, any distribution $$q$$ is valid. However, the choice of $$q$$ can be sensitive to the variance of the _importance sampling estimator_.
 
 ####  Biased Importance Sampling
+BIS doesn't require to normalize $$p$$ or $$q$$, the estimator is given by:
 
-## MCMC
+$$
+\hat s_{BIS}=\frac{\sum_{i=1}^n\frac{\tilde p(\mathbf{x^{(i)}})}{\tilde q(\mathbf{x^{(i)}})}f(\mathbf{x^{(i)}})}{\sum_{i=1}^n\frac{\tilde p(\mathbf{x^{(i)}})}{\tilde q(\mathbf{x^{(i)}})}}
+$$
+
+, where $$\tilde p$$ and $$\tilde q$$ are the unnormalized forms of $$p$$ and $$q$$. We take n samples $$\mathbf{x^{(i)}}$$ from $$q$$.
+
+In general importance sampling is handy when it comes to:
+- accelerate training in neural language models with a large vocabulary.
+- estimate a partition function.
+- estimate log-likelihood in deep directed models.
+- improve estimates of the gradient of the cost function.
+
+
+## Markov Chain Monte Carlo
+
 ## Gibbs Sampling

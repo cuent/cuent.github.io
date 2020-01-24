@@ -359,6 +359,24 @@ Now, the first term can be replaced with Monte Carlo estimate of expectation. Us
 
 # Score function
 
+It is the gradient of the log-likelihood function with respect to the parameter vector. Since it has zero mean, the value $$z_i^*$$ in $$\nabla_{\phi}\log q(z_i^*\mid\theta)$$ oscillates around zero.
+
+$$
+  \begin{align*}
+    \nabla_{\phi}\log q(z_i\mid\theta)
+  \end{align*}
+$$
+
+Proof it has zero mean:
+
+$$
+\begin{align*}
+  \int q(z_i\mid\theta)\nabla_{\phi}\log q(z_i\mid\theta) d z_i&=\int\frac{q(z_i\mid\theta)}{q(z_i\mid\theta)}\nabla_{\phi}q(z_i\mid\theta)d z_i\\
+                                                              &= \nabla_{\phi}\int q(z_i\mid\theta)dz_i\\
+                                                              &= \nabla_{\phi} 1 =0
+\end{align*}
+$$
+
 # REINFORCE
 
 [1]: (https://en.wikipedia.org/wiki/Conjugate_prior)
