@@ -37,10 +37,25 @@ ML on graphs involves common ML tasks such as 1) supervised learning: predict a 
 - **Node classification**: Consist in predicting a label $$y_u$$ associated with a node $$u\in\mathcal{V}$$.
 
   Modeling in graphs is different since nodes are interconnected with each other and they are not i.i.d. Thus, some connection between nodes is needed. For example:
-  1. homophily:
-  2. structural equivalence:
-  3. monophily:
+  1. homophily: nodes share attributes.
+  2. structural equivalence: nodes with similar local neighborhood structure have similar labels.
+  3. monophily: nodes with unrelated labels.
 
-- **Relation prediction**:
-- **Clustering and community detection**:
-- **Graph classification/clustering**: 
+- **Relation prediction**: aka. link prediction or graph completion seeks to infer the relationship of a node with other nodes in the graph. The problems involves that given a set of nodes $$\mathcal{V}$$ and an incomplete set of edges $$\mathcal{E}_{\text{train}}\in\mathcal{E}$$, infer the missing edges $$\mathcal{E}\setminus\mathcal{E}_{\text{train}}$$. Complexity is highly depend on the type of graph (i.e. simple graph or multi-relational graph) and it often requires inductive biases specific for each graph domain.
+
+- **Clustering and community detection**: An unsupervised task that finds a community structure where nodes are more likely to form edges with nodes that belong to the same community. The challenge is to infer the *community structure* given an input graph $$\mathcal{G}=(\mathcal{V},\mathcal{E})$$.
+
+
+- **Graph classification/clustering**: Task over entire graphs. Graph classification involves that given multiple different graphs, learn predictions specific to each graph. And graph clustering (similarity matching) the goal is to learn an unsupervised measure of similarity between a set of i.i.d. graphs. Challenge is to define useful features that consider the relational structure of each datapoint.
+
+### Traditional approaches
+Uses for node classification tasks
+- graph statistics
+- kernel methods
+Link prediction
+- measure overlap between node neighborhoods
+Clustering / community detection
+- spectral clustering (graph Laplacians)
+
+#### Graphs statistics and kernel methods
+Node-level features -> Graph-level stats -> kernel methods
