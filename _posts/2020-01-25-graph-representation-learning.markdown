@@ -58,4 +58,27 @@ Clustering / community detection
 - spectral clustering (graph Laplacians)
 
 #### Graphs statistics and kernel methods
-Node-level features -> Graph-level stats -> kernel methods
+Extract statistics or features and use them in traditional machine learning classifiers.
+- **Node level statistics and features**:
+  1. **Node degree**: it is the number of incident edges to a node.
+
+      $$d_u=\sum_{v\in V}A_{u,v}$$
+  2. **Node centrality**: measures the importance of a node; it takes into account the importance of a node's neighbors.
+
+      $$e_u=\frac{1}{\lambda}\sum_{v\in V}A_{u,v}e_v \forall_u \in V \text{   (eigenvector centrality)}$$
+
+      We can compute the vector of node centrality $$\mathbb{e}$$ using the eigenvector equation with the adjacency matrix $$\lambda\mathbb{e}=A\mathbb{e}$$.
+
+      We can use the eigenvector centrality to rank the likelihood that a node has visited infinity nodes on a random walk (due to the power of iteration) $$\mathbb{e}^{(t+1)}=A\mathbb{e^{(t)}}$$.
+
+      Other measures:
+        - _betweeness centrality_: measures how often a node lies on the shortest path between two other nodes.
+        - _closeness centrality_: measures the average shortest path length between a node and all other nodes.
+
+    3. **Clustering coefficient**:
+    3. **Motifs**:
+
+
+
+
+Graph-level stats -> kernel methods
