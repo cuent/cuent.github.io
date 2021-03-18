@@ -23,10 +23,14 @@ url: "http://cuent.github.io/"
 twitter_username: xavier_sumba
 github_username:  cuent
 scholar_url:  https://scholar.google.com/citations?user=pWQiHZwAAAAJ&hl=en&oi=ao
+google_analytics: UA-NNNNNNNN-N
 
 # Build settings
 destination: _sites
 markdown: kramdown
+
+disqus:
+  shortname: xaviersumba
 #theme: jekyll-theme-minimal
 plugins:
   - jekyll-feed
