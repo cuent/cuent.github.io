@@ -28,10 +28,15 @@ google_analytics: G-QCYXRLMN9B
 # Build settings
 destination: _sites
 markdown: kramdown
+highlighter: rouge
 
 disqus:
   shortname: xaviersumba
 #theme: jekyll-theme-minimal
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
 plugins:
   - jekyll-feed
   - jekyll-toc
@@ -39,9 +44,9 @@ plugins:
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
+exclude:
+  - Gemfile
+  - Gemfile.lock
 #   - node_modules
 #   - vendor/bundle/
 #   - vendor/cache/
