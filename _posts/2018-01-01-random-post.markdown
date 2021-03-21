@@ -2,7 +2,7 @@
 layout: post
 title:  "Introduction to java 9"
 date:   2018-01-01 20:41:19 -0500
-categories: jdk9 jigsaw
+categories: Programming
 ---
 
 # Java modularity

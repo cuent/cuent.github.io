@@ -2,7 +2,7 @@
 layout: post
 title:  "Notes on the Bayesian Framework"
 date:   2019-11-01 20:41:19 -0500
-categories: bayes notes
+categories: Bayesian-inference
 toc: true
 ---
 

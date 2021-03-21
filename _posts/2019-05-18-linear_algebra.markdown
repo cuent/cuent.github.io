@@ -2,7 +2,7 @@
 layout: post
 title:  "Linear Algebra"
 date:   2019-05-15 21:41:19 -0500
-categories: math notes
+categories: Math
 ---
 
 Some interesting links:

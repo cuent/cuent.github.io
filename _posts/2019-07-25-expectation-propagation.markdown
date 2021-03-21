@@ -2,7 +2,7 @@
 layout: post
 title: Expectation Propagation Notes
 date: '2019-07-25 20:41:19 -0500'
-categories: ep notes
+categories: 'Bayesian-inference'
 ---
 
 Commonly in probabilistic models, we deal with expectations that are either too hard to compute or intractable. In Bayesian inference setting, we usually need to calculate the posterior $$p(z\mid x)$$ for parameter estimation or the evidence $$p(x)$$ for model selection, where $$z$$ is a latent variable and $$x$$ is known. We can use approximate inference to solve this complex integrals. There is many work that have been done in this area, but approximate methods can be classified in deterministic and sampling methods. The former evaluates the integral in several locations and constructs an approximate function. The latter relies in the law of large numbers and given enough samples, the integral will converge to the true value.

@@ -2,7 +2,7 @@
 layout: post
 title:  "CS224W notes - Machine learning with graphs"
 date:   2019-05-17 20:41:19 -0500
-categories: graphs notes
+categories: GRL
 ---
 
 ## [Introduction and graph structure][1]

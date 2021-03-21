@@ -2,7 +2,7 @@
 layout: post
 title:  "Graph Representation Learning notes"
 date:   2020-01-25 14:41:19 -0500
-categories: graphs notes
+categories: GRL
 toc: true
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title:  "Sampling methods notes"
 date:   2019-05-17 20:41:19 -0500
-categories: sampling notes
+categories: Bayesian-inference
 ---
 # Monte Carlo Methods
 

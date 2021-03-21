@@ -2,7 +2,7 @@
 layout: post
 title:  "Design Patterns"
 date:   2018-02-06 20:41:19 -0500
-categories: design-patterns
+categories: Programming
 ---
 Shared vocabulary:
 - easier to communicate. Communicate a set of characteristics, qualities, and constraints that a pattern represents.

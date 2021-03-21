@@ -2,7 +2,7 @@
 layout: post
 title:  "Probabilistic Graphical Models"
 date:   2019-05-17 20:41:19 -0500
-categories: pgm notes
+categories: Bayesian-inference
 ---
 A graphical model is a method for modeling probability distributions under certain uncertainty.
 
