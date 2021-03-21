@@ -36,10 +36,7 @@
 
           {% if site.scholar_url %}
           <li>
-            <a href="{{ site.scholar_url }}">
-              <i class="ai ai-google-scholar-square ai-2x icon" style="color:#828282"></i>
-              <span class="username">publications</span>
-            </a>
+            {% include icon-scholar.html url=site.scholar_url %}
           </li>
           {% endif %}
         </ul>
