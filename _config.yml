@@ -22,6 +22,8 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://cuent.github.io/"
 twitter_username: xavier_sumba
 github_username:  cuent
+goodreads_username: 46665680-xavier-sumba
+strava_username: 45728359
 scholar_url:  https://scholar.google.com/citations?user=pWQiHZwAAAAJ&hl=en&oi=ao
 google_analytics: G-QCYXRLMN9B
 
