@@ -1,349 +1,104 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-12-07T21:27:54-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Xavier Sumba</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">a distill-style blog post</title><link href="http://localhost:4000/blog/2021/distill/" rel="alternate" type="text/html" title="a distill-style blog post" /><published>2021-05-22T00:00:00-04:00</published><updated>2021-05-22T00:00:00-04:00</updated><id>http://localhost:4000/blog/2021/distill</id><content type="html" xml:base="http://localhost:4000/blog/2021/distill/">**NOTE:**
-Citations, footnotes, and code blocks do not display correctly in the dark mode since distill does not support the dark mode by default.
-If you are interested in correctly adding dark mode support for distill, please open [a discussion](https://github.com/alshedivat/al-folio/discussions) and let us know.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-12-07T22:00:25-05:00</updated><id>/feed.xml</id><title type="html">Xavier Sumba</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">Graph Representation Learning notes</title><link href="/blog/2020/graph-representation-learning/" rel="alternate" type="text/html" title="Graph Representation Learning notes" /><published>2020-01-25T14:41:19-05:00</published><updated>2020-01-25T14:41:19-05:00</updated><id>/blog/2020/graph-representation-learning</id><content type="html" xml:base="/blog/2020/graph-representation-learning/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
+&lt;p&gt;Graphs are everywhere and most knowledge can be modeled with graphs. Graphs can be understood as a complex data structure that can be used as a universal language. Therefore, as any language, graphs communicate ideas using nodes (objects) and edges (interaction); thus any complex system can be modeled by creating relationships between points. We focus in the use machine learning on graphs, but the field of network analysis provide other approaches to analyze, understand and learn from graphs.&lt;/p&gt;
 
-## Equations
+&lt;h3 id=&quot;graphs-data-structure&quot;&gt;Graphs: data structure&lt;/h3&gt;
+&lt;p&gt;Graphs are composed with a set of nodes \(\mathcal{V}\) on a set de edges \(\mathcal{E}\) that define a relation \(\mathcal{G}=(\mathcal{V}, \mathcal{E})\).&lt;/p&gt;
 
-This theme supports rendering beautiful math in inline and display modes using [MathJax 3](https://www.mathjax.org/){:target=&quot;\_blank&quot;} engine.
-You just need to surround your math expression with `$$`, like `$$ E = mc^2 $$`.
-If you leave it inside a paragraph, it will produce an inline expression, just like $$ E = mc^2 $$.
+\[u,v\in\mathcal{V}\]
 
-To use display mode, again surround your expression with `$$` and place it as a separate paragraph.
-Here is an example:
+&lt;p&gt;Also, notice that &lt;em&gt;graph&lt;/em&gt; and &lt;em&gt;network&lt;/em&gt; are terms used interchangeably, but graphs involves properties of real-world data while a network provides mathematical properties for graphs.&lt;/p&gt;
 
-$$
-\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
-$$
-
-Note that MathJax 3 is [a major re-write of MathJax](https://docs.mathjax.org/en/latest/upgrading/whats-new-3.0.html){:target=&quot;\_blank&quot;} that brought a significant improvement to the loading and rendering speed, which is now [on par with KaTeX](http://www.intmath.com/cg5/katex-mathjax-comparison.php){:target=&quot;\_blank&quot;}.
-
-
-***
-
-## Citations
-
-Citations are then used in the article body with the `&lt;d-cite&gt;` tag.
-The key attribute is a reference to the id provided in the bibliography.
-The key attribute can take multiple ids, separated by commas.
-
-The citation is presented inline like this: &lt;d-cite key=&quot;gregor2015draw&quot;&gt;&lt;/d-cite&gt; (a number that displays more information on hover).
-If you have an appendix, a bibliography is automatically created and populated in it.
-
-Distill chose a numerical inline citation style to improve readability of citation dense articles and because many of the benefits of longer citations are obviated by displaying more information on hover.
-However, we consider it good style to mention author last names if you discuss something at length and it fits into the flow well — the authors are human and it’s nice for them to have the community associate them with their work.
-
-***
-
-## Footnotes
-
-Just wrap the text you would like to show up in a footnote in a `&lt;d-footnote&gt;` tag.
-The number of the footnote will be automatically generated.&lt;d-footnote&gt;This will become a hoverable footnote.&lt;/d-footnote&gt;
-
-***
-
-## Code Blocks
-
-Syntax highlighting is provided within `&lt;d-code&gt;` tags.
-An example of inline code snippets: `&lt;d-code language=&quot;html&quot;&gt;let x = 10;&lt;/d-code&gt;`.
-For larger blocks of code, add a `block` attribute:
-
-&lt;d-code block language=&quot;javascript&quot;&gt;
-  var x = 25;
-  function(x) {
-    return x * x;
-  }
-&lt;/d-code&gt;
-
-**Note:** `&lt;d-code&gt;` blocks do not look well in the dark mode.
-You can always use the default code-highlight using the `highlight` liquid tag:
-
-{% highlight javascript %}
-var x = 25;
-function(x) {
-  return x * x;
-}
-{% endhighlight %}
-
-***
-
-## Layouts
-
-The main text column is referred to as the body.
-It is the assumed layout of any direct descendants of the `d-article` element.
-
-&lt;div class=&quot;fake-img l-body&quot;&gt;
-  &lt;p&gt;.l-body&lt;/p&gt;
-&lt;/div&gt;
-
-For images you want to display a little larger, try `.l-page`:
-
-&lt;div class=&quot;fake-img l-page&quot;&gt;
-  &lt;p&gt;.l-page&lt;/p&gt;
-&lt;/div&gt;
-
-All of these have an outset variant if you want to poke out from the body text a little bit.
-For instance:
-
-&lt;div class=&quot;fake-img l-body-outset&quot;&gt;
-  &lt;p&gt;.l-body-outset&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;fake-img l-page-outset&quot;&gt;
-  &lt;p&gt;.l-page-outset&lt;/p&gt;
-&lt;/div&gt;
-
-Occasionally you’ll want to use the full browser width.
-For this, use `.l-screen`.
-You can also inset the element a little from the edge of the browser by using the inset variant.
-
-&lt;div class=&quot;fake-img l-screen&quot;&gt;
-  &lt;p&gt;.l-screen&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&quot;fake-img l-screen-inset&quot;&gt;
-  &lt;p&gt;.l-screen-inset&lt;/p&gt;
-&lt;/div&gt;
-
-The final layout is for marginalia, asides, and footnotes.
-It does not interrupt the normal flow of `.l-body` sized text except on mobile screen sizes.
-
-&lt;div class=&quot;fake-img l-gutter&quot;&gt;
-  &lt;p&gt;.l-gutter&lt;/p&gt;
-&lt;/div&gt;
-
-
-Emphasis, aka italics, with *asterisks* or _underscores_.
-
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
-
-Combined emphasis with **asterisks and _underscores_**.
-
-Strikethrough uses two tildes. ~~Scratch this.~~
-
-1. First ordered list item
-2. Another item
-⋅⋅* Unordered sub-list. 
-1. Actual numbers don&apos;t matter, just that it&apos;s a number
-⋅⋅1. Ordered sub-list
-4. And another item.
-
-⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we&apos;ll use three here to also align the raw Markdown).
-
-⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
-⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
-⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)
-
-* Unordered list can use asterisks
-- Or minuses
-+ Or pluses
-
-[I&apos;m an inline-style link](https://www.google.com)
-
-[I&apos;m an inline-style link with title](https://www.google.com &quot;Google&apos;s Homepage&quot;)
-
-[I&apos;m a reference-style link][Arbitrary case-insensitive reference text]
-
-[I&apos;m a relative reference to a repository file](../blob/master/LICENSE)
-
-[You can use numbers for reference-style link definitions][1]
-
-Or leave it empty and use the [link text itself].
-
-URLs and URLs in angle brackets will automatically get turned into links. 
-http://www.example.com or &lt;http://www.example.com&gt; and sometimes 
-example.com (but not on Github, for example).
-
-Some text to show that the reference links can follow later.
-
-[arbitrary case-insensitive reference text]: https://www.mozilla.org
-[1]: http://slashdot.org
-[link text itself]: http://www.reddit.com
-
-Here&apos;s our logo (hover to see the title text):
-
-Inline-style: 
-![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png &quot;Logo Title Text 1&quot;)
-
-Reference-style: 
-![alt text][logo]
-
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png &quot;Logo Title Text 2&quot;
-
-Inline `code` has `back-ticks around` it.
-
-```javascript
-var s = &quot;JavaScript syntax highlighting&quot;;
-alert(s);
-```
- 
-```python
-s = &quot;Python syntax highlighting&quot;
-print s
-```
- 
-```
-No language indicated, so no syntax highlighting. 
-But let&apos;s throw in a &lt;b&gt;tag&lt;/b&gt;.
-```
-
-Colons can be used to align columns.
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
-
-There must be at least 3 dashes separating each header cell.
-The outer pipes (|) are optional, and you don&apos;t need to make the 
-raw Markdown line up prettily. You can also use inline Markdown.
-
-Markdown | Less | Pretty
---- | --- | ---
-*Still* | `renders` | **nicely**
-1 | 2 | 3
-
-&gt; Blockquotes are very handy in email to emulate reply text.
-&gt; This line is part of the same quote.
-
-Quote break.
-
-&gt; This is a very long line that will still be quoted properly when it wraps. Oh boy let&apos;s keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. 
-
-
-Three or more...
-
----
-
-Hyphens
-
-***
-
-Asterisks
-
-___
-
-Underscores
-
-Here&apos;s a line for us to start with.
-
-This line is separated from the one above by two newlines, so it will be a *separate paragraph*.
-
-This line is also a separate paragraph, but...
-This line is only separated by a single newline, so it&apos;s a separate line in the *same paragraph*.</content><author><name>Albert Einstein</name></author><summary type="html">NOTE: Citations, footnotes, and code blocks do not display correctly in the dark mode since distill does not support the dark mode by default. If you are interested in correctly adding dark mode support for distill, please open a discussion and let us know.</summary></entry><entry><title type="html">a post with github metadata</title><link href="http://localhost:4000/blog/2020/github-metadata/" rel="alternate" type="text/html" title="a post with github metadata" /><published>2020-09-28T17:01:00-04:00</published><updated>2020-09-28T17:01:00-04:00</updated><id>http://localhost:4000/blog/2020/github-metadata</id><content type="html" xml:base="http://localhost:4000/blog/2020/github-metadata/">A sample blog page that demonstrates the accessing of github meta data.
-
-## What does Github-MetaData do?
-* Propagates the site.github namespace with repository metadata
-* Setting site variables : 
-  * site.title
-  * site.description
-  * site.url
-  * site.baseurl
-* Accessing the metadata - duh.
-* Generating edittable links.
-
-## Additional Reading
-* If you&apos;re recieving incorrect/missing data, you may need to perform a Github API&lt;a href=&quot;https://github.com/jekyll/github-metadata/blob/master/docs/authentication.md&quot;&gt; authentication&lt;/a&gt;.
-* Go through this &lt;a href=&quot;https://jekyll.github.io/github-metadata/&quot; target=&quot;blank&quot;&gt;README&lt;/a&gt; for more details on the topic.
-* &lt;a href= &quot;https://github.com/jekyll/github-metadata/blob/master/docs/site.github.md&quot;&gt;This page&lt;/a&gt; highlights all the feilds you can access with github-metadata.
-&lt;br /&gt;
-
-## Example MetaData
-* Host Name : {{ site.github.hostname }}
-* URL : {{ site.github.url }}
-* BaseURL : {{ site.github.baseurl }}
-* Archived : {{ site.github.archived}}
-* Contributors : 
-{% for contributor in site.github.contributors %}
-  * {{ contributor.login }}
-{% endfor %}</content><author><name></name></author><summary type="html">A sample blog page that demonstrates the accessing of github meta data. What does Github-MetaData do? Propagates the site.github namespace with repository metadata Setting site variables : site.title site.description site.url site.baseurl Accessing the metadata - duh. Generating edittable links. Additional Reading If you’re recieving incorrect/missing data, you may need to perform a Github API authentication. Go through this README for more details on the topic. This page highlights all the feilds you can access with github-metadata. Example MetaData Host Name : URL : BaseURL : Archived : Contributors :</summary></entry><entry><title type="html">a post with twitter</title><link href="http://localhost:4000/blog/2020/twitter/" rel="alternate" type="text/html" title="a post with twitter" /><published>2020-09-28T11:12:00-04:00</published><updated>2020-09-28T11:12:00-04:00</updated><id>http://localhost:4000/blog/2020/twitter</id><content type="html" xml:base="http://localhost:4000/blog/2020/twitter/">A sample blog page that demonstrates the inclusion of Tweets/Timelines/etc.
-
-# Tweet
-An example of displaying a tweet:
-{% twitter https://twitter.com/rubygems/status/518821243320287232 %}
-
-# Timeline
-An example of pulling from a timeline:
-{% twitter https://twitter.com/jekyllrb maxwidth=500 limit=3 %}
-
-# Additional Details
-For more details on using the plugin visit: [jekyll-twitter-plugin](https://github.com/rob-murray/jekyll-twitter-plugin){:target=&quot;\_blank&quot;}</content><author><name></name></author><summary type="html">A sample blog page that demonstrates the inclusion of Tweets/Timelines/etc. Tweet An example of displaying a tweet: jekyll-twitter-plugin (1.0.0): A Liquid tag plugin for Jekyll that renders Tweets from Twitter API http://t.co/m4EIQPM9h4&amp;mdash; RubyGems (@rubygems) October 5, 2014 Timeline An example of pulling from a timeline: Tweets by jekyllrb Additional Details For more details on using the plugin visit: jekyll-twitter-plugin</summary></entry><entry><title type="html">Graph Representation Learning notes</title><link href="http://localhost:4000/blog/2020/graph-representation-learning/" rel="alternate" type="text/html" title="Graph Representation Learning notes" /><published>2020-01-25T14:41:19-05:00</published><updated>2020-01-25T14:41:19-05:00</updated><id>http://localhost:4000/blog/2020/graph-representation-learning</id><content type="html" xml:base="http://localhost:4000/blog/2020/graph-representation-learning/">## Introduction
-
-Graphs are everywhere and most knowledge can be modeled with graphs. Graphs can be understood as a complex data structure that can be used as a universal language. Therefore, as any language, graphs communicate ideas using nodes (objects) and edges (interaction); thus any complex system can be modeled by creating relationships between points. We focus in the use machine learning on graphs, but the field of network analysis provide other approaches to analyze, understand and learn from graphs.
-
-### Graphs: data structure
-Graphs are composed with a set of nodes $$\mathcal{V}$$ on a set de edges $$\mathcal{E}$$ that define a relation $$\mathcal{G}=(\mathcal{V}, \mathcal{E})$$.
-
-$$u,v\in\mathcal{V}$$
-
-Also, notice that *graph* and *network* are terms used interchangeably, but graphs involves properties of real-world data while a network provides mathematical properties for graphs.
-
-- **Adjacency Matrix**: $$A\in \mathbb{R}^{\mid V\mid\times\mid V\mid}
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Adjacency Matrix&lt;/strong&gt;: \(A\in \mathbb{R}^{\mid V\mid\times\mid V\mid}
 \begin{cases}
-    A_{uv}=1&amp; \text{if } (u,v)\in\mathcal{E}\\
-    A_{uv}=0              &amp; \text{otherwise}
-\end{cases}$$
-  - *directed*: no symmetric
-  - *undirected*: symmetric
-  - *weighted*: real values $$\{0,1\}$$
+  A_{uv}=1&amp;amp; \text{if } (u,v)\in\mathcal{E}\\
+  A_{uv}=0              &amp;amp; \text{otherwise}
+\end{cases}\)
+    &lt;ul&gt;
+      &lt;li&gt;&lt;em&gt;directed&lt;/em&gt;: no symmetric&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;undirected&lt;/em&gt;: symmetric&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;weighted&lt;/em&gt;: real values \(\{0,1\}\)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Graph Types&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;em&gt;Simple Graph&lt;/em&gt;: relation \((u,v)\in\mathcal{E}\)&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;Multi-relational&lt;/em&gt;: considers type of edge with \(R\) types, i.e. \((u,\tau,v)\in\mathcal{E}, A_\tau\) and \(A\in\mathbb{R}^{\mid V\mid\times\mid V\mid\times\mid R\mid}\)&lt;/li&gt;
+      &lt;li&gt;&lt;em&gt;Attributes&lt;/em&gt;: some graphs have information associated with each node \(X\in\mathbb{R}^{\mid V\mid\times\mid m\mid}\).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-- **Graph Types**
-  - *Simple Graph*: relation $$(u,v)\in\mathcal{E}$$
-  - *Multi-relational*: considers type of edge with $$R$$ types, i.e. $$(u,\tau,v)\in\mathcal{E}, A_\tau$$ and $$A\in\mathbb{R}^{\mid V\mid\times\mid V\mid\times\mid R\mid}$$
-  - *Attributes*: some graphs have information associated with each node $$X\in\mathbb{R}^{\mid V\mid\times\mid m\mid}$$.
+&lt;h3 id=&quot;machine-learning-tasks-on-graphs&quot;&gt;Machine Learning tasks on Graphs&lt;/h3&gt;
+&lt;p&gt;ML on graphs involves common ML tasks such as 1) supervised learning: predict a target output; 2) unsupervised learning: infer patterns; 3) reinforcement learning: learn to act in an environment, but there are some task on graphs that lie on these categories.&lt;/p&gt;
 
-### Machine Learning tasks on Graphs
-ML on graphs involves common ML tasks such as 1) supervised learning: predict a target output; 2) unsupervised learning: infer patterns; 3) reinforcement learning: learn to act in an environment, but there are some task on graphs that lie on these categories.
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Node classification&lt;/strong&gt;: Consist in predicting a label \(y_u\) associated with a node \(u\in\mathcal{V}\).&lt;/p&gt;
 
-- **Node classification**: Consist in predicting a label $$y_u$$ associated with a node $$u\in\mathcal{V}$$.
+    &lt;p&gt;Modeling in graphs is different since nodes are interconnected with each other and they are not i.i.d. Thus, some connection between nodes is needed. For example:&lt;/p&gt;
+    &lt;ol&gt;
+      &lt;li&gt;homophily: nodes share attributes.&lt;/li&gt;
+      &lt;li&gt;structural equivalence: nodes with similar local neighborhood structure have similar labels.&lt;/li&gt;
+      &lt;li&gt;monophily: nodes with unrelated labels.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Relation prediction&lt;/strong&gt;: aka. link prediction or graph completion seeks to infer the relationship of a node with other nodes in the graph. The problems involves that given a set of nodes \(\mathcal{V}\) and an incomplete set of edges \(\mathcal{E}_{\text{train}}\in\mathcal{E}\), infer the missing edges \(\mathcal{E}\setminus\mathcal{E}_{\text{train}}\). Complexity is highly depend on the type of graph (i.e. simple graph or multi-relational graph) and it often requires inductive biases specific for each graph domain.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Clustering and community detection&lt;/strong&gt;: An unsupervised task that finds a community structure where nodes are more likely to form edges with nodes that belong to the same community. The challenge is to infer the &lt;em&gt;community structure&lt;/em&gt; given an input graph \(\mathcal{G}=(\mathcal{V},\mathcal{E})\).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Graph classification/clustering&lt;/strong&gt;: Task over entire graphs. Graph classification involves that given multiple different graphs, learn predictions specific to each graph. And graph clustering (similarity matching) the goal is to learn an unsupervised measure of similarity between a set of i.i.d. graphs. Challenge is to define useful features that consider the relational structure of each datapoint.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-  Modeling in graphs is different since nodes are interconnected with each other and they are not i.i.d. Thus, some connection between nodes is needed. For example:
-  1. homophily: nodes share attributes.
-  2. structural equivalence: nodes with similar local neighborhood structure have similar labels.
-  3. monophily: nodes with unrelated labels.
+&lt;h3 id=&quot;traditional-approaches&quot;&gt;Traditional approaches&lt;/h3&gt;
+&lt;p&gt;Uses for node classification tasks&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;graph statistics&lt;/li&gt;
+  &lt;li&gt;kernel methods
+Link prediction&lt;/li&gt;
+  &lt;li&gt;measure overlap between node neighborhoods
+Clustering / community detection&lt;/li&gt;
+  &lt;li&gt;spectral clustering (graph Laplacians)&lt;/li&gt;
+&lt;/ul&gt;
 
-- **Relation prediction**: aka. link prediction or graph completion seeks to infer the relationship of a node with other nodes in the graph. The problems involves that given a set of nodes $$\mathcal{V}$$ and an incomplete set of edges $$\mathcal{E}_{\text{train}}\in\mathcal{E}$$, infer the missing edges $$\mathcal{E}\setminus\mathcal{E}_{\text{train}}$$. Complexity is highly depend on the type of graph (i.e. simple graph or multi-relational graph) and it often requires inductive biases specific for each graph domain.
+&lt;h4 id=&quot;graphs-statistics-and-kernel-methods&quot;&gt;Graphs statistics and kernel methods&lt;/h4&gt;
+&lt;p&gt;Extract statistics or features and use them in traditional machine learning classifiers.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Node level statistics and features&lt;/strong&gt;:
+    &lt;ol&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;Node degree&lt;/strong&gt;: it is the number of incident edges to a node.&lt;/p&gt;
 
-- **Clustering and community detection**: An unsupervised task that finds a community structure where nodes are more likely to form edges with nodes that belong to the same community. The challenge is to infer the *community structure* given an input graph $$\mathcal{G}=(\mathcal{V},\mathcal{E})$$.
+\[d_u=\sum_{v\in V}A_{u,v}\]
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;Node centrality&lt;/strong&gt;: measures the importance of a node; it takes into account the importance of a node’s neighbors.&lt;/p&gt;
 
+\[e_u=\frac{1}{\lambda}\sum_{v\in V}A_{u,v}e_v \forall_u \in V \text{   (eigenvector centrality)}\]
 
-- **Graph classification/clustering**: Task over entire graphs. Graph classification involves that given multiple different graphs, learn predictions specific to each graph. And graph clustering (similarity matching) the goal is to learn an unsupervised measure of similarity between a set of i.i.d. graphs. Challenge is to define useful features that consider the relational structure of each datapoint.
+        &lt;p&gt;We can compute the vector of node centrality \(\mathbb{e}\) using the eigenvector equation with the adjacency matrix \(\lambda\mathbb{e}=A\mathbb{e}\).&lt;/p&gt;
 
-### Traditional approaches
-Uses for node classification tasks
-- graph statistics
-- kernel methods
-Link prediction
-- measure overlap between node neighborhoods
-Clustering / community detection
-- spectral clustering (graph Laplacians)
+        &lt;p&gt;We can use the eigenvector centrality to rank the likelihood that a node has visited infinity nodes on a random walk (due to the power of iteration) \(\mathbb{e}^{(t+1)}=A\mathbb{e^{(t)}}\).&lt;/p&gt;
 
-#### Graphs statistics and kernel methods
-Extract statistics or features and use them in traditional machine learning classifiers.
-- **Node level statistics and features**:
-  1. **Node degree**: it is the number of incident edges to a node.
+        &lt;p&gt;Other measures:&lt;/p&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;em&gt;betweeness centrality&lt;/em&gt;: measures how often a node lies on the shortest path between two other nodes.&lt;/li&gt;
+          &lt;li&gt;&lt;em&gt;closeness centrality&lt;/em&gt;: measures the average shortest path length between a node and all other nodes.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Clustering coefficient&lt;/strong&gt;:&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Motifs&lt;/strong&gt;:&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-      $$d_u=\sum_{v\in V}A_{u,v}$$
-  2. **Node centrality**: measures the importance of a node; it takes into account the importance of a node&apos;s neighbors.
-
-      $$e_u=\frac{1}{\lambda}\sum_{v\in V}A_{u,v}e_v \forall_u \in V \text{   (eigenvector centrality)}$$
-
-      We can compute the vector of node centrality $$\mathbb{e}$$ using the eigenvector equation with the adjacency matrix $$\lambda\mathbb{e}=A\mathbb{e}$$.
-
-      We can use the eigenvector centrality to rank the likelihood that a node has visited infinity nodes on a random walk (due to the power of iteration) $$\mathbb{e}^{(t+1)}=A\mathbb{e^{(t)}}$$.
-
-      Other measures:
-        - _betweeness centrality_: measures how often a node lies on the shortest path between two other nodes.
-        - _closeness centrality_: measures the average shortest path length between a node and all other nodes.
-
-    3. **Clustering coefficient**:
-    3. **Motifs**:
-
-
-
-
-Graph-level stats -&gt; kernel methods</content><author><name></name></author><category term="GRL" /><summary type="html">Introduction</summary></entry><entry><title type="html">Notes on the Bayesian Framework</title><link href="http://localhost:4000/blog/2019/bayesian-framework/" rel="alternate" type="text/html" title="Notes on the Bayesian Framework" /><published>2019-11-01T21:41:19-04:00</published><updated>2019-11-01T21:41:19-04:00</updated><id>http://localhost:4000/blog/2019/bayesian-framework</id><content type="html" xml:base="http://localhost:4000/blog/2019/bayesian-framework/">&lt;p&gt;Some tools:&lt;/p&gt;
+&lt;p&gt;Graph-level stats -&amp;gt; kernel methods&lt;/p&gt;</content><author><name></name></author><category term="GRL" /><summary type="html">Introduction</summary></entry><entry><title type="html">Notes on the Bayesian Framework</title><link href="/blog/2019/bayesian-framework/" rel="alternate" type="text/html" title="Notes on the Bayesian Framework" /><published>2019-11-01T21:41:19-04:00</published><updated>2019-11-01T21:41:19-04:00</updated><id>/blog/2019/bayesian-framework</id><content type="html" xml:base="/blog/2019/bayesian-framework/">&lt;p&gt;Some tools:&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;Stochastic variational inference&lt;/li&gt;
   &lt;li&gt;Variance reduction&lt;/li&gt;
@@ -778,499 +533,634 @@ A mixture of continuous distributions&lt;/p&gt;
                                                               &amp;amp;= \nabla_{\phi} 1 =0
 \end{align*}\]
 
-&lt;h1 id=&quot;reinforce&quot;&gt;REINFORCE&lt;/h1&gt;</content><author><name></name></author><category term="Bayesian-inference" /><summary type="html">Some tools: Stochastic variational inference Variance reduction Normalizing flows Gaussian processes Scalable MCMC algorithms Semi-implicit variational inference</summary></entry><entry><title type="html">Expectation Propagation Notes</title><link href="http://localhost:4000/blog/2019/expectation-propagation/" rel="alternate" type="text/html" title="Expectation Propagation Notes" /><published>2019-07-25T21:41:19-04:00</published><updated>2019-07-25T21:41:19-04:00</updated><id>http://localhost:4000/blog/2019/expectation-propagation</id><content type="html" xml:base="http://localhost:4000/blog/2019/expectation-propagation/">Commonly in probabilistic models, we deal with expectations that are either too hard to compute or intractable. In Bayesian inference setting, we usually need to calculate the posterior $$p(z\mid x)$$ for parameter estimation or the evidence $$p(x)$$ for model selection, where $$z$$ is a latent variable and $$x$$ is known. We can use approximate inference to solve this complex integrals. There is many work that have been done in this area, but approximate methods can be classified in deterministic and sampling methods. The former evaluates the integral in several locations and constructs an approximate function. The latter relies in the law of large numbers and given enough samples, the integral will converge to the true value.
+&lt;h1 id=&quot;reinforce&quot;&gt;REINFORCE&lt;/h1&gt;</content><author><name></name></author><category term="Bayesian-inference" /><summary type="html">Some tools: Stochastic variational inference Variance reduction Normalizing flows Gaussian processes Scalable MCMC algorithms Semi-implicit variational inference</summary></entry><entry><title type="html">Expectation Propagation Notes</title><link href="/blog/2019/expectation-propagation/" rel="alternate" type="text/html" title="Expectation Propagation Notes" /><published>2019-07-25T21:41:19-04:00</published><updated>2019-07-25T21:41:19-04:00</updated><id>/blog/2019/expectation-propagation</id><content type="html" xml:base="/blog/2019/expectation-propagation/">&lt;p&gt;Commonly in probabilistic models, we deal with expectations that are either too hard to compute or intractable. In Bayesian inference setting, we usually need to calculate the posterior \(p(z\mid x)\) for parameter estimation or the evidence \(p(x)\) for model selection, where \(z\) is a latent variable and \(x\) is known. We can use approximate inference to solve this complex integrals. There is many work that have been done in this area, but approximate methods can be classified in deterministic and sampling methods. The former evaluates the integral in several locations and constructs an approximate function. The latter relies in the law of large numbers and given enough samples, the integral will converge to the true value.&lt;/p&gt;
 
-1. Sampling methods: Monte Carlo methods such as Importance sampling, Gibbs sampling, MCMC
-2. Deterministic methods: Variational inference, Laplace approximation, Expectation Propagation
+&lt;ol&gt;
+  &lt;li&gt;Sampling methods: Monte Carlo methods such as Importance sampling, Gibbs sampling, MCMC&lt;/li&gt;
+  &lt;li&gt;Deterministic methods: Variational inference, Laplace approximation, Expectation Propagation&lt;/li&gt;
+&lt;/ol&gt;
 
-This notes include explanations for ADF and Expectation Propagation.
+&lt;p&gt;This notes include explanations for ADF and Expectation Propagation.&lt;/p&gt;
 
-## Assumed-density Filtering (ADF)
+&lt;h2 id=&quot;assumed-density-filtering-adf&quot;&gt;Assumed-density Filtering (ADF)&lt;/h2&gt;
 
-ADF (aka. moment matching, online Bayesian learning and weak marginalization) can be used when given the joint $$p(x, z)$$, we want to calculate the posterior over the latent variable $$p(z \mid x)$$ and the evidence $$p(x)$$. This is a common task in statistical machine learning where we want to fit a parametric distribution.
+&lt;p&gt;ADF (aka. moment matching, online Bayesian learning and weak marginalization) can be used when given the joint \(p(x, z)\), we want to calculate the posterior over the latent variable \(p(z \mid x)\) and the evidence \(p(x)\). This is a common task in statistical machine learning where we want to fit a parametric distribution.&lt;/p&gt;
 
-**The common setting**: we are given a set of data points $$D=x_1,\dots,x_n$$, which we assume are i.i.d. Thus, we can model the joint distribution as the product of its observations and the prior $$p(D,z) = p(z)\prod_i p(x_i\mid z)$$.
+&lt;p&gt;&lt;strong&gt;The common setting&lt;/strong&gt;: we are given a set of data points \(D=x_1,\dots,x_n\), which we assume are i.i.d. Thus, we can model the joint distribution as the product of its observations and the prior \(p(D,z) = p(z)\prod_i p(x_i\mid z)\).&lt;/p&gt;
 
-1. **Factorization**: We can factorize the joint distribution as needed, but it is recommendable that **each factor is simple** enough for being propagated. Also the **fewer terms**, entails fewer approximations. In general, we can define the joint distribution as follows where $$t_0$$ is the prior.
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Factorization&lt;/strong&gt;: We can factorize the joint distribution as needed, but it is recommendable that &lt;strong&gt;each factor is simple&lt;/strong&gt; enough for being propagated. Also the &lt;strong&gt;fewer terms&lt;/strong&gt;, entails fewer approximations. In general, we can define the joint distribution as follows where \(t_0\) is the prior.&lt;/p&gt;
 
-    $$p(D,z) = \prod_{i=0}^n t_i(z)$$
+\[p(D,z) = \prod_{i=0}^n t_i(z)\]
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Choose a parametric approximating distribution&lt;/strong&gt;: our goal is to approximate the posterior with a simple distribution; \(p(z\mid D) \approx q(z)\).&lt;/p&gt;
 
-2. **Choose a parametric approximating distribution**: our goal is to approximate the posterior with a simple distribution; $$p(z\mid D) \approx q(z)$$.
+    &lt;ul&gt;
+      &lt;li&gt;This distribution has to belong to the exponential family, so we can propagate its sufficient statistics.&lt;/li&gt;
+      &lt;li&gt;Pick \(q\) based in the nature and domain of \(z\).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Incorporate each \(t_i\) term&lt;/strong&gt;: Sequence and incorporate the term \(t_i\) into the approximate posterior \(q(z\)) going from an old posterior to a new posterior.&lt;/p&gt;
 
-    - This distribution has to belong to the exponential family, so we can propagate its sufficient statistics.
-    - Pick $$q$$ based in the nature and domain of $$z$$.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;incorporate&lt;/strong&gt;: \(\hat p(z) = \frac{q(z)t_i(z)}{\int_z q(z)t_i(z) dz}\)&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;from old to new&lt;/strong&gt;: \(\min D_{KL}(\hat p \parallel q^{new})\), which equivalent to match the moments.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
-3. **Incorporate each $$t_i$$ term**: Sequence and incorporate the term $$t_i$$ into the approximate posterior $$q(z$$) going from an old posterior to a new posterior.
+&lt;h3 id=&quot;intuition&quot;&gt;Intuition&lt;/h3&gt;
+&lt;p&gt;Here is a graphical example of ADF in practice.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;\(q(z)\) can be initialized to \(1\), and it’s not necessary to approximate.&lt;/li&gt;
+&lt;/ol&gt;
 
-    - __incorporate__: $$\hat p(z) = \frac{q(z)t_i(z)}{\int_z q(z)t_i(z) dz}$$
-    - __from old to new__: $$\min D_{KL}(\hat p \parallel q^{new})$$, which equivalent to match the moments.
+&lt;p&gt;&lt;img src=&quot;/assets/img/adf/adf_step1.png&quot; alt=&quot;ADF step 1&quot; /&gt;&lt;/p&gt;
 
-### Intuition
-  Here is a graphical example of ADF in practice.
-  1. $$q(z)$$ can be initialized to $$1$$, and it&apos;s not necessary to approximate.
+&lt;ol&gt;
+  &lt;li&gt;Incorporate \(t_1\), resulting in a one-step step posterior \(\hat p\). We approximate \(\hat p\) with \(q^{new}\).&lt;/li&gt;
+&lt;/ol&gt;
 
-  ![ADF step 1](/assets/img/adf/adf_step1.png)
+&lt;p&gt;&lt;img src=&quot;/assets/img/adf/adf_step2.png&quot; alt=&quot;ADF step 2&quot; /&gt;&lt;/p&gt;
 
-  2. Incorporate $$t_1$$, resulting in a one-step step posterior $$\hat p$$. We approximate $$\hat p$$ with $$q^{new}$$.
+&lt;ol&gt;
+  &lt;li&gt;Repeat step 2, including \(t_2\).&lt;/li&gt;
+&lt;/ol&gt;
 
-  ![ADF step 2](/assets/img/adf/adf_step2.png)
+&lt;p&gt;&lt;img src=&quot;/assets/img/adf/adf_step3.png&quot; alt=&quot;ADF step 3&quot; /&gt;&lt;/p&gt;
 
-  3. Repeat step 2, including $$t_2$$.
+&lt;p&gt;We can notice that there’s a dependence in the order of the data points; &lt;strong&gt;order matters&lt;/strong&gt;.&lt;/p&gt;
 
-  ![ADF step 3](/assets/img/adf/adf_step3.png)
+&lt;p&gt;&lt;strong&gt;The error of ADF tend to increase when similar data points are processed&lt;/strong&gt;&lt;/p&gt;
 
-  We can notice that there&apos;s a dependence in the order of the data points; **order matters**.
+&lt;h2 id=&quot;expectation-propagation&quot;&gt;Expectation Propagation&lt;/h2&gt;
+&lt;p&gt;Expectation Propagation (&lt;a href=&quot;https://arxiv.org/pdf/1301.2294.pdf&quot;&gt;Minka&lt;/a&gt;., NIPS 2001) is a generalization of ADF. We can notice that ADF is an iterative method that performs a one-pass to all data points. EP solves this problem by performing iterative refinements.&lt;/p&gt;
 
-  **The error of ADF tend to increase when similar data points are processed**
+&lt;p&gt;ADF:&lt;/p&gt;
 
-## Expectation Propagation
-Expectation Propagation ([Minka][1]., NIPS 2001) is a generalization of ADF. We can notice that ADF is an iterative method that performs a one-pass to all data points. EP solves this problem by performing iterative refinements.
+&lt;ol&gt;
+  &lt;li&gt;Treat \(t_i\) as it is.&lt;/li&gt;
+  &lt;li&gt;Approximate \(q(z)\).&lt;/li&gt;
+&lt;/ol&gt;
 
-ADF:
+&lt;p&gt;EP:&lt;/p&gt;
 
-1. Treat $$t_i$$ as it is.
-2. Approximate $$q(z)$$.
+&lt;ol&gt;
+  &lt;li&gt;Approximate \(t_i\) with \(\tilde t_i\).&lt;/li&gt;
+  &lt;li&gt;Use exact posterior&lt;/li&gt;
+&lt;/ol&gt;
 
-EP:
+&lt;p&gt;This refinements are always possible. It is the ratio of the new posterior to the old posterior times a constant:&lt;/p&gt;
 
-1. Approximate $$t_i$$ with $$\tilde t_i$$.
-2. Use exact posterior
+\[\tilde t_i(z)=Z\frac{q^{new}(z)}{q(z)}\]
 
-This refinements are always possible. It is the ratio of the new posterior to the old posterior times a constant:
+&lt;p&gt;Let’s see how this looks in practice:&lt;/p&gt;
 
-  $$\tilde t_i(z)=Z\frac{q^{new}(z)}{q(z)}$$
+&lt;p&gt;First, let’s derive an intuition of ADF using \(\tilde t_i\).&lt;/p&gt;
 
-Let&apos;s see how this looks in practice:
+&lt;ol&gt;
+  &lt;li&gt;We approximate \(t_1\) with \(\tilde t_1\) using the prior \(t_0=1\)m and go from \(q^{old}\) to \(q^{new}\).&lt;/li&gt;
+&lt;/ol&gt;
 
-First, let&apos;s derive an intuition of ADF using $$\tilde t_i$$.
+&lt;p&gt;&lt;img src=&quot;/assets/img/adf/adf_approx_step1.png&quot; alt=&quot;ADF approx step 1&quot; /&gt;&lt;/p&gt;
 
-1. We approximate $$t_1$$ with $$\tilde t_1$$ using the prior $$t_0=1$$m and go from $$q^{old}$$ to $$q^{new}$$.
+&lt;p&gt;2.&lt;/p&gt;
 
-![ADF approx step 1](/assets/img/adf/adf_approx_step1.png)
+&lt;p&gt;&lt;img src=&quot;/assets/img/adf/adf_approx_step2.png&quot; alt=&quot;ADF approx step 2&quot; /&gt;&lt;/p&gt;</content><author><name></name></author><category term="Bayesian-inference" /><summary type="html">Commonly in probabilistic models, we deal with expectations that are either too hard to compute or intractable. In Bayesian inference setting, we usually need to calculate the posterior \(p(z\mid x)\) for parameter estimation or the evidence \(p(x)\) for model selection, where \(z\) is a latent variable and \(x\) is known. We can use approximate inference to solve this complex integrals. There is many work that have been done in this area, but approximate methods can be classified in deterministic and sampling methods. The former evaluates the integral in several locations and constructs an approximate function. The latter relies in the law of large numbers and given enough samples, the integral will converge to the true value.</summary></entry><entry><title type="html">Probabilistic Graphical Models</title><link href="/blog/2019/pgm-intro/" rel="alternate" type="text/html" title="Probabilistic Graphical Models" /><published>2019-05-17T21:41:19-04:00</published><updated>2019-05-17T21:41:19-04:00</updated><id>/blog/2019/pgm-intro</id><content type="html" xml:base="/blog/2019/pgm-intro/">&lt;p&gt;A graphical model is a method for modeling probability distributions under certain uncertainty.&lt;/p&gt;
 
-2.
+&lt;h2 id=&quot;toolbox&quot;&gt;Toolbox:&lt;/h2&gt;
 
-![ADF approx step 2](/assets/img/adf/adf_approx_step2.png)
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Representation:&lt;/strong&gt; model uncertainty and encode domain knowledge&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Inference:&lt;/strong&gt; answer questions \(P(X\mid m)\), where m is the model or data&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Learning:&lt;/strong&gt; what model fits my data \(m = \operatorname*{argmax}_{m\in M} F(D,m)\).&lt;/li&gt;
+&lt;/ol&gt;
 
+&lt;h2 id=&quot;benefits&quot;&gt;Benefits:&lt;/h2&gt;
 
-[1]: https://arxiv.org/pdf/1301.2294.pdf</content><author><name></name></author><category term="Bayesian-inference" /><summary type="html">Commonly in probabilistic models, we deal with expectations that are either too hard to compute or intractable. In Bayesian inference setting, we usually need to calculate the posterior \(p(z\mid x)\) for parameter estimation or the evidence \(p(x)\) for model selection, where \(z\) is a latent variable and \(x\) is known. We can use approximate inference to solve this complex integrals. There is many work that have been done in this area, but approximate methods can be classified in deterministic and sampling methods. The former evaluates the integral in several locations and constructs an approximate function. The latter relies in the law of large numbers and given enough samples, the integral will converge to the true value.</summary></entry><entry><title type="html">Sampling methods notes</title><link href="http://localhost:4000/blog/2019/sampling-methods/" rel="alternate" type="text/html" title="Sampling methods notes" /><published>2019-05-17T21:41:19-04:00</published><updated>2019-05-17T21:41:19-04:00</updated><id>http://localhost:4000/blog/2019/sampling-methods</id><content type="html" xml:base="http://localhost:4000/blog/2019/sampling-methods/"># Monte Carlo Methods
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Efficient&lt;/p&gt;
 
-Randomized algorithms have two categories: Las Vegas and Monte Carlo algorithms.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;(Expensive)&lt;/strong&gt; The &lt;a href=&quot;https://en.wikipedia.org/wiki/Chain_rule_(probability)&quot;&gt;chain rule&lt;/a&gt; (aka product rule) allows to calculate joint probabilities.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;(Cheaper)&lt;/strong&gt; Using GM, we can model only those dependencies inferred by the graph, generating fewer parameters; encodes independence.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Encode domain knowledge through priors and incorporate them in inference via Bayes theorem.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
-1. *Las Vegas:* always return an answer if available.
-2. *Monte Carlo*: return answers with a random amount of error.
+&lt;h2 id=&quot;gms-vs-pgms&quot;&gt;GMs vs PGMs:&lt;/h2&gt;
 
-## Monte Carlo sampling
-Probability distributions are commonly used in Machine Learning. Sampling provides a flexible way to approximate many sums and integrals. When a sum or integral cannot be computed, it is possible to approximate with **Monte Carlo sampling**. The main idea is to see the sum or integral as an expectation, and approximate it by an avearge.
+&lt;ul&gt;
+  &lt;li&gt;GMs use multivariate function.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;PGMs use multivariate distributions.&lt;/p&gt;
 
-$$s=\sum_x p(x)f(x)=\mathbb{E}_p[f(\mathbf{x})]$$
+    &lt;h3 id=&quot;structure&quot;&gt;Structure&lt;/h3&gt;
 
-$$s=\int p(x)f(x) dx=\mathbb{E}_p[f(\mathbf{x})]$$
+    &lt;ol&gt;
+      &lt;li&gt;Edges represent relationship among the RVs.&lt;/li&gt;
+      &lt;li&gt;Directed nodes represent &lt;strong&gt;causality&lt;/strong&gt; while undirected nodes represent &lt;strong&gt;correlation&lt;/strong&gt;.&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-, where $$p$$ is a PMF or PDF over the random variable $$\mathbf{x}$$.  
+&lt;h2 id=&quot;bayesian-network-and-markov-random-field&quot;&gt;Bayesian Network and Markov Random Field&lt;/h2&gt;
 
-$$s$$ can be approximated by drawing $$n$$ samples $$x^{(1)}, \dots, x^{(n)}$$ from $$p$$ and calculate the **empirical average** as follows:
+&lt;h3 id=&quot;bayesian-network&quot;&gt;Bayesian Network&lt;/h3&gt;
 
-$$\hat s_n=\frac{1}{n}\sum_{i=1}^n f(x^{(i)})$$
+&lt;p&gt;&lt;img src=&quot;/assets/img/bayesian-network.png&quot; alt=&quot;Bayesian Network&quot; /&gt;&lt;/p&gt;
 
-Some properties:
-- Estimator $$\hat s$$ is unbiased.
-- By the *[law of large numbers](https://en.wikipedia.org/wiki/Law_of_large_numbers)*, we say that if $$x^{(i)}$$ are i.i.d. the average converges to the expected values ($$\lim_{n\to\infty} \hat s_n=s$$).
-- By calculating the variance $$Var[\hat s_n]$$ as $$n$$ increases, we can estimate the uncertainty of the Monte Carlo approximation.
-- MC sampling relies in sampling from $$p$$. When *sampling* $$p$$ *is not possible*, importance sampling or MCMC can be used.
+&lt;ul&gt;
+  &lt;li&gt;It is a directed acyclic graph (DAG) where each node has a &lt;a href=&quot;https://en.wikipedia.org/wiki/Markov_blanket&quot;&gt;Markov blanked&lt;/a&gt; (its parents, children and children’s parents).&lt;/li&gt;
+  &lt;li&gt;A node is &lt;em&gt;conditionally independent&lt;/em&gt; of the nodes &lt;strong&gt;outside&lt;/strong&gt; its Markov Blanket.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Joint probability distribution&lt;/em&gt; is determined by the local conditional probabilities as well as the graph structure.&lt;/li&gt;
+  &lt;li&gt;Model &lt;em&gt;can&lt;/em&gt; be used to generate new data.&lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;h3 id=&quot;markov-random-field&quot;&gt;Markov Random Field&lt;/h3&gt;
 
-## Importance Sampling
-In Monte Carlo, we can use any decomposition of $$p(\mathbf{x})$$ and $$f(\mathbf{x})$$ since $$f$$ can also be a probability (what factor plays which role of $$p$$ or $$f$$). We can even have a different decomposition as follows (i.e. we sample $$q$$ and average $$\frac{pf}{q})$$:
+&lt;p&gt;&lt;img src=&quot;/assets/img/markov-random-field.png&quot; alt=&quot;Markov Random Field&quot; /&gt;&lt;/p&gt;
 
-$$p(\mathbf{x})f(\mathbf{x})=q(\mathbf{x})\frac{p(\mathbf{x})f(\mathbf{x})}{q(\mathbf{x})}$$
+&lt;ul&gt;
+  &lt;li&gt;It is an undirected graph.&lt;/li&gt;
+  &lt;li&gt;A node is conditionally independent of the other graph nodes, except for its &lt;strong&gt;immediate neighbors&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;To determine the joint probability distribution, we need to know local contingency functions (&lt;em&gt;potentials&lt;/em&gt;) as well as structural &lt;em&gt;cliques&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;This model &lt;em&gt;cannot&lt;/em&gt; explicitly generate new data.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="Bayesian-inference" /><summary type="html">A graphical model is a method for modeling probability distributions under certain uncertainty.</summary></entry><entry><title type="html">CS224W notes - Machine learning with graphs</title><link href="/blog/2019/compcs224w-notes/" rel="alternate" type="text/html" title="CS224W notes - Machine learning with graphs" /><published>2019-05-17T21:41:19-04:00</published><updated>2019-05-17T21:41:19-04:00</updated><id>/blog/2019/compcs224w-notes</id><content type="html" xml:base="/blog/2019/compcs224w-notes/">&lt;h2 id=&quot;introduction-and-graph-structure&quot;&gt;&lt;a href=&quot;(http://web.stanford.edu/class/cs224w/slides/01-intro.pdf)&quot;&gt;Introduction and graph structure&lt;/a&gt;&lt;/h2&gt;
 
-However, we might not be able to sample from $$p$$ or we can pick another distribution to reach an optimal approximation. This optimal choice is $$q*$$, know as **optimal importance sampling**. So, we replace the empirical average with an **importance sampling estimator**:
+&lt;h3 id=&quot;why-graphs&quot;&gt;Why graphs?&lt;/h3&gt;
+&lt;p&gt;Networks are general languages for describing complex systems of interacting entities. In other words, a network is a universal language for describing complex data.&lt;/p&gt;
 
-$$\hat s_q=\frac{1}{n}\sum_{i=1, \mathbf{x}^{(i)}\sim q}^n \frac{p(\mathbf{x}^{(i)})f(\mathbf{x}^{(i)})}{q(\mathbf{x}^{(i)})}$$
+&lt;p&gt;Network structure affects the robustness of a system&lt;/p&gt;
 
-Essentially, any distribution $$q$$ is valid. However, the choice of $$q$$ can be sensitive to the variance of the _importance sampling estimator_.
+&lt;p&gt;Most real networks are sparse&lt;/p&gt;
 
-####  Biased Importance Sampling
-BIS doesn&apos;t require to normalize $$p$$ or $$q$$, the estimator is given by:
+&lt;p&gt;Tasks to perform in graphs:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;node classification&lt;/li&gt;
+  &lt;li&gt;link prediction&lt;/li&gt;
+  &lt;li&gt;community detection&lt;/li&gt;
+  &lt;li&gt;network similarity&lt;/li&gt;
+&lt;/ul&gt;
 
-$$
-\hat s_{BIS}=\frac{\sum_{i=1}^n\frac{\tilde p(\mathbf{x^{(i)}})}{\tilde q(\mathbf{x^{(i)}})}f(\mathbf{x^{(i)}})}{\sum_{i=1}^n\frac{\tilde p(\mathbf{x^{(i)}})}{\tilde q(\mathbf{x^{(i)}})}}
-$$
+&lt;p&gt;&lt;strong&gt;Embedding nodes:&lt;/strong&gt; map nodes to \(d\)-dimensional embeddings. Thus, nodes wit similar network neighbourhoods are embedded close together.&lt;/p&gt;
 
-, where $$\tilde p$$ and $$\tilde q$$ are the unnormalized forms of $$p$$ and $$q$$. We take n samples $$\mathbf{x^{(i)}}$$ from $$q$$.
+&lt;p&gt;Terminology:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Networks refer to a real system, e.g. Social Networks, Web.&lt;/li&gt;
+  &lt;li&gt;Graph is a mathematical representation of a network e.g. graph, vertex, edge&lt;/li&gt;
+&lt;/ul&gt;
 
-In general importance sampling is handy when it comes to:
-- accelerate training in neural language models with a large vocabulary.
-- estimate a partition function.
-- estimate log-likelihood in deep directed models.
-- improve estimates of the gradient of the cost function.
+&lt;p&gt;Graphs can be directed (followers on twitter) or undirected (friends on Facebook)&lt;/p&gt;
+
+&lt;p&gt;Node degrees:
+  Undirected:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;node degree: the number of edges adjacent to node i&lt;/li&gt;
+  &lt;li&gt;avg. degree&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Directed:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;in-degree&lt;/li&gt;
+  &lt;li&gt;out-degree&lt;/li&gt;
+  &lt;li&gt;the total degree of a node is the sum of in and out-degrees&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Complete Graph&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;maximum number of edges in an undirected graph on $N$ nodes is \(E_max=\frac{N(N-1)}{2}\) and when the number of edges is $E=E_max$, the undirected graph is called compete graph.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Bipartite Graph&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;It is a graph whose nodes can be divided into two disjoints sets $U$ and $V$, which are independent sets.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Representing Graphs
+  Adjacency matrix&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;\(A_{ij}=1\) if there is a link from node \(i\) to \(j\)&lt;/li&gt;
+  &lt;li&gt;\(A_{ij}=0\) otherwise&lt;/li&gt;
+  &lt;li&gt;they are sparse&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Edge List&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;graph as a set of edges&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Adjacency list&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;each row is a node and its line is the connected nodes
+1:
+2: 3,4
+3: 2,4
+4: 5&lt;/li&gt;
+  &lt;li&gt;Easier to work with if network is large or sparse&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Edge attributes&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;weight (frequency of communication)&lt;/li&gt;
+  &lt;li&gt;raking (best friend, 2nd best friend)&lt;/li&gt;
+  &lt;li&gt;type (friend, relative)&lt;/li&gt;
+  &lt;li&gt;Sign (Friend vs Foe)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Other types of graphs:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;self-edges: contain self-loops (proteins, hyperlinks)&lt;/li&gt;
+  &lt;li&gt;multigraph: more than one edge between nodes (communication, collaboration)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Connectivity:
+  Disconnected graph&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;a graph can become a disconnected graph, if the a subgraph becomes isolated. Thus it has more than one component…&lt;/li&gt;
+  &lt;li&gt;bridge edge: if we delete an edge,&lt;/li&gt;
+  &lt;li&gt;articulation node: if we erase a node&lt;/li&gt;
+  &lt;li&gt;Each component can be represented in a block-diagonal form&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Strongly connected directed graph&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;has a path from each node to every other node and vice-versa.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Weakly connected directed graph&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;is connected if we disregard the edge directions&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;properties-of-networks-and-random-graph-models&quot;&gt;&lt;a href=&quot;(http://web.stanford.edu/class/cs224w/slides/02-gnp-smallworld.pdf)&quot;&gt;Properties of networks and random graph models&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h3 id=&quot;how-to-measure-a-network&quot;&gt;How to Measure a Network&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Degree distribution \(p(k)\): probability that a randomly node has degree \(k\).&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;\(N_k\rightarrow\): number of nodes with degree \(k\)&lt;/p&gt;
+
+\[p(k)=\frac{N_k}{N}\]
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; directed graphs have separate in- and out-degree distributions&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Path: sequence of nodes in which each node is linked to the next one.&lt;/li&gt;
+&lt;/ul&gt;
+
+\[P_n=\{i_0,\dots,i_n\}\]
+
+\[P_n=\{(i_0,i_1),\dots,(i_{n-1},i_n)\}\]
+
+&lt;ul&gt;
+  &lt;li&gt;Distance between a pair of nodes \(h_{A,B}\): number of edges along the shortest path connecting the nodes.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If node are not connected, distance is defined as &lt;em&gt;zero&lt;/em&gt; or &lt;em&gt;infinity&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Directed graphs, paths need to follow the direction of the arrows, and as a consequence, distance is not symmetric \(h_{B,C}\neq h_{c,B}\)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Diameter: shortest path distance between any pair of nodes in a graph&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Average path length \(\bar h\):&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+\[\bar h= \frac{1}{2E_{max}}\sum_{i,j\neq i}h_{ij}\]
+
+&lt;p&gt;\(E_{max}\): max number of edges (total number of node pairs) \(=\frac{n(n-1)}{2}\)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Clustering Coefficient&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><category term="GRL" /><summary type="html">Introduction and graph structure</summary></entry><entry><title type="html">Sampling methods notes</title><link href="/blog/2019/sampling-methods/" rel="alternate" type="text/html" title="Sampling methods notes" /><published>2019-05-17T21:41:19-04:00</published><updated>2019-05-17T21:41:19-04:00</updated><id>/blog/2019/sampling-methods</id><content type="html" xml:base="/blog/2019/sampling-methods/">&lt;h1 id=&quot;monte-carlo-methods&quot;&gt;Monte Carlo Methods&lt;/h1&gt;
+
+&lt;p&gt;Randomized algorithms have two categories: Las Vegas and Monte Carlo algorithms.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;em&gt;Las Vegas:&lt;/em&gt; always return an answer if available.&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;Monte Carlo&lt;/em&gt;: return answers with a random amount of error.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;monte-carlo-sampling&quot;&gt;Monte Carlo sampling&lt;/h2&gt;
+&lt;p&gt;Probability distributions are commonly used in Machine Learning. Sampling provides a flexible way to approximate many sums and integrals. When a sum or integral cannot be computed, it is possible to approximate with &lt;strong&gt;Monte Carlo sampling&lt;/strong&gt;. The main idea is to see the sum or integral as an expectation, and approximate it by an avearge.&lt;/p&gt;
+
+\[s=\sum_x p(x)f(x)=\mathbb{E}_p[f(\mathbf{x})]\]
+
+\[s=\int p(x)f(x) dx=\mathbb{E}_p[f(\mathbf{x})]\]
+
+&lt;p&gt;, where \(p\) is a PMF or PDF over the random variable \(\mathbf{x}\).&lt;/p&gt;
+
+&lt;p&gt;\(s\) can be approximated by drawing \(n\) samples \(x^{(1)}, \dots, x^{(n)}\) from \(p\) and calculate the &lt;strong&gt;empirical average&lt;/strong&gt; as follows:&lt;/p&gt;
+
+\[\hat s_n=\frac{1}{n}\sum_{i=1}^n f(x^{(i)})\]
+
+&lt;p&gt;Some properties:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Estimator \(\hat s\) is unbiased.&lt;/li&gt;
+  &lt;li&gt;By the &lt;em&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Law_of_large_numbers&quot;&gt;law of large numbers&lt;/a&gt;&lt;/em&gt;, we say that if \(x^{(i)}\) are i.i.d. the average converges to the expected values (\(\lim_{n\to\infty} \hat s_n=s\)).&lt;/li&gt;
+  &lt;li&gt;By calculating the variance \(Var[\hat s_n]\) as \(n\) increases, we can estimate the uncertainty of the Monte Carlo approximation.&lt;/li&gt;
+  &lt;li&gt;MC sampling relies in sampling from \(p\). When &lt;em&gt;sampling&lt;/em&gt; \(p\) &lt;em&gt;is not possible&lt;/em&gt;, importance sampling or MCMC can be used.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;importance-sampling&quot;&gt;Importance Sampling&lt;/h2&gt;
+&lt;p&gt;In Monte Carlo, we can use any decomposition of \(p(\mathbf{x})\) and \(f(\mathbf{x})\) since \(f\) can also be a probability (what factor plays which role of \(p\) or \(f\)). We can even have a different decomposition as follows (i.e. we sample \(q\) and average \(\frac{pf}{q})\):&lt;/p&gt;
+
+\[p(\mathbf{x})f(\mathbf{x})=q(\mathbf{x})\frac{p(\mathbf{x})f(\mathbf{x})}{q(\mathbf{x})}\]
+
+&lt;p&gt;However, we might not be able to sample from \(p\) or we can pick another distribution to reach an optimal approximation. This optimal choice is \(q*\), know as &lt;strong&gt;optimal importance sampling&lt;/strong&gt;. So, we replace the empirical average with an &lt;strong&gt;importance sampling estimator&lt;/strong&gt;:&lt;/p&gt;
+
+\[\hat s_q=\frac{1}{n}\sum_{i=1, \mathbf{x}^{(i)}\sim q}^n \frac{p(\mathbf{x}^{(i)})f(\mathbf{x}^{(i)})}{q(\mathbf{x}^{(i)})}\]
+
+&lt;p&gt;Essentially, any distribution \(q\) is valid. However, the choice of \(q\) can be sensitive to the variance of the &lt;em&gt;importance sampling estimator&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h4 id=&quot;biased-importance-sampling&quot;&gt;Biased Importance Sampling&lt;/h4&gt;
+&lt;p&gt;BIS doesn’t require to normalize \(p\) or \(q\), the estimator is given by:&lt;/p&gt;
+
+\[\hat s_{BIS}=\frac{\sum_{i=1}^n\frac{\tilde p(\mathbf{x^{(i)}})}{\tilde q(\mathbf{x^{(i)}})}f(\mathbf{x^{(i)}})}{\sum_{i=1}^n\frac{\tilde p(\mathbf{x^{(i)}})}{\tilde q(\mathbf{x^{(i)}})}}\]
+
+&lt;p&gt;, where \(\tilde p\) and \(\tilde q\) are the unnormalized forms of \(p\) and \(q\). We take n samples \(\mathbf{x^{(i)}}\) from \(q\).&lt;/p&gt;
+
+&lt;p&gt;In general importance sampling is handy when it comes to:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;accelerate training in neural language models with a large vocabulary.&lt;/li&gt;
+  &lt;li&gt;estimate a partition function.&lt;/li&gt;
+  &lt;li&gt;estimate log-likelihood in deep directed models.&lt;/li&gt;
+  &lt;li&gt;improve estimates of the gradient of the cost function.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;!-- 
 ## Markov Chain Monte Carlo
 
-## Gibbs Sampling --&gt;</content><author><name></name></author><category term="Bayesian-inference" /><summary type="html">Monte Carlo Methods</summary></entry><entry><title type="html">Probabilistic Graphical Models</title><link href="http://localhost:4000/blog/2019/pgm-intro/" rel="alternate" type="text/html" title="Probabilistic Graphical Models" /><published>2019-05-17T21:41:19-04:00</published><updated>2019-05-17T21:41:19-04:00</updated><id>http://localhost:4000/blog/2019/pgm-intro</id><content type="html" xml:base="http://localhost:4000/blog/2019/pgm-intro/">A graphical model is a method for modeling probability distributions under certain uncertainty.
-
-## Toolbox:
-
-1. **Representation:** model uncertainty and encode domain knowledge
-2. **Inference:** answer questions $$P(X\mid m)$$, where m is the model or data
-3. **Learning:** what model fits my data $$m = \operatorname*{argmax}_{m\in M} F(D,m)$$.
-
-## Benefits:
-
-1. Efficient
-
-    - **(Expensive)** The [chain rule][1] (aka product rule) allows to calculate joint probabilities.
-    - **(Cheaper)** Using GM, we can model only those dependencies inferred by the graph, generating fewer parameters; encodes independence.
-
-2. Encode domain knowledge through priors and incorporate them in inference via Bayes theorem.
-
-## GMs vs PGMs:
-
-- GMs use multivariate function.
-- PGMs use multivariate distributions.
-
-  ### Structure
-
-  1. Edges represent relationship among the RVs.
-  2. Directed nodes represent **causality** while undirected nodes represent **correlation**.
-
-## Bayesian Network and Markov Random Field
-
-### Bayesian Network
-
-![Bayesian Network](/assets/img/bayesian-network.png)
-
-- It is a directed acyclic graph (DAG) where each node has a [Markov blanked][2] (its parents, children and children&apos;s parents).
-- A node is _conditionally independent_ of the nodes **outside** its Markov Blanket.
-- _Joint probability distribution_ is determined by the local conditional probabilities as well as the graph structure.
-- Model _can_ be used to generate new data.
-
-### Markov Random Field
-
-![Markov Random Field](/assets/img/markov-random-field.png)
-
-- It is an undirected graph.
-- A node is conditionally independent of the other graph nodes, except for its **immediate neighbors**.
-- To determine the joint probability distribution, we need to know local contingency functions (_potentials_) as well as structural _cliques_.
-- This model _cannot_ explicitly generate new data.
-
-[1]: https://en.wikipedia.org/wiki/Chain_rule_(probability)
-[2]: https://en.wikipedia.org/wiki/Markov_blanket</content><author><name></name></author><category term="Bayesian-inference" /><summary type="html">A graphical model is a method for modeling probability distributions under certain uncertainty.</summary></entry><entry><title type="html">CS224W notes - Machine learning with graphs</title><link href="http://localhost:4000/blog/2019/compcs224w-notes/" rel="alternate" type="text/html" title="CS224W notes - Machine learning with graphs" /><published>2019-05-17T21:41:19-04:00</published><updated>2019-05-17T21:41:19-04:00</updated><id>http://localhost:4000/blog/2019/compcs224w-notes</id><content type="html" xml:base="http://localhost:4000/blog/2019/compcs224w-notes/">## [Introduction and graph structure][1]
-
-### Why graphs?
-Networks are general languages for describing complex systems of interacting entities. In other words, a network is a universal language for describing complex data.
-
-Network structure affects the robustness of a system
-
-Most real networks are sparse
-
-Tasks to perform in graphs:
-- node classification
-- link prediction
-- community detection
-- network similarity
-
-**Embedding nodes:** map nodes to $$d$$-dimensional embeddings. Thus, nodes wit similar network neighbourhoods are embedded close together.
-
-Terminology:
-- Networks refer to a real system, e.g. Social Networks, Web.
-- Graph is a mathematical representation of a network e.g. graph, vertex, edge
-
-Graphs can be directed (followers on twitter) or undirected (friends on Facebook)
-
-Node degrees:
-  Undirected:
-  - node degree: the number of edges adjacent to node i
-  - avg. degree
-
-  Directed:
-  - in-degree
-  - out-degree
-  - the total degree of a node is the sum of in and out-degrees
-
-Complete Graph
-- maximum number of edges in an undirected graph on $N$ nodes is $$E_max=\frac{N(N-1)}{2}$$ and when the number of edges is $E=E_max$, the undirected graph is called compete graph.
-
-Bipartite Graph
-- It is a graph whose nodes can be divided into two disjoints sets $U$ and $V$, which are independent sets.
-
-Representing Graphs
-  Adjacency matrix
-  - $$A_{ij}=1$$ if there is a link from node $$i$$ to $$j$$
-  - $$A_{ij}=0$$ otherwise
-  - they are sparse
-
-  Edge List
-  - graph as a set of edges
-
-  Adjacency list
-  - each row is a node and its line is the connected nodes
-    1:
-    2: 3,4
-    3: 2,4
-    4: 5
-  - Easier to work with if network is large or sparse
-
-Edge attributes
- - weight (frequency of communication)
- - raking (best friend, 2nd best friend)
- - type (friend, relative)
- - Sign (Friend vs Foe)
-
-Other types of graphs:
-  - self-edges: contain self-loops (proteins, hyperlinks)
-  - multigraph: more than one edge between nodes (communication, collaboration)
-
-Connectivity:
-  Disconnected graph
-  - a graph can become a disconnected graph, if the a subgraph becomes isolated. Thus it has more than one component...
-  - bridge edge: if we delete an edge,
-  - articulation node: if we erase a node
-  - Each component can be represented in a block-diagonal form
-
-  Strongly connected directed graph
-  - has a path from each node to every other node and vice-versa.
-
-  Weakly connected directed graph
-  - is connected if we disregard the edge directions
-
-## [Properties of networks and random graph models][2]
-
-### How to Measure a Network
-
-- Degree distribution $$p(k)$$: probability that a randomly node has degree $$k$$.
-
-$$N_k\rightarrow$$: number of nodes with degree $$k$$
-
-$$p(k)=\frac{N_k}{N}$$
-
-**Note:** directed graphs have separate in- and out-degree distributions
-
-- Path: sequence of nodes in which each node is linked to the next one.
-
-$$P_n=\{i_0,\dots,i_n\}$$
-
-$$P_n=\{(i_0,i_1),\dots,(i_{n-1},i_n)\}$$
-
-- Distance between a pair of nodes $$h_{A,B}$$: number of edges along the shortest path connecting the nodes.
-
-If node are not connected, distance is defined as *zero* or *infinity*
-
-Directed graphs, paths need to follow the direction of the arrows, and as a consequence, distance is not symmetric $$h_{B,C}\neq h_{c,B}$$
-
-- Diameter: shortest path distance between any pair of nodes in a graph
-
-- Average path length $$\bar h$$:
-
-$$\bar h= \frac{1}{2E_{max}}\sum_{i,j\neq i}h_{ij}$$
-
-$$E_{max}$$: max number of edges (total number of node pairs) $$=\frac{n(n-1)}{2}$$
-
-- Clustering Coefficient
- 
-
-
-
-[1]: (http://web.stanford.edu/class/cs224w/slides/01-intro.pdf)
-[2]: (http://web.stanford.edu/class/cs224w/slides/02-gnp-smallworld.pdf)</content><author><name></name></author><category term="GRL" /><summary type="html">Introduction and graph structure</summary></entry><entry><title type="html">Linear Algebra</title><link href="http://localhost:4000/blog/2019/linear_algebra/" rel="alternate" type="text/html" title="Linear Algebra" /><published>2019-05-15T22:41:19-04:00</published><updated>2019-05-15T22:41:19-04:00</updated><id>http://localhost:4000/blog/2019/linear_algebra</id><content type="html" xml:base="http://localhost:4000/blog/2019/linear_algebra/">Some interesting links:
-- [Matrix cookbook][2]
-- [Matrix derivatives][3]
-
-Notes of [chapter 2][1] of Deep Learning book.
-
-#### Mathematical objects
-
-1. **Scalar:** single number $$x=1$$
-2. **Vector:** array of numbers $$\mathbf{x}=\begin{vmatrix}x_1\\\vdots\\x_n\end{vmatrix}$$
-
-    $$\mathbf{x_{-1}}$$: ignore element $$x_1$$
-3. **Matrix:** 2D array of numbers $$\mathbf{A}\in\mathbb{R}^{mxn}$$
-
-    horizontal coordinate (all), ith row: $$\mathbf{A}_{i,:}$$
-
-    vertical coordinate (all), ith column: $$\mathbf{A}_{:,i}$$
-
-    value: $$f(\mathbf{A})_{i,j}$$
-4. **Tensor:** array with more than two axes $$\mathbf{A}$$
-
-    value: $$\mathbf{A}_{i,j,k}$$
-
-#### Transpose
-  - Mirror across _main diagonal_ $$\mathbf{A} \rightarrow \mathbf{A}^\intercal$$
-  - Scalar matrix, one item $$\mathbf{a}=\mathbf{a}^\intercal$$
-  - Vector $$\mathbf{x}^\intercal$$
-  - Matrix product $$(\mathbf{A}\mathbf{B})^\intercal=\mathbf{B}^\intercal\mathbf{A}^\intercal$$
-
-#### Addition
-   If $$\mathbf{A}$$ and $$\mathbf{B}$$ same shape, $$\mathbf{C}=\mathbf{A}+\mathbf{B}$$, where $$\mathbf{C}_{i,j}=\mathbf{A}_{i,j}+\mathbf{B}_{i,j}$$.
-
-#### Scalar addition and multiplication
-  $$\mathbf{D}=a\cdot\mathbf{B}+c$$, where $$\mathbf{D}_{i,j}=a\cdot\mathbf{B}_{i,j}+c$$
-
-#### Addition matrix and vector
-  $$\mathbf{C}=\mathbf{A}+\mathbf{b}$$, where $$\mathbf{C}_{i,j}=\mathbf{A}_{i,j}+\mathbf{b}_j$$
-
-  **broadcasting**: $$\mathbf{b}$$ is addded to each **row** of the matrix $$\mathbf{A}$$.
-
-#### Operations
-  1. Matrix product $$\mathbf{C}=\mathbf{A}\mathbf{B} \rightarrow \mathbf{C}_{m\times p}=\mathbf{A}_{m\times n}\mathbf{B}_{n\times p}$$ and $$\mathbf{C}_{i,j}=\sum_k\mathbf{A}_{i,k}\mathbf{B}_{k,j}$$
-
-      Vectors of the same size: $$\mathbf{x}^\intercal\mathbf{y}$$
-  2. Elementwise product / Hadamard product $$\mathbf{A}\odot\mathbf{B}$$
-
-#### Properties
-  - Distributive: $$\mathbf{A}(\mathbf{B}+\mathbf{C})=\mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}$$  
-  - Associative: $$\mathbf{A}(\mathbf{B}\mathbf{C})=(\mathbf{A}\mathbf{B})\mathbf{C}$$
-  - Commutative: **not** $$\mathbf{A}\mathbf{B}\neq \mathbf{B}\mathbf{A}$$ (not always)
-
-    **yes** for vectors $$\rightarrow$$ $$\mathbf{x}^\intercal \mathbf{y}=\mathbf{y}^\intercal\mathbf{x}$$
-
-#### Linear equations
-
-$$\mathbf{A}\mathbf{x}=\mathbf{b}$$ (notation compact)
- - $$\mathbf{A}\in\mathbb{R}^{m\times n}$$ known
- - $$\mathbf{x}\in\mathbb{R}^m$$ variable
- - $$\mathbf{b}\in\mathbb{R}^m$$ known
-
- Notation not compact, equations:
-
- $$A_{1,:}\mathbf{x}=b_1 \rightarrow A_{1,1}x_1+\dots+A_{1,n}x_n=b_1\\
+## Gibbs Sampling --&gt;</content><author><name></name></author><category term="Bayesian-inference" /><summary type="html">Monte Carlo Methods</summary></entry><entry><title type="html">Linear Algebra</title><link href="/blog/2019/linear_algebra/" rel="alternate" type="text/html" title="Linear Algebra" /><published>2019-05-15T22:41:19-04:00</published><updated>2019-05-15T22:41:19-04:00</updated><id>/blog/2019/linear_algebra</id><content type="html" xml:base="/blog/2019/linear_algebra/">&lt;p&gt;Some interesting links:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;(https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf)&quot;&gt;Matrix cookbook&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;(https://people.maths.ox.ac.uk/gilesm/files/NA-08-01.pdf)&quot;&gt;Matrix derivatives&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Notes of &lt;a href=&quot;(http://www.deeplearningbook.org/contents/linear_algebra.html)&quot;&gt;chapter 2&lt;/a&gt; of Deep Learning book.&lt;/p&gt;
+
+&lt;h4 id=&quot;mathematical-objects&quot;&gt;Mathematical objects&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Scalar:&lt;/strong&gt; single number \(x=1\)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Vector:&lt;/strong&gt; array of numbers \(\mathbf{x}=\begin{vmatrix}x_1\\\vdots\\x_n\end{vmatrix}\)&lt;/p&gt;
+
+    &lt;p&gt;\(\mathbf{x_{-1}}\): ignore element \(x_1\)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Matrix:&lt;/strong&gt; 2D array of numbers \(\mathbf{A}\in\mathbb{R}^{mxn}\)&lt;/p&gt;
+
+    &lt;p&gt;horizontal coordinate (all), ith row: \(\mathbf{A}_{i,:}\)&lt;/p&gt;
+
+    &lt;p&gt;vertical coordinate (all), ith column: \(\mathbf{A}_{:,i}\)&lt;/p&gt;
+
+    &lt;p&gt;value: \(f(\mathbf{A})_{i,j}\)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Tensor:&lt;/strong&gt; array with more than two axes \(\mathbf{A}\)&lt;/p&gt;
+
+    &lt;p&gt;value: \(\mathbf{A}_{i,j,k}\)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;transpose&quot;&gt;Transpose&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Mirror across &lt;em&gt;main diagonal&lt;/em&gt; \(\mathbf{A} \rightarrow \mathbf{A}^\intercal\)&lt;/li&gt;
+  &lt;li&gt;Scalar matrix, one item \(\mathbf{a}=\mathbf{a}^\intercal\)&lt;/li&gt;
+  &lt;li&gt;Vector \(\mathbf{x}^\intercal\)&lt;/li&gt;
+  &lt;li&gt;Matrix product \((\mathbf{A}\mathbf{B})^\intercal=\mathbf{B}^\intercal\mathbf{A}^\intercal\)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;addition&quot;&gt;Addition&lt;/h4&gt;
+&lt;p&gt;If \(\mathbf{A}\) and \(\mathbf{B}\) same shape, \(\mathbf{C}=\mathbf{A}+\mathbf{B}\), where \(\mathbf{C}_{i,j}=\mathbf{A}_{i,j}+\mathbf{B}_{i,j}\).&lt;/p&gt;
+
+&lt;h4 id=&quot;scalar-addition-and-multiplication&quot;&gt;Scalar addition and multiplication&lt;/h4&gt;
+&lt;p&gt;\(\mathbf{D}=a\cdot\mathbf{B}+c\), where \(\mathbf{D}_{i,j}=a\cdot\mathbf{B}_{i,j}+c\)&lt;/p&gt;
+
+&lt;h4 id=&quot;addition-matrix-and-vector&quot;&gt;Addition matrix and vector&lt;/h4&gt;
+&lt;p&gt;\(\mathbf{C}=\mathbf{A}+\mathbf{b}\), where \(\mathbf{C}_{i,j}=\mathbf{A}_{i,j}+\mathbf{b}_j\)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;broadcasting&lt;/strong&gt;: \(\mathbf{b}\) is addded to each &lt;strong&gt;row&lt;/strong&gt; of the matrix \(\mathbf{A}\).&lt;/p&gt;
+
+&lt;h4 id=&quot;operations&quot;&gt;Operations&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Matrix product \(\mathbf{C}=\mathbf{A}\mathbf{B} \rightarrow \mathbf{C}_{m\times p}=\mathbf{A}_{m\times n}\mathbf{B}_{n\times p}\) and \(\mathbf{C}_{i,j}=\sum_k\mathbf{A}_{i,k}\mathbf{B}_{k,j}\)&lt;/p&gt;
+
+    &lt;p&gt;Vectors of the same size: \(\mathbf{x}^\intercal\mathbf{y}\)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Elementwise product / Hadamard product \(\mathbf{A}\odot\mathbf{B}\)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;properties&quot;&gt;Properties&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Distributive: \(\mathbf{A}(\mathbf{B}+\mathbf{C})=\mathbf{A}\mathbf{B}+\mathbf{A}\mathbf{C}\)&lt;/li&gt;
+  &lt;li&gt;Associative: \(\mathbf{A}(\mathbf{B}\mathbf{C})=(\mathbf{A}\mathbf{B})\mathbf{C}\)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Commutative: &lt;strong&gt;not&lt;/strong&gt; \(\mathbf{A}\mathbf{B}\neq \mathbf{B}\mathbf{A}\) (not always)&lt;/p&gt;
+
+    &lt;p&gt;&lt;strong&gt;yes&lt;/strong&gt; for vectors \(\rightarrow\) \(\mathbf{x}^\intercal \mathbf{y}=\mathbf{y}^\intercal\mathbf{x}\)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;linear-equations&quot;&gt;Linear equations&lt;/h4&gt;
+
+&lt;p&gt;\(\mathbf{A}\mathbf{x}=\mathbf{b}\) (notation compact)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;\(\mathbf{A}\in\mathbb{R}^{m\times n}\) known&lt;/li&gt;
+  &lt;li&gt;\(\mathbf{x}\in\mathbb{R}^m\) variable&lt;/li&gt;
+  &lt;li&gt;\(\mathbf{b}\in\mathbb{R}^m\) known&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Notation not compact, equations:&lt;/p&gt;
+
+\[A_{1,:}\mathbf{x}=b_1 \rightarrow A_{1,1}x_1+\dots+A_{1,n}x_n=b_1\\
  \vdots\\
- A_{m,:}\mathbf{x}=b_m \rightarrow A_{m,1}x_1+\dots+A_{m,n}x_n=b_m$$
+ A_{m,:}\mathbf{x}=b_m \rightarrow A_{m,1}x_1+\dots+A_{m,n}x_n=b_m\]
 
-#### Identity matrix
-$$\mathbf{I}_n\in\mathbb{R}^{nxn} \rightarrow \mathbf{I}_n\mathbf{x}=\mathbf{x}\:\:\:\:\:\:\: \forall_{\mathbf{x}}\in\mathbb{R}^n$$
+&lt;h4 id=&quot;identity-matrix&quot;&gt;Identity matrix&lt;/h4&gt;
+&lt;p&gt;\(\mathbf{I}_n\in\mathbb{R}^{nxn} \rightarrow \mathbf{I}_n\mathbf{x}=\mathbf{x}\:\:\:\:\:\:\: \forall_{\mathbf{x}}\in\mathbb{R}^n\)&lt;/p&gt;
 
-#### Inverse Matrix
-$$A^{-1}A=\mathbf{I}_n$$, $$AA^{-1}=\mathbf{I}_n$$, for square matrix left and right are the same.
+&lt;h4 id=&quot;inverse-matrix&quot;&gt;Inverse Matrix&lt;/h4&gt;
+&lt;p&gt;\(A^{-1}A=\mathbf{I}_n\), \(AA^{-1}=\mathbf{I}_n\), for square matrix left and right are the same.&lt;/p&gt;
 
-For example:
-$$
-\begin{align}
-A\mathbf{x}&amp;=\mathbf{b} \\
-A^{-1}A\mathbf{x}&amp;=A^{-1}\mathbf{b} \\
-\mathbf{I}_n\mathbf{x}&amp;=A^{-1}\mathbf{b}\\
-\mathbf{x}&amp;=A^{-1}\mathbf{b}
-\end{align}
-$$
+&lt;p&gt;For example:
+\(\begin{align}
+A\mathbf{x}&amp;amp;=\mathbf{b} \\
+A^{-1}A\mathbf{x}&amp;amp;=A^{-1}\mathbf{b} \\
+\mathbf{I}_n\mathbf{x}&amp;amp;=A^{-1}\mathbf{b}\\
+\mathbf{x}&amp;amp;=A^{-1}\mathbf{b}
+\end{align}\)&lt;/p&gt;
 
-- Should **not** be used in practical applications because **limited precision**
-- $$A^{-1}$$ might not be possible to find (singular matrix).
+&lt;ul&gt;
+  &lt;li&gt;Should &lt;strong&gt;not&lt;/strong&gt; be used in practical applications because &lt;strong&gt;limited precision&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;\(A^{-1}\) might not be possible to find (singular matrix).&lt;/li&gt;
+&lt;/ul&gt;
 
-**Note:** Matrix should be **square and singular**. If not, we cannot get $$A^{-1}$$.
-#### Linear Combination
-$${\mathbf{v}^{(1)},\dots,\mathbf{v}^{(n)}}$$ Given by multiplying each vector $$\mathbf{v}^{(i)}$$ by a scalar and adding.
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Matrix should be &lt;strong&gt;square and singular&lt;/strong&gt;. If not, we cannot get \(A^{-1}\).&lt;/p&gt;
+&lt;h4 id=&quot;linear-combination&quot;&gt;Linear Combination&lt;/h4&gt;
+&lt;p&gt;\({\mathbf{v}^{(1)},\dots,\mathbf{v}^{(n)}}\) Given by multiplying each vector \(\mathbf{v}^{(i)}\) by a scalar and adding.&lt;/p&gt;
 
-$$\sum_i c_i\mathbf{v}^{(i)}$$
+\[\sum_i c_i\mathbf{v}^{(i)}\]
 
-##### Span
-Set of all points obtained by linear combination of the original vectors
+&lt;h5 id=&quot;span&quot;&gt;Span&lt;/h5&gt;
+&lt;p&gt;Set of all points obtained by linear combination of the original vectors&lt;/p&gt;
 
-$$A\mathbf{x}=\mathbf{b} \rightarrow$$ solution if $$\mathbf{b}$$ is in the **span** (known as __column space__ / __range__ of $$A$$) of columns $$A$$
+&lt;p&gt;\(A\mathbf{x}=\mathbf{b} \rightarrow\) solution if \(\mathbf{b}\) is in the &lt;strong&gt;span&lt;/strong&gt; (known as &lt;strong&gt;column space&lt;/strong&gt; / &lt;strong&gt;range&lt;/strong&gt; of \(A\)) of columns \(A\)&lt;/p&gt;
 
-$$A$$ square matrix $$m=n$$ and all columns linear independent.
+&lt;p&gt;\(A\) square matrix \(m=n\) and all columns linear independent.&lt;/p&gt;
 
-#### Linear Dependence
-Same column space / a combination
-#### Linear Independence
-No vector in the set is a **linear combination** of the other vectors.
-#### Square matrix
-$$A \in\mathbb{R}^{m\times n} m=n$$
-#### Singular matrix
-Matrix with linear independent columns
-#### Norms
-- Norms are functions mapping vectors to non-negative values (distance from origin to point $$\mathbf{x}$$)
-- Measure the size of a vector
-- Any function $$f$$ is a norma as long as:
-  1. $$f(\mathbf{x})=0 \rightarrow \mathbf{x}=0$$.
-  2. $$f(\mathbf{x} + \mathbf{y}) \leq f(\mathbf{x}) + f(\mathbf{y})$$ triangle inequality
-  3. $$\forall \alpha\in\mathbb{R}, f(\alpha\mathbf{x}) = \mid\alpha\mid f(\mathbf{x})$$.
+&lt;h4 id=&quot;linear-dependence&quot;&gt;Linear Dependence&lt;/h4&gt;
+&lt;p&gt;Same column space / a combination&lt;/p&gt;
+&lt;h4 id=&quot;linear-independence&quot;&gt;Linear Independence&lt;/h4&gt;
+&lt;p&gt;No vector in the set is a &lt;strong&gt;linear combination&lt;/strong&gt; of the other vectors.&lt;/p&gt;
+&lt;h4 id=&quot;square-matrix&quot;&gt;Square matrix&lt;/h4&gt;
+&lt;p&gt;\(A \in\mathbb{R}^{m\times n} m=n\)&lt;/p&gt;
+&lt;h4 id=&quot;singular-matrix&quot;&gt;Singular matrix&lt;/h4&gt;
+&lt;p&gt;Matrix with linear independent columns&lt;/p&gt;
+&lt;h4 id=&quot;norms&quot;&gt;Norms&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Norms are functions mapping vectors to non-negative values (distance from origin to point \(\mathbf{x}\))&lt;/li&gt;
+  &lt;li&gt;Measure the size of a vector&lt;/li&gt;
+  &lt;li&gt;Any function \(f\) is a norma as long as:
+    &lt;ol&gt;
+      &lt;li&gt;\(f(\mathbf{x})=0 \rightarrow \mathbf{x}=0\).&lt;/li&gt;
+      &lt;li&gt;\(f(\mathbf{x} + \mathbf{y}) \leq f(\mathbf{x}) + f(\mathbf{y})\) triangle inequality&lt;/li&gt;
+      &lt;li&gt;\(\forall \alpha\in\mathbb{R}, f(\alpha\mathbf{x}) = \mid\alpha\mid f(\mathbf{x})\).&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;h5 id=&quot;list&quot;&gt;List:&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;\(L^p\) norm&lt;/strong&gt;: \(\mid\mid x\mid\mid_p=(\sum_i\mid x_i\mid)^{\frac{1}{p}}\) where \(p\in\mathbb{R}, p\geq 1\)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;\(L^2\) Euclidean norm (distance)&lt;/strong&gt;: \(\parallel\mathbf{x}\parallel_2=\parallel\mathbf{x}\parallel=\mathbf{x}^\intercal\mathbf{x}\)
+    &lt;ul&gt;
+      &lt;li&gt;increases really slowly near the original&lt;/li&gt;
+      &lt;li&gt;squared \(L^2\) norm is better to work: 1) mathematically and 2) computationally.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;\(L^1\) norm&lt;/strong&gt;: \(\parallel\mathbf{x}\parallel_1=\sum_i\mid x_i\mid\)
+    &lt;ul&gt;
+      &lt;li&gt;chooses a function that grows at the &lt;strong&gt;same rate&lt;/strong&gt; in all locations.&lt;/li&gt;
+      &lt;li&gt;Discriminate elements that are 1) exactly zero; 2) small, but not zero.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;\(L^\infty\) max norm&lt;/strong&gt;: \(\parallel\mathbf{x}\parallel_\infty=\max_i\mid x_i\mid\)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Frobenius norm&lt;/strong&gt;: &lt;em&gt;measure size of matrix&lt;/em&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Analogous to \(L^2\) of a vector&lt;/li&gt;
+      &lt;li&gt;Dot product in terms of norms \(\mathbf{x}^\intercal\mathbf{y}=\parallel\mathbf{x}\parallel_2\parallel\mathbf{y}\parallel_2\cos\theta\)&lt;/li&gt;
+    &lt;/ul&gt;
 
-##### List:
-- **$$L^p$$ norm**: $$\mid\mid x\mid\mid_p=(\sum_i\mid x_i\mid)^{\frac{1}{p}}$$ where $$p\in\mathbb{R}, p\geq 1$$
-- **$$L^2$$ Euclidean norm (distance)**: $$\parallel\mathbf{x}\parallel_2=\parallel\mathbf{x}\parallel=\mathbf{x}^\intercal\mathbf{x}$$
-  - increases really slowly near the original
-  - squared $$L^2$$ norm is better to work: 1) mathematically and 2) computationally.
-- **$$L^1$$ norm**: $$\parallel\mathbf{x}\parallel_1=\sum_i\mid x_i\mid$$
-  - chooses a function that grows at the **same rate** in all locations.
-  - Discriminate elements that are 1) exactly zero; 2) small, but not zero.
-- **$$L^\infty$$ max norm**: $$\parallel\mathbf{x}\parallel_\infty=\max_i\mid x_i\mid$$
-- **Frobenius norm**: *measure size of matrix*
-  - Analogous to $$L^2$$ of a vector
-  - Dot product in terms of norms $$\mathbf{x}^\intercal\mathbf{y}=\parallel\mathbf{x}\parallel_2\parallel\mathbf{y}\parallel_2\cos\theta$$
+    &lt;p&gt;\(\parallel A\parallel_F=\sqrt{\sum_{ij}A_{ij}^2}\)&lt;/p&gt;
+    &lt;h3 id=&quot;special-kind-of-matrices-and-vectors&quot;&gt;Special kind of matrices and Vectors&lt;/h3&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Diagonal matrix (\(D\))
+    &lt;ul&gt;
+      &lt;li&gt;\(diag(\mathbf{v})\): square&lt;/li&gt;
+      &lt;li&gt;\(diag(\mathbf{v})^{-1}=diag(\left[1/v_1,\dots,1/v_n\right]^\intercal)\).&lt;/li&gt;
+      &lt;li&gt;\(diag(\mathbf{v})\mathbf{x}=\mathbf{v}\odot\mathbf{x} \rightarrow x_i*v_i\).&lt;/li&gt;
+      &lt;li&gt;non-square: &lt;strong&gt;no inverse&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Symmetric \(A=A^\intercal\)&lt;/li&gt;
+  &lt;li&gt;Unit vector (unit norm): \(\parallel\mathbf{x}\parallel_2=1\)&lt;/li&gt;
+  &lt;li&gt;Orthogonal: \(\mathbf{x}^\intercal\mathbf{y}=0\) Vectors are perpendicular (90 degrees)
+    &lt;ul&gt;
+      &lt;li&gt;mutually orthogonal: Set of vectors are orthogonal&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;orthonormal&lt;/strong&gt;: vector is &lt;strong&gt;orthogonal&lt;/strong&gt; and have &lt;strong&gt;unit norm&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;&lt;strong&gt;orthogonal matrix&lt;/strong&gt;: square matrix, rows and columns are mutually orthonormal&lt;/p&gt;
 
-  $$\parallel A\parallel_F=\sqrt{\sum_{ij}A_{ij}^2}$$
-### Special kind of matrices and Vectors
-- Diagonal matrix ($$D$$)
-  - $$diag(\mathbf{v})$$: square
-  - $$diag(\mathbf{v})^{-1}=diag(\left[1/v_1,\dots,1/v_n\right]^\intercal)$$.
-  - $$diag(\mathbf{v})\mathbf{x}=\mathbf{v}\odot\mathbf{x} \rightarrow x_i*v_i$$.
-  - non-square: **no inverse**
-- Symmetric $$A=A^\intercal$$
-- Unit vector (unit norm): $$\parallel\mathbf{x}\parallel_2=1$$
-- Orthogonal: $$\mathbf{x}^\intercal\mathbf{y}=0$$ Vectors are perpendicular (90 degrees)
-  - mutually orthogonal: Set of vectors are orthogonal
-  - **orthonormal**: vector is **orthogonal** and have **unit norm**
-  - **orthogonal matrix**: square matrix, rows and columns are mutually orthonormal
+\[\begin{align}
+    A^\intercal A&amp;amp;=AA^\intercal=I\\
+    A^{-1}&amp;amp;=A^\intercal
+  \end{align}\]
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
-    $$
-      \begin{align}
-        A^\intercal A&amp;=AA^\intercal=I\\
-        A^{-1}&amp;=A^\intercal
-      \end{align}
-    $$
+&lt;h3 id=&quot;eigendecomposition&quot;&gt;Eigendecomposition&lt;/h3&gt;
+&lt;h4 id=&quot;matrix-decomposition&quot;&gt;Matrix Decomposition&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;Eigenvectors (\(\mathbf{v}\) vector)&lt;/li&gt;
+  &lt;li&gt;Eigenvalues (\(\lambda\) scalar)&lt;/li&gt;
+&lt;/ol&gt;
 
-### Eigendecomposition
-#### Matrix Decomposition
-  1. Eigenvectors ($$\mathbf{v}$$ vector)
-  2. Eigenvalues ($$\lambda$$ scalar)
+\[A\mathbf{v}=\lambda\mathbf{v}\]
 
-  $$A\mathbf{v}=\lambda\mathbf{v}$$
+&lt;h4 id=&quot;eigendecomposition-1&quot;&gt;Eigendecomposition&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;\(\mathbf{v}^{-1}\) ,linear independent eigenvectors&lt;/li&gt;
+  &lt;li&gt;\(\mathbf{\lambda}\), corresponding eigenvalue&lt;/li&gt;
+&lt;/ol&gt;
 
-#### Eigendecomposition
-  1. $$\mathbf{v}^{-1}$$ ,linear independent eigenvectors
-  2. $$\mathbf{\lambda}$$, corresponding eigenvalue
+\[A=\mathbf{v}diag(\mathbf{\lambda})\mathbf{v}^{-1}\]
 
-  $$A=\mathbf{v}diag(\mathbf{\lambda})\mathbf{v}^{-1}$$
+&lt;p&gt;&lt;strong&gt;Not every matrix can be decomposed&lt;/strong&gt;&lt;/p&gt;
 
-  **Not every matrix can be decomposed**
+&lt;h4 id=&quot;real-symmetric-matrix&quot;&gt;Real Symmetric matrix&lt;/h4&gt;
+&lt;ol&gt;
+  &lt;li&gt;\(Q\), orthogonal matrix&lt;/li&gt;
+  &lt;li&gt;\(\Lambda\), diagonal matrix&lt;/li&gt;
+&lt;/ol&gt;
 
-#### Real Symmetric matrix
-  1. $$Q$$, orthogonal matrix
-  2. $$\Lambda$$, diagonal matrix
+\[A=Q\Lambda Q^\intercal\]
 
-  $$A=Q\Lambda Q^\intercal$$
+&lt;p&gt;&lt;strong&gt;Not defined for non-squared matrices&lt;/strong&gt;&lt;/p&gt;
 
-  **Not defined for non-squared matrices**
+&lt;h3 id=&quot;singular-value-decomposition-svd&quot;&gt;Singular Value Decomposition (SVD)&lt;/h3&gt;
+&lt;p&gt;It’s more generally applicable&lt;/p&gt;
 
-### Singular Value Decomposition (SVD)
-  It&apos;s more generally applicable
+&lt;ol&gt;
+  &lt;li&gt;\(D\), diagonal matrix (singular values=\(diag(D)\), left-singular vector and right-singular vector are the columns of \(U\) and \(V\) respectively.)&lt;/li&gt;
+  &lt;li&gt;\(U\) and \(V\), orthogonal matrices&lt;/li&gt;
+&lt;/ol&gt;
 
-  1. $$D$$, diagonal matrix (singular values=$$diag(D)$$, left-singular vector and right-singular vector are the columns of $$U$$ and $$V$$ respectively.)
-  2. $$U$$ and $$V$$, orthogonal matrices
+\[A=UDV^\intercal\]
 
-  $$A=UDV^\intercal$$
+\[m\times n = (m\times m) (m\times n) (n\times n)\]
 
-  $$m\times n = (m\times m) (m\times n) (n\times n)$$
+&lt;p&gt;&lt;strong&gt;Useful to partially generalize matrix inversion to non-square matrices.&lt;/strong&gt;&lt;/p&gt;
 
-  **Useful to partially generalize matrix inversion to non-square matrices.**
+&lt;h3 id=&quot;the-moore-penrose-pseudoinverse&quot;&gt;The Moore-Penrose Pseudoinverse&lt;/h3&gt;
+&lt;p&gt;Matrix inversion &lt;strong&gt;not defined&lt;/strong&gt; for non-square matrices, these can be calculated with this method.&lt;/p&gt;
 
-### The Moore-Penrose Pseudoinverse
-Matrix inversion **not defined** for non-square matrices, these can be calculated with this method.
+&lt;ol&gt;
+  &lt;li&gt;real (pseudoinverse): \(A^+=\lim_{\alpha\searrow 0}(A^\intercal A+\alpha I)^{-1}A^\intercal\)&lt;/li&gt;
+  &lt;li&gt;practical \(A^+=VD^+U^\intercal\)&lt;/li&gt;
+&lt;/ol&gt;
 
- 1. real (pseudoinverse): $$A^+=\lim_{\alpha\searrow 0}(A^\intercal A+\alpha I)^{-1}A^\intercal$$
- 2. practical $$A^+=VD^+U^\intercal$$
+&lt;ul&gt;
+  &lt;li&gt;\(U, D, V\): singular value decomposition of \(A\)&lt;/li&gt;
+  &lt;li&gt;\(D^+\): diagonal matrix. Take \(D\) and get the &lt;strong&gt;reciprocal&lt;/strong&gt; of its nonzero element and take the &lt;strong&gt;transpose&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
 
-  - $$U, D, V$$: singular value decomposition of $$A$$
-  - $$D^+$$: diagonal matrix. Take $$D$$ and get the **reciprocal** of its nonzero element and take the **transpose**.
+&lt;h3 id=&quot;trace-operator&quot;&gt;Trace operator&lt;/h3&gt;
 
-### Trace operator
+&lt;h3 id=&quot;determinant&quot;&gt;Determinant&lt;/h3&gt;</content><author><name></name></author><category term="Math" /><summary type="html">Some interesting links: Matrix cookbook Matrix derivatives</summary></entry><entry><title type="html">Probability and Information Theory</title><link href="/blog/2019/probability/" rel="alternate" type="text/html" title="Probability and Information Theory" /><published>2019-05-15T22:41:19-04:00</published><updated>2019-05-15T22:41:19-04:00</updated><id>/blog/2019/probability</id><content type="html" xml:base="/blog/2019/probability/">&lt;p&gt;Some interesting links:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;(http://www.tina-vision.net/docs/memos/2003-003.pdf)&quot;&gt;Product and convolution of gaussians&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;(https://people.eecs.berkeley.edu/~jordan/courses/260-spring10/other-readings/chapter13.pdf)&quot;&gt;Multivariate Gaussian&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;(http://www.herbrich.me/papers/EP.pdf)&quot;&gt;EP with Gaussians&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-### Determinant
-
-[1]: (http://www.deeplearningbook.org/contents/linear_algebra.html)
-[2]: (https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf)
-[3]: (https://people.maths.ox.ac.uk/gilesm/files/NA-08-01.pdf)</content><author><name></name></author><category term="Math" /><summary type="html">Some interesting links: Matrix cookbook Matrix derivatives</summary></entry></feed>
+&lt;p&gt;Notes of &lt;a href=&quot;(http://www.deeplearningbook.org/contents/linear_algebra.html)&quot;&gt;chapter 3&lt;/a&gt; of Deep Learning book.&lt;/p&gt;</content><author><name></name></author><category term="Math" /><summary type="html">Some interesting links: Product and convolution of gaussians Multivariate Gaussian EP with Gaussians</summary></entry></feed>
