@@ -1,0 +1,17 @@
+
+# show time in prompt
+setopt PROMPT_SUBST
+TMOUT=1
+PROMPT='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{%D{%L:%M:%S}%}%{$fg_bold[blue]%}%c%{$reset_color%}$(git_prompt_info)'
+
+TRAPALRM() {
+    case "$WIDGET" in
+        expand-or-complete|self-insert|up-line-or-beginning-search|down-line-or-beginning-search|backward-delete-char|.history-incremental-search-backward|.history-incremental-search-forward)
+            :
+            ;;
+
+        *)
+            zle reset-prompt
+            ;;
+    esac
+}
