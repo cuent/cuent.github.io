@@ -2,4 +2,5 @@
 .jekyll-metadata
 .jekyll-cache
 .tweet-cache
+_site
 Gemfile.lock
