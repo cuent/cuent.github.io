@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Xavier Sumba
+
+
+  | Neural Information Retrieval
+
+</title>
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+
+<!-- Open Graph -->
+
+<meta property="og:site_name" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+" />
+<meta property="og:type" content="object" />
+<meta property="og:title" content="" />
+<meta property="og:url" content="//blog/2020/neural_information_retrieval/" />
+<meta property="og:description" content="Neural Information Retrieval" />
+<meta property="og:image" content="" />
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏃</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2020/neural_information_retrieval/">
+
+<!-- JQuery -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+<!-- Theming-->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCYXRLMN9B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-QCYXRLMN9B');
+</script>
+
+
+
+<!-- Panelbear Analytics - We respect your privacy -->
+<script async src="https://cdn.panelbear.com/analytics.js?site=5LB6elP1kZB"></script>
+<script>
+    window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+    panelbear('config', { site: '5LB6elP1kZB' });
+</script>
+
+
+    
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav sticky-bottom-footer">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="//">
+       Xavier Sumba
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              about
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Neural Information Retrieval</h1>
+    <p class="post-meta">August 21, 2020</p>
+  </header>
+
+  <article class="post-content">
+    <p><strong>Retrieval of information:</strong> a user express their need in the form of a query and retrieval consists in ranking existing pieces of content or incorporating new responses from the obtained information.</p>
+
+<p>Neural IR is the application of shallow or deep NN for IR tasks. Other NLP capabilities such as <em>machine translation</em> and <em>named entity linking</em> are <strong>not</strong>  neural IR but could be used in an IR system.</p>
+
+<p>IR systems must deal with short queries that may contain previously <strong><em>unseen vocabulary</em></strong> to match against documents that <strong><em>vary in length</em></strong> or find relevant documents that may contain large sections of <strong><em>irrelevant text</em></strong>.</p>
+
+<p><strong>Goal:</strong> Learn fundamentals of neural IR and traditional IR research</p>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled.png" alt="Neural%20Information%20Retrieval%20a3cc768e80eb456591167fa7887a2705/Untitled.png" /></p>
+
+<h1 id="fundamentals-of-text-retrieval">Fundamentals of text retrieval</h1>
+
+<h3 id="tasks"><strong>Tasks</strong></h3>
+
+<ul>
+  <li>ad hoc retrieval systems: ranking document retrieval</li>
+  <li>question answering systems: ranking answers containing passages in response to a question</li>
+</ul>
+
+<h3 id="what-is-needed"><strong>What is needed?</strong></h3>
+
+<ul>
+  <li><strong>Semantic understanding</strong>: careful → <em>hot dog ≠ warm puppy</em></li>
+  <li>
+    <p><strong>Robustness to rare inputs</strong>: support for infrequently searched-for documents and perform well in rare terms</p>
+
+    <p>query: <em>“<strong>pekarovic</strong> land company” →</em> exact match works for rare terms</p>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled00.png" alt="query pekaravic" /></p>
+
+    <p>“Learning latent representations of text important for dealing with <strong>vocabulary mismatch</strong>, but exact matching is also important to deal with <strong>rare terms</strong> and intents.</p>
+  </li>
+  <li>
+    <p><strong>Robustness to corpus variance:</strong> IR models perform on corpora whose distributions are different from the data that the model was trained on.</p>
+
+    <p>BM25: words “out of the box”</p>
+
+    <p>DNN: sensitive to distributional differences</p>
+  </li>
+  <li><strong>Robustness to variable length inputs:</strong> relevant documents may contain irrelevant sections and relevant content may either be localized or spread over multiple sections (in IR it is commonly used document length normalization)</li>
+  <li><strong>Robustness to errors in input:</strong> No IR system should assume error-free inputs, maybe use some error correction.</li>
+  <li><strong>Sensitivity to context:</strong> leverage implicit and explicit context information → query: weather (Seattle or London)</li>
+  <li><strong>Efficiency:</strong> It might be necessary to perform search with billions of documents
+    <ul>
+      <li>Use <strong>telescoping</strong>: multi-tier architecture that different IR models prune a set of candidates (re-rank)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="metrics">Metrics</h3>
+
+<p>IR metrics focus on rank-based evaluation of retrieved results vs ground truth information (manual judgments of implicit feedback from user behavior data)</p>
+
+<ul>
+  <li>
+    <p><strong>Precision and recall</strong></p>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%201.png" alt="assets/img/neuralinformation_retrieval/Untitled%201.png" /></p>
+  </li>
+  <li>
+    <p><strong>Mean reciprocal rank (MRR):</strong> averaged first relevant document over all queries</p>
+  </li>
+</ul>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%202.png" alt="assets/img/neuralinformation_retrieval/Untitled%202.png" /></p>
+
+<ul>
+  <li><strong>Mean average precision (MAP):</strong> average precision for a ranked list of documents <em>R</em></li>
+</ul>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%203.png" alt="assets/img/neuralinformation_retrieval/Untitled%203.png" /></p>
+
+<ul>
+  <li>
+    <p><strong>Normalized discounted cumulative gain (NDCG):</strong> used when graded relevance judgments are available for a query q, e.g. five-point scale.</p>
+
+    <p><strong>Discounted cumulative gain:</strong></p>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%204.png" alt="assets/img/neuralinformation_retrieval/Untitled%204.png" /></p>
+
+    <p>NDCG: assume the ideal DCG by getting the ideal rank order for the documents, up to rank k</p>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%205.png" alt="assets/img/neuralinformation_retrieval/Untitled%205.png" /></p>
+  </li>
+</ul>
+
+<h3 id="traditional-ir-models">Traditional IR models</h3>
+
+<p>Important baselines for comparison</p>
+
+<ul>
+  <li><strong>BM25:</strong> consider the number of occurrence of each query term in the document (TF-IDF)</li>
+</ul>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%206.png" alt="assets/img/neuralinformation_retrieval/Untitled%206.png" /></p>
+
+<ul>
+  <li><strong>Language modeling (LM):</strong> rank documents by the posterior probability</li>
+</ul>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%207.png" alt="assets/img/neuralinformation_retrieval/Untitled%207.png" /></p>
+
+<p><strong>Using MLE:</strong></p>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%208.png" alt="assets/img/neuralinformation_retrieval/Untitled%208.png" /></p>
+
+<p>Adding smoothing:</p>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%209.png" alt="assets/img/neuralinformation_retrieval/Untitled%209.png" /></p>
+
+<ul>
+  <li><strong>Translation models:</strong> alternative to LM, <em>assume query q is being generated via a “translation” process from the document d</em></li>
+</ul>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%2010.png" alt="assets/img/neuralinformation_retrieval/Untitled%2010.png" /></p>
+
+<ul>
+  <li><strong>Dependence model:</strong> consider proximity between query terms</li>
+</ul>
+
+<p>ow and uw are the set of all contiguous n-grams or phrases</p>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%2011.png" alt="assets/img/neuralinformation_retrieval/Untitled%2011.png" /></p>
+
+<ul>
+  <li><strong>Pseudo relevance feedback (PRF):</strong> a relevance model; additional round for retrieval
+    <ol>
+      <li>R1: first round for retrieval</li>
+      <li>Use R1 to expand terms and augment the query to retrieve R2 to the user</li>
+    </ol>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%2012.png" alt="assets/img/neuralinformation_retrieval/Untitled%2012.png" /></p>
+  </li>
+  <li>
+    <p><strong>Neural approaches to IR:</strong> 1) query representation; 2) document representation; 3) estimating relevance</p>
+
+    <p>Traditionally shallow NN rely on hand-crafted features</p>
+  </li>
+</ul>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%2013.png" alt="assets/img/neuralinformation_retrieval/Untitled%2013.png" /></p>
+
+<p>Traditionally DNN rely on embeddings</p>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%2014.png" alt="assets/img/neuralinformation_retrieval/Untitled%2014.png" /></p>
+
+<h1 id="unsupervised-learning-of-term-representations">Unsupervised learning of term representations</h1>
+
+<p>Properties of <strong>compositionality</strong> help to select a term representation.</p>
+
+<p><strong>Local representation:</strong> one-hot encoding, terms are different, vocabulary size</p>
+
+<p><strong>Distributed representation:</strong> there’s a concept of similarity and embedding and latent space</p>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled000.png" alt="/assets/img/neuralinformation_retrieval/Untitled.png" /></p>
+
+<p>In distributed representation the choice of the feature is important. Makes a choice of which items are more similar.</p>
+
+<p><strong>Distributional hypothesis:</strong> terms that are used in similar context tend to be semantically similar, Harris 1954</p>
+
+<p><strong>Distributional semantics:</strong> a word is characterized by the company it keeps, Firth 1957</p>
+
+<h3 id="notions-of-similarity">Notions of similarity</h3>
+
+<p>Is it a notion of relatedness between terms?  Depends on the type of relationship we are interested in.</p>
+
+<p>Is “Seattle” closer to “Sydney” or to “Seahawks”?</p>
+
+<ul>
+  <li>Terms of similar type (<strong>typical</strong>): <em>Seattle vs Sydney</em></li>
+  <li>Terms co-occur in the same document (<strong>topical</strong>): <em>Seattle vs Seahawks</em></li>
+</ul>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%201020.png" alt="/assets/img/neuralinformation_retrieval/Untitled%201.png" /></p>
+
+<p>Many ways to categorize distributional features (neighboring terms, in-documents, etc) and different weighting schemes (e.g. TF-IDF)</p>
+
+<p>We can get analogies such as:</p>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%20220.png" alt="/assets/img/neuralinformation_retrieval/Untitled%202.png" /></p>
+
+<h3 id="latent-feature-spaces">Latent feature spaces</h3>
+
+<p>Here some neural and non-neural latent space models</p>
+
+<ul>
+  <li>
+    <p><strong>Latent Semantic Analysis (LSA)</strong></p>
+
+    <p>Perform SVD on term-document matrix X to obtain its low-rank approximation. We select the <em>k</em> largest singular values to obtain a rank k approximation of X. For instance:</p>
+
+\[X_k=U_k\Sigma_kV_k^T\]
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20320.png" alt="/assets/img/neuralinformation_retrieval/Untitled%203.png" /></p>
+
+    <ul>
+      <li>
+        <p><strong>Probabilistic Latent Semantic Analysis (PLSA)</strong></p>
+
+        <p>Learns low-dimensional representations by modeling their co-occurrence <em>p( t, d ), where C are the latent topics.</em></p>
+
+\[p(t,d)=p(d)\sum_{c\in C}p(c|d)p(t|c)\]
+
+        <p>LDA: adds a Dirichlet prior</p>
+      </li>
+      <li>
+        <p><strong>Neural term embedding</strong></p>
+        <ul>
+          <li>predict term from its features</li>
+          <li>learns dense low-dimensional representations by minimizing the prediction error based on the <em>information bottleneck method</em></li>
+          <li>
+            <p><strong>Word2vec (skip-gram / CBOW)</strong></p>
+
+            <p><em>c: number of neighbours</em></p>
+
+            <p><em>S: set of all windows</em></p>
+
+            <p>Denominator is prohibitively costly</p>
+
+            <ul>
+              <li>Hierarchical softmax</li>
+              <li>Negative sampling</li>
+            </ul>
+
+            <p>W_{in} matrix embedding used and  W_{out} is usually discarded after training. However, for IR applications, we can use both</p>
+
+            <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20420.png" alt="/assets/img/neuralinformation_retrieval/Untitled%204.png" /></p>
+
+            <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20520.png" alt="/assets/img/neuralinformation_retrieval/Untitled%205.png" /></p>
+
+            <p>Skip-gram creates 2xc samples by individually pairing each neighbouring term with the middle term → slower to train</p>
+
+            <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20620.png" alt="/assets/img/neuralinformation_retrieval/Untitled%206.png" /></p>
+
+            <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20720.png" alt="/assets/img/neuralinformation_retrieval/Untitled%207.png" /></p>
+
+            <p>Encourage sparseness in the learnt representation, add the constraint (useful for term analogies):</p>
+
+            <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20820.png" alt="/assets/img/neuralinformation_retrieval/Untitled%208.png" /></p>
+          </li>
+          <li>
+            <p><strong>Glove</strong></p>
+
+            <p>Shows that we can compute the cross-entropy error between the actual co-occurrence probability and the on predicted.</p>
+
+            <p>$L_{skip-gram}=\sum_{i=1}^{\mid{T}\mid}x_iH(\hat p(t_j\mid t_i), p(t_j\mid t_i))$</p>
+
+            <p>Two main changes compared with skip-gram model:</p>
+
+            <ol>
+              <li>replace cross-entropy error with squared error</li>
+              <li>apply a saturation function</li>
+            </ol>
+
+            <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20920.png" alt="/assets/img/neuralinformation_retrieval/Untitled%209.png" /></p>
+
+            <p><img src="/assets/img/neuralinformation_retrieval/Untitled%201020.png" alt="/assets/img/neuralinformation_retrieval/Untitled%2010.png" /></p>
+
+            <p>Final embeddings are the sum of IN and OUT vectors.</p>
+          </li>
+          <li><strong>Paragraph2vec</strong>
+            <ul>
+              <li>Predict term given the id of a document</li>
+              <li>Train term-document pairs to learn an embedding that is more aligned with a topical notion of the term-term similarity (appropriate for IR tasks)</li>
+              <li>However, term-document relationship tens to be more sparse</li>
+            </ul>
+
+            <p><img src="/assets/img/neuralinformation_retrieval/Untitled%201120.png" alt="/assets/img/neuralinformation_retrieval/Untitled%2011.png" /></p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="term-embeddings-for-ir">Term embeddings for IR</h1>
+
+<p>Term embeddings can be useful for inexact matching or for selecting additional terms for query expansion</p>
+
+<h3 id="query-document-matching">Query-document matching</h3>
+
+<ul>
+  <li>Derive a dense vector representation for the query and document from the embeddings. Term embeddings can be aggregated most commonly used is AWE (<em>average word embeddings</em>)</li>
+  <li>Query and document embeddings can be compared using a similarity metric</li>
+</ul>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled30.png" alt="/assets/img/neuralinformation_retrieval/Untitled.png" /></p>
+
+<ul>
+  <li>Understand the notion of inter-term similarity</li>
+</ul>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%20130.png" alt="/assets/img/neuralinformation_retrieval/Untitled%201.png" /></p>
+
+<ul>
+  <li>
+    <p><strong>Dual Embedding Space Model (DESM)</strong></p>
+
+    <p>Estimates the query-document relevance as follows</p>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20230.png" alt="/assets/img/neuralinformation_retrieval/Untitled%202.png" /></p>
+
+    <p>Instead of aggregating embeddings, we can incorporate term representations into existing IR models</p>
+  </li>
+  <li>
+    <p><strong>Neural Translation Language Model (NTLM)</strong></p>
+
+    <p>Uses the similarity between term embeddings as a measure for term-term translation probability</p>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20330.png" alt="/assets/img/neuralinformation_retrieval/Untitled%203.png" /></p>
+  </li>
+  <li>
+    <p><strong>Generalized Language Model (GLM)</strong></p>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20430.png" alt="/assets/img/neuralinformation_retrieval/Untitled%204.png" /></p>
+
+\[N_t:\text{set of nearest neighbours of term t}\]
+  </li>
+  <li>
+    <p>Other metrics for similarity</p>
+    <ul>
+      <li><strong>Word Mover’s Distance (WMD):</strong> estimate similarity between pairs of documents by computing the minimum distance in the embedding space → “first document <strong>needs to travel</strong> to reach the terms in the second document”</li>
+      <li>
+        <p><strong>Non-linear Word Transportation (NWT):</strong> incorporates a similar notion of distance.</p>
+
+        <p>solve optimization problem:</p>
+
+        <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20530.png" alt="/assets/img/neuralinformation_retrieval/Untitled%205.png" /></p>
+
+        <p>u(d): is the set of all unique terms in document d</p>
+      </li>
+      <li>
+        <p><strong>Saliency weighted semantic network (SWSN):</strong> computing short-text similarity</p>
+
+        <p>motivation by BM25</p>
+
+        <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20630.png" alt="/assets/img/neuralinformation_retrieval/Untitled%206.png" /></p>
+
+\[S_s\text{: shorter sentence}\]
+
+\[S_l\text{: longer sentence}\]
+      </li>
+    </ul>
+
+    <p>Errors by embedding based models and exact match models may be different and a <strong>combination</strong>  is often preferred.</p>
+
+    <p>a) exact match for “Cambridge”</p>
+
+    <p>b) fails to detect “Oxford”</p>
+
+    <p>c) artificially injected the term “Cambridge”</p>
+
+    <p><strong>explanation:</strong> exact match works for a and c (shouldn’t identify), embeddings work for a and c (no similarity found) but fails (embeddings) for b and exact match works best.</p>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20730.png" alt="/assets/img/neuralinformation_retrieval/Untitled%207.png" /></p>
+  </li>
+</ul>
+
+<h3 id="query-expansion">Query expansion</h3>
+
+<ol>
+  <li>Find good expansion candidates from a global vocabulary</li>
+  <li>Retrieve documents using the expanded query</li>
+</ol>
+
+<p>Compare every candidate term and then aggregate to get a relevance score</p>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%20830.png" alt="/assets/img/neuralinformation_retrieval/Untitled%208.png" /></p>
+
+<p>Term embeddings solely performs worse than <em>pseudo-relevance feedback (PRF),</em> but performs better when combined with PRF.</p>
+
+<p><strong>Local embeddings</strong> (embeddings trained in a query-specific corpus) are more useful for generating expansion terms</p>
+
+<h1 id="supervised-learning-to-rank">Supervised learning to rank</h1>
+
+<p>Learning to rank (LTR) uses training data to train towards an IR objective.</p>
+
+<p>x → query-document pair as feature vector and learn a ranking model f</p>
+
+<p><strong>hand-crafted</strong> features can be categorized into three categories:</p>
+
+<ol>
+  <li>Query-independent features (incoming link count and document length)</li>
+  <li>Query-dependent features (BM25)</li>
+  <li>Query-level features (query length)</li>
+</ol>
+
+<p><strong>neural models:</strong> learn from query and documents texts (can be combined with other features e.g. popularity)</p>
+
+<ol>
+  <li>Feature learning</li>
+  <li>Interaction-based representations</li>
+</ol>
+
+<p>LTR approaches based on their training objective:</p>
+
+<ul>
+  <li><strong>Pointwise approach:</strong> numerical value associated with every query-document pair</li>
+  <li><strong>Pairwise approach:</strong> preference between pairs of documents with respect to individual queries $d_i &gt;_q d_j$</li>
+  <li><strong>Listwise approach:</strong> optimize for a rank-based metric such as NDCG</li>
+</ul>
+
+<p>mapping function <strong><em>f</em></strong> can be many models:</p>
+
+<ul>
+  <li>SVMs</li>
+  <li>Boosted Decision Trees</li>
+  <li>Loss functions (see book for details)
+    <ul>
+      <li><strong>regression loss:</strong> estimate relevance label</li>
+      <li><strong>classification loss:</strong> multiclass classification</li>
+      <li><strong>contrastive loss:</strong> minimize distance between relevant pairs and increase distance between dissimilar items</li>
+      <li><strong>cross-entropy loss over documents:</strong> probability of ranking right document above over all other documents in a collection</li>
+      <li><strong>rank-net loss:</strong> rank document i higher than document j</li>
+      <li><strong>LambdaRank loss:</strong> weight rank-net with NDCG</li>
+      <li><strong>ListNet and ListMLE loss</strong>: probability of observing a particular order (distribution over all possible permutations)</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Challenges</strong>:</p>
+
+<ul>
+  <li><em>extreme classification:</em> extremely large number of classes</li>
+  <li>new loss functions suited for retrieval (research)</li>
+  <li>require large amount of training data</li>
+</ul>
+
+<h1 id="deep-neural-networks-for-ir">Deep neural networks for IR</h1>
+
+<p><strong>Autoencoders:</strong> optimized for reducing reconstruction errors</p>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled40.png" alt="/assets/img/neuralinformation_retrieval/Untitled.png" /></p>
+
+<p><strong>Siamese networks:</strong> optimized to better discriminate similar pairs from dissimilar ones</p>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%20140.png" alt="/assets/img/neuralinformation_retrieval/Untitled%201.png" /></p>
+
+<p>Data consists mainly of:</p>
+
+<ul>
+  <li>Corpus of search queries</li>
+  <li>Corpus of candidate documents</li>
+  <li>Ground truth: implicit (clicks) or explicit (human relevance judgments)</li>
+</ul>
+
+<p>For application consider the <strong>level of supervision</strong> based on the proportion of (un)labelled data:</p>
+
+<ul>
+  <li>unsupervised</li>
+  <li>semi-supervised</li>
+  <li>fully-supervised</li>
+</ul>
+
+<p>Ranking based on document length</p>
+
+<ul>
+  <li><em>long documents:</em> mixture of many topics and query matches may be spread</li>
+  <li><em>short documents:</em> vocabulary mismatches when performing similarity between pairs of texts</li>
+</ul>
+
+<h3 id="document-autoencoders">Document autoencoders</h3>
+
+<ul>
+  <li><strong>Semantic Hashing</strong>
+    <ul>
+      <li>Each document is a bag-of-terms and uses one hot representation for the terms.</li>
+      <li>After training, the output is thresholded to generate a binary vector encoding for documents</li>
+      <li>Given a search query → generate corresponding hash → retrieve relevant candidate documents</li>
+    </ul>
+  </li>
+  <li><strong>Variational autoencoders</strong>
+    <ul>
+      <li>Been explored but it might not be practical for IR tasks since it minimizes the document reconstruction error.</li>
+      <li>Siamese architecture models seem to be more practical</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="siamese-networks"><strong>Siamese networks</strong></h3>
+
+<ul>
+  <li>
+    <p><strong>Deep Semantic Similarity Model (DSSM)</strong></p>
+
+    <p>Two deep models that use cosine distance that minimizes cross-entropy loss</p>
+
+    <p>Used for short texts</p>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20240.png" alt="/assets/img/neuralinformation_retrieval/Untitled%202.png" /></p>
+
+    <p>DSSM can use</p>
+
+    <ul>
+      <li>fully-connected layers</li>
+      <li>Convolutional layers (CDSSM)</li>
+      <li>RNNs</li>
+      <li>Tree-structured networks</li>
+    </ul>
+
+    <p><strong>Notions of similarity for CDSSM</strong></p>
+
+    <p>Similarity depends on the choice of paired data</p>
+
+    <p>query and document title pairs → <strong>topical</strong></p>
+
+    <p>query prefix and suffix pairs → <strong>typical</strong></p>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20340.png" alt="/assets/img/neuralinformation_retrieval/Untitled%203.png" /></p>
+
+    <p>Similarly other combinations tend to be better for  <em>query auto-completion or session-based personalization</em></p>
+  </li>
+</ul>
+
+<h3 id="interaction-based-networks">Interaction-based networks</h3>
+
+<ul>
+  <li>Instead of representing query and document embeddings as single vectors (Siamese networks), we can <strong>individually compare different parts of the query with different parts of the document.</strong> Than aggregate these partial evidences of relevance.</li>
+  <li>Useful for long documents</li>
+  <li><strong>Interaction:</strong> use an sliding window for both query and document text. Each instance of the <strong>query window</strong> is compare with each instance of the <strong>document window</strong></li>
+  <li>Typically implemented with a CNN</li>
+</ul>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%20440.png" alt="/assets/img/neuralinformation_retrieval/Untitled%204.png" /></p>
+
+<ul>
+  <li>Other works explore interaction matrix approach for <em>short text matching</em> and <em>ranking long documents.</em></li>
+</ul>
+
+<h3 id="lexical-and-semantic-matching">Lexical and semantic matching</h3>
+
+<p>Neural IR models perform poorly when rare terms are encountered</p>
+
+<p><strong>Query (exact match):</strong> “pekarovic land company”</p>
+
+<p>“pekarovic” → rare term</p>
+
+<ul>
+  <li>
+    <p>it is easier to estimate relevance based on exact matches.</p>
+  </li>
+  <li>
+    <p>for a neural model it is harder to match or have a good representation</p>
+  </li>
+</ul>
+
+<p><strong>Query (semantic match):</strong> “what channel are the seahawks on today?”</p>
+
+<p>maybe document doesn’t contain the word channel, but contains ESPN or SkySports</p>
+
+<p><strong>Model</strong></p>
+
+<ul>
+  <li>Use <strong>histogram-based features</strong> in the DNN to capture lexical notion of relevance</li>
+  <li><strong>Duet:</strong>
+    <ul>
+      <li>leverage search data</li>
+      <li>trains jointly lexical and semantic matches</li>
+      <li>Neural models focusing in lexical matching have fewer parameters and can be trained under small data regimes</li>
+    </ul>
+
+    <p><img src="/assets/img/neuralinformation_retrieval/Untitled%20540.png" alt="/assets/img/neuralinformation_retrieval/Untitled%205.png" /></p>
+  </li>
+</ul>
+
+<h3 id="matching-with-multiple-document-fields">Matching with multiple document fields</h3>
+
+<p>Different documents fields may contain information relevant to different aspects of the query intent</p>
+
+<p>Specially in search engines that index documents with different metadata such as hyperlinks, anchor texts, etc.</p>
+
+<p><img src="/assets/img/neuralinformation_retrieval/Untitled%20640.png" alt="/assets/img/neuralinformation_retrieval/Untitled%206.png" /></p>
+
+<h1 id="future-research-problems-for-neural-ir">Future research problems for Neural IR</h1>
+
+<ol>
+  <li>Should the ideal IR model behave like a <strong>library</strong> that knows about everything in the Universe, or like a <strong>librarian</strong> who can effectively retrieve without memorizing the corpus?</li>
+  <li>Future IR explorations using related areas
+    <ul>
+      <li>reinforcement learning</li>
+      <li>adversarial learning</li>
+    </ul>
+  </li>
+  <li>Some interesting applications
+    <ul>
+      <li>query auto-completion</li>
+      <li>query recommendation</li>
+      <li>session modelling</li>
+      <li>modeling diversity</li>
+      <li>modeling user click behaviours</li>
+      <li>proactive recommendations</li>
+      <li>entity ranking</li>
+      <li>multi-modal retrieval</li>
+      <li>knowledge-based IR</li>
+      <li>optimizing for for multiple IR tasks</li>
+      <li><strong>Some emerging scenarios</strong>
+        <ul>
+          <li>conversation IR</li>
+          <li>multi-modal retrieval</li>
+          <li>one-shot learning</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Metrics for evaluation of document ranking systems</li>
+</ol>
+
+<p><strong>Some interesting links for embeddings</strong></p>
+
+<p><a href="https://github.com/facebookresearch/StarSpace">StarSpace</a></p>
+
+<p><a href="https://github.com/facebookresearch/faiss">FAISS</a></p>
+
+<p><strong>Model implementations</strong></p>
+
+<p><a href="https://github.com/bmitra-msft/NDRM/blob/master/notebooks/Duet.ipynb">DUET</a></p>
+
+  </article>
+
+  
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname  = 'personal-website-mhncpoo8em';
+      var disqus_identifier = '/blog/2020/neural_information_retrieval';
+      var disqus_title      = "Neural Information Retrieval";
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="sticky-bottom mt-5">
+  <div class="container">
+    &copy; Copyright 2022 Francisco Xavier Sumba T..
+    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a>
+
+    
+    
+    Last updated: January 02, 2022.
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+</html>

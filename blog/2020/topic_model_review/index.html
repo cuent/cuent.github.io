@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Xavier Sumba
+
+
+  | Topic Model Applications
+
+</title>
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+
+<!-- Open Graph -->
+
+<meta property="og:site_name" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+" />
+<meta property="og:type" content="object" />
+<meta property="og:title" content="" />
+<meta property="og:url" content="//blog/2020/topic_model_review/" />
+<meta property="og:description" content="Topic Model Applications" />
+<meta property="og:image" content="" />
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏃</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2020/topic_model_review/">
+
+<!-- JQuery -->
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+
+<!-- Theming-->
+
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QCYXRLMN9B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-QCYXRLMN9B');
+</script>
+
+
+
+<!-- Panelbear Analytics - We respect your privacy -->
+<script async src="https://cdn.panelbear.com/analytics.js?site=5LB6elP1kZB"></script>
+<script>
+    window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+    panelbear('config', { site: '5LB6elP1kZB' });
+</script>
+
+
+    
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav sticky-bottom-footer">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="//">
+       Xavier Sumba
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              about
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Topic Model Applications</h1>
+    <p class="post-meta">August 21, 2020</p>
+  </header>
+
+  <article class="post-content">
+    <h1 id="topic-model">Topic Model</h1>
+
+<p>First attempts to find topics from data is <strong>Latent Semantic Analysis</strong> (LSA): find the best low-rank approximation of a document-term matrix. Approximation, based on SVD.</p>
+
+<p><img src="/assets/img/topic_model/Untitled.png" alt="Topic%20Model%204b99c1a88603442cbf99baa8af4412c4/Untitled.png" /></p>
+
+<h2 id="latent-dirichlet-allocation">Latent Dirichlet Allocation</h2>
+
+<p><strong>Latent</strong> because we use probabilistic inference to infer missing probabilistic pieces of the generative story.</p>
+
+<p><strong>Dirichlet</strong> because of the Dirichlet parameters encoding sparsity. Allocation because the Dirichlet distribution encodes the prior for each document’s allocation over topics.</p>
+
+<p><img src="/assets/img/topic_model/Untitled%201.png" alt="Topic%20Model%204b99c1a88603442cbf99baa8af4412c4/Untitled%201.png" /></p>
+
+<p><strong>Story</strong></p>
+
+<ul>
+  <li>Generate Topics</li>
+  <li>Document Allocations</li>
+  <li>Words in Context</li>
+</ul>
+
+<p><strong>Inference (rvs.)</strong></p>
+
+<ul>
+  <li>Topic Assignments</li>
+  <li>
+    <p>Document Allocation</p>
+
+\[\theta_{d,i}\approx\frac{N_{d,i}+\alpha_i}{\sum_kN_{d,k}+\alpha_k}\]
+  </li>
+  <li>
+    <p>Topics</p>
+
+\[\phi_{i,v}\approx\frac{V_{i,v}+\beta_v}{\sum_wV_{i,w}+\beta_w}\]
+  </li>
+  <li>Assign word to a particular topic</li>
+</ul>
+
+<p><img src="/assets/img/topic_model/Untitled%202.png" alt="Topic%20Model%204b99c1a88603442cbf99baa8af4412c4/Untitled%202.png" /></p>
+
+<p><img src="/assets/img/topic_model/Untitled%203.png" alt="Topic%20Model%204b99c1a88603442cbf99baa8af4412c4/Untitled%203.png" /></p>
+
+<h1 id="information-retrieval">Information Retrieval</h1>
+
+<h2 id="ad-hoc-ir">Ad-hoc IR</h2>
+
+<blockquote>
+  <p>Where IR systems might look for the “needle in the haystack”, topic models will tell you about the overall proportion of hay and needles, and perhaps inform you about the mice that you did not know were there</p>
+
+</blockquote>
+
+<p>Topic models helpful when we have a <em>specific information need</em> but no idea <em>how to search</em> for it</p>
+
+<p><strong>Traditionally:</strong> retrieve and rank documents by measuring the word overlap between queries and documents. Limited! Words with similar meaning or different forms should also be considered as matching keywords.</p>
+
+<p><strong>Language modeling:</strong> allows to capture semantic relationship</p>
+
+<p><strong>Query expansion:</strong> use background knowledge to interpret and understand queries and add missing words.</p>
+
+<h3 id="document-language-modeling">Document Language Modeling</h3>
+
+<p>Statistical language model estimates the probability of for word sequences</p>
+
+\[p(w_1,w_2,\dots,w_n)\]
+
+<ul>
+  <li>
+    <p>Often approximate using ngram models.</p>
+
+    <p>In a unigram model, words in the sequence are independent</p>
+
+\[p(w_1,w_2,\dots,w_n)=p(w_1)p(w_2)\dots p(w_n)\]
+
+    <p>Trigram assumes probability in a window of two words</p>
+
+\[p(w_1,w_2,\dots,w_n)=p(w_1)p(w_2\mid w_1)p(w_3\mid w_1,w_2)\dots p(w_n\mid w_{n-2},w_{n-1})\]
+  </li>
+</ul>
+
+<p>Then generate the probability of generating a given query (maximum likelihood)</p>
+
+\[p(q\mid d)=\prod_{w\in q}p(w\mid d)=\prod_{w\in q}\frac{n_{d,w}}{n_{d,.}}\]
+
+<table>
+  <tbody>
+    <tr>
+      <td>For IR, rank documents based on p(q</td>
+      <td>d), but maximum-likelihood gives zero probability to unseen words  and it can throw out good matches. Solve by allocating non-zero probability to missing terms, <strong>smoothing.</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Smoothing directions</p>
+
+<ul>
+  <li>
+    <p><strong>interpolation:</strong> discount contribution of seen words and add contribution of unseen and seen words</p>
+
+    <p><em>Jelinek-Mercer:</em> linear interpolation with the document and corpus using a coefficient, solving the data sparsity problem. Missing words falls back to the probability of the corpus level.</p>
+
+\[p(w\mid d)=(1-\lambda)p(w\mid d) + \lambda p(w\mid\mathcal{C})\]
+  </li>
+  <li>
+    <p><strong>backoff:</strong> trust ML estimation for high count words and redistribute mass for less common words</p>
+
+    <p><em>Bayesian Smoothing using Dirichlet Priors:</em> discrete distribution smoothed by applying Dirichlet priors with a concentration parameter.</p>
+
+\[p(w\mid d)=\frac{n_{d,w}+\beta p(w\mid\mathcal{C})}{\sum_{v\in V}n_{d,v} +\beta}\]
+  </li>
+</ul>
+
+<h3 id="applying-topic-models-to-document-language-models">Applying Topic Models to Document Language Models</h3>
+
+<p>Lead relationship between query words and documents by marginalizing all topics.</p>
+
+\[p(w\mid d) = \sum_k p(w\mid k)p(k\mid d)\]
+
+<ul>
+  <li>Combine Topic models and language models, <a href="https://dl.acm.org/doi/pdf/10.1145/1148170.1148204">see</a>.
+    <ul>
+      <li>Linear Interpolation + Jelinek-Mercer smoothing</li>
+    </ul>
+
+\[p(w\mid d)=\lambda'\left((1-\lambda)p_{ml}(w\mid d)+\lambda p(w\mid \mathcal{C})\right)+(1-\lambda')p_{tm}(w\mid d)\]
+
+    <ul>
+      <li>Linear Interpolation + Bayesian smoothing</li>
+    </ul>
+
+\[p(w\mid d)=\lambda\frac{n_{d,w}+\beta p(w\mid\mathcal{C})}{\sum_{v\in V}n_{d,v} +\beta}+(1-\lambda)p_{tm}(w\mid d)\]
+  </li>
+</ul>
+
+<h3 id="query-expansion-in-ir">Query Expansion in IR</h3>
+
+<p>Query-Word relationships for query expansion, two main steps:</p>
+
+<ul>
+  <li>
+    <p>Find relationships between queries and words and select top related words to expand query</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td><strong>Query language model:</strong> Combine query content with relevant documents (e.g. clicked documents). Find p(w</td>
+          <td>q).</td>
+        </tr>
+      </tbody>
+    </table>
+
+\[\hat\theta_{Q'}=(1-\lambda)\hat\theta_{Q}+\lambda\hat\theta_{\mathcal{F}}\]
+
+    <p><strong>Relevance Model:</strong> query and relevant documents are random samples from an unknown relevance model <em>R</em></p>
+
+\[p(w\mid R)\approx p(w\mid q)=\frac{p(w,q)}{p(q)}=\frac{\sum_{d\in\mathcal{C}}p(d)p(w\mid d)p(q\mid d)}{p(q)}\]
+  </li>
+  <li>
+    <p>rank expanded queries and rank relevance scores</p>
+    <ul>
+      <li>Combine <em>expanded query language model</em> with <em>query language model</em> (<a href="https://www.notion.so/Topic-Model-Applications-425324b816d34f2ea2180d2b66fccc70">see equation</a>).
+  Then compare topic distributions between query <em>q</em> generated and document <em>d</em> generated.</li>
+    </ul>
+
+\[p(q\mid \hat\theta_{Q'}) \text{ vs } p(d\mid\hat\theta_{D})\]
+
+    <ul>
+      <li>Compute relevance score using <em>original query</em> and <em>expanded query</em>, the linearly combine the two scores, obtaining a final <em>query-document relevance score.</em></li>
+    </ul>
+
+\[\hat s_d(q)=\lambda s_d(e)+(1-\lambda)s_d(q)\]
+  </li>
+</ul>
+
+<h3 id="applying-topic-models-for-query-expansion">Applying topic models for query expansion</h3>
+
+<p>Capture semantic relation between words by learning latent topics (distribution over words). Thus, it is a way to expand or match words at the semantic level.</p>
+
+<ul>
+  <li>
+    <p><strong>Smoothing query language model:</strong> make query expansion and compute words relevance from topics directly.</p>
+
+\[p(w\mid q)=\sum_kp_{tm}(w\mid k)p_{tm}(k\mid q)\]
+
+    <p>However only queries are normally short and topic results are limited. A solution is to train topic models using the relevant documents (e.g. clicked documents)</p>
+  </li>
+  <li>
+    <p><strong>Improving relevance model:</strong> improve the <a href="https://www.notion.so/Topic-Model-Applications-425324b816d34f2ea2180d2b66fccc70">relevance model</a>.</p>
+
+\[p(w\mid q)=\sum_{d\in\mathcal{C}}\left(\lambda p(w\mid d)+(1-\lambda)p_{tm}(w\mid d,q)\right)p(d\mid q)\\\text{,where }p_{tm}(w\mid d,q)=\sum_kp(w\mid k)p(k\mid d)p(q\mid k)\]
+
+    <p>Model captures word relationships on a semantic level: improves query-word relationships and query expansion.</p>
+  </li>
+  <li>
+    <p><strong>Learning pair-wise word relationships:</strong> use topic models for query expansion by finding relationship between words and compute document <a href="https://www.notion.so/Topic-Model-Applications-425324b816d34f2ea2180d2b66fccc70">rank scores</a>.</p>
+
+\[p(w_x\mid w_y,\alpha)=\frac{\sum_kp(w_x\mid k,\alpha)p(w_y\mid k,\alpha)\alpha_k}{\sum_{k'}p(w_y\mid k',\alpha)\alpha_{k'}}\]
+
+    <p>Select top related terms as the expanded terms <em>e</em> for a given query <em>q.</em></p>
+  </li>
+  <li>
+    <p><strong>Interactive feedback:</strong> users feedback for the retrieval process and thus improving results. Show user a initial set of retrieval results and ask for feedback.</p>
+  </li>
+</ul>
+
+<h3 id="beyond-relevance---search-personalization">Beyond relevance - search personalization</h3>
+
+<ul>
+  <li>
+    <p><strong>Contextualization:</strong> consider user search activity (e.g. time, location, etc)</p>
+
+    <p><em>preference documents:</em> concatenate clicked documents or top <em>n</em> ranked documents if no click happened</p>
+
+    <table>
+      <tbody>
+        <tr>
+          <td>Then, rank preference documents using a <a href="https://www.notion.so/Topic-Model-Applications-425324b816d34f2ea2180d2b66fccc70">query language model</a>. First, infer latent topics p(w</td>
+          <td>k) and then query-topics. However, queries <em>q</em> are often too short, so we could train a language model using the preference documents for query <em>q</em> and compare the cosine similarity against each topic <em>k</em> to estimate the query-topic distribution.</td>
+        </tr>
+      </tbody>
+    </table>
+
+\[p(k\mid q)=\frac{p(k,q)}{\sum_kp(k,q)}\approx\frac{\text{sim}(\theta_k,\theta_q)}{\sum_k\text{sim}(\theta_k,\theta_q)}\]
+  </li>
+  <li>
+    <p><strong>Individualization:</strong> individual characteristics (users’ profile)</p>
+
+    <p>Given the <em>topic distribution</em> of the document, there will be words chosen at random to generate the <em>query</em> and <em>users</em> who chose to click that document (<a href="https://dl.acm.org/doi/pdf/10.1145/2505515.2505642">see paper</a>).</p>
+
+\[p\left(k \mid w_{i}, d_{i}, u_{i}\right)=\frac{p\left(k, w_{i}, u_{i} \mid d_{i}\right)}{p\left(w_{i}, u_{i} \mid d_{i}\right)} \propto p\left(w_{i} \mid k\right) p\left(u_{i} \mid k\right) p\left(k \mid d_{i}\right)\]
+  </li>
+</ul>
+
+<h1 id="evaluation-and-interpretation">Evaluation and Interpretation</h1>
+
+<p>Users need to understand a model’s output to draw conclusions. Understanding can be done by model visualization, interaction, and evaluation.</p>
+
+<p>## Display Topics</p>
+
+<p>Words with highest weight in a topic best explain what the topic is about.</p>
+
+<ul>
+  <li><strong>Word lists</strong> are a good way of showing topics, use lists, sets, tables, bars for word probability.</li>
+  <li>
+    <p><strong>Word clouds</strong> use size of words to convey information.</p>
+
+    <p>Also, <a href="Concurrent visualization of relationships between words and topics in topic models. In">plot word clouds with word</a> <a href="https://www.aclweb.org/anthology/W14-3112.pdf">associations</a></p>
+
+    <p><img src="/assets/img/topic_model/Untitled_00.png" alt="Evaluation%20and%20Interpretation%20485a6b35e0644dfe8d7c0120d3be35a6/Untitled.png" /></p>
+  </li>
+</ul>
+
+<h2 id="labeling-topics">Labeling Topics</h2>
+
+<blockquote>
+  <p>labeling focuses on showing not the original words of a topic but rather a clearer label more akin to what a human summary of the data would provide.</p>
+</blockquote>
+
+<ul>
+  <li>Internal Information (unsupervised)
+    <ul>
+      <li><strong>Internal Labeling:</strong> take prominent phrases from the topic and compares how consistent the phrase context is with the topic distribution. It can be extended for <a href="https://dl.acm.org/doi/pdf/10.1145/2396761.2398646">hierarchies</a>.</li>
+    </ul>
+  </li>
+  <li>External Knowledge (higher quality)
+    <ul>
+      <li><strong>Labelling with Supervised Labels:</strong> use human annotators to select a top word topic using a SVR (predict most representative word), <a href="https://www.aclweb.org/anthology/C10-2069.pdf">paper</a>.</li>
+      <li><strong>Labeling with Knowledge Bases:</strong> 1) align topic models with an external ontology; 2) build a graph, find matching words and rank them with page rank</li>
+      <li><strong>Using Labeled Documents:</strong>
+        <ol>
+          <li><a href="https://www.aclweb.org/anthology/D09-1026.pdf">Labeled LDA</a> provides consistent topics with the target variable.</li>
+          <li><a href="https://dl.acm.org/doi/pdf/10.1145/2232817.2232861">Labeled Pachinko Allocation</a> for hierarchical label sets (e.g. labels: Ecuador → Country)</li>
+          <li><a href="https://www.aclweb.org/anthology/N15-1076.pdf">Sup. Anchor:</a> Use labels to compute anchor words, which are words that might define a topic.</li>
+        </ol>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="displaying-models">Displaying models</h2>
+
+<ul>
+  <li><strong>Find relevant documents:</strong> select a particular document-topic and sort them from largest to smallest.</li>
+  <li>Plot how words are used within a topic</li>
+  <li>How topics relate to each other?!</li>
+</ul>
+
+<h2 id="evaluation-stability-and-repair">Evaluation, Stability and Repair</h2>
+
+<p><a href="https://dl.acm.org/doi/pdf/10.1145/1553374.1553515">Evaluate</a></p>
+
+<ul>
+  <li>Held-out likelihood of a model</li>
+  <li>TM is a generative model: predict next unseen word</li>
+</ul>
+
+<p>Find errors</p>
+
+<ul>
+  <li>Documents with poor held-out likelihood are random noise</li>
+</ul>
+
+<blockquote>
+  <p>On the other hand, hundreds topics so specific that any held-out document is modeled well yields an excellent held-out likelihood.</p>
+
+  <ul>
+    <li>Held-out likelihood emphasizes <a href="https://papers.nips.cc/paper/3700-reading-tea-leaves-how-humans-interpret-topic-models.pdf">complexity</a> but interpretability</li>
+    <li>Hyper-parameters play a important <a href="https://papers.nips.cc/paper/3854-rethinking-lda-why-priors-matter.pdf">role</a></li>
+    <li><a href="https://www.aclweb.org/anthology/E14-1056.pdf">Topic quality</a> is a proxy to human interpretability but it doesn’t tell the parts where the model isn’t reliable or fails.</li>
+    <li>Check if a dataset is <a href="http://proceedings.mlr.press/v32/tang14.pdf">good enough</a> to apply topic modeling</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>a mismatch between the number of topics and documents, topics that are “too close together”, or a mismatch between the number of topics in a document and the Dirichlet parameter α.</p>
+
+</blockquote>
+
+<h2 id="some-projects">Some projects</h2>
+
+<ul>
+  <li><a href="https://sana-malik.github.io/topicflow/TopicFlow.html#">TopicFLow</a></li>
+  <li><a href="https://mimno.infosci.cornell.edu/jsLDA/jslda.html">jslda</a></li>
+  <li><a href="https://github.com/ajbc/tmv">Topic Model Visualization Engine</a></li>
+  <li><a href="http://www.cs.cmu.edu/~dchau/topicviz/topicviz.mp4">TopicViz</a></li>
+  <li><a href="https://github.com/StanfordHCI/termite">Terminate</a></li>
+</ul>
+
+<h1 id="future-trends-and-other-models">Future trends and other models</h1>
+
+<p><a href="https://guidedlda.readthedocs.io/en/latest/">Guided LDA</a> to seed topics with specific words or more recently <a href="https://yuzhimanhua.github.io/papers/www20.pdf">CatE</a>.</p>
+
+<p><a href="https://arxiv.org/pdf/0708.3601.pdf">Dynamic Topic Model</a>: each topic has a distinct distribution over words for each time period</p>
+
+<p><a href="https://arxiv.org/pdf/1206.3298.pdf">cDTM</a>: time is considered continuously</p>
+
+<p><a href="http://cocosci.princeton.edu/tom/papers/author_topics_kdd.pdf">Author-Topic model:</a>  an author has a collection of topics that they write about and each document is a combination of the topics that its set of authors care about.</p>
+
+<p><a href="https://www.cs.sfu.ca/~jpei/publications/Topic%20Evolution%20CIKM09.pdf">Inheritance topic model:</a> adapt LDA to a citation network</p>
+
+<p><a href="http://www.cs.columbia.edu/~blei/papers/GerrishBlei2010.pdf">Dynamic influence model</a>: Find most influential documents</p>
+
+<p><a href="https://www.aaai.org/Papers/ICWSM/2008/ICWSM08-018.pdf">LinkLDA</a>: relationship between documents</p>
+
+<h2 id="short-documents">Short documents</h2>
+
+<ul>
+  <li>it can <a href="https://dl.acm.org/doi/pdf/10.1145/1964858.1964870">confuse</a> topic modeling algorithms see these studies (<a href="https://ink.library.smu.edu.sg/cgi/viewcontent.cgi?article=2374&amp;context=sis_research">see</a> for a specific application in Twitter; also, interesting on how to apply and analyze topic models)</li>
+  <li>to <a href="https://dl.acm.org/doi/pdf/10.1145/2484028.2484166">capture trends</a> over time or across users, algorithms must know these connections between users or messages</li>
+  <li>Topic model for <a href="https://dl.acm.org/doi/pdf/10.1145/2566486.2567980">sparse data</a> or <a href="https://dl.acm.org/doi/pdf/10.1145/2623330.2623715">short texts</a></li>
+</ul>
+
+<h2 id="supervised-topic-model">Supervised Topic model</h2>
+
+<p>Results vary based on the number of topics. The <a href="https://dl.acm.org/doi/pdf/10.1145/1667053.1667056">nested Dirichlet process</a> provide a way of selecting the appropriate number of topics.</p>
+
+<ul>
+  <li><a href="https://www.aclweb.org/anthology/D09-1026/">Labelled LDA</a>: it can do multi-class (see <a href="https://www.aaai.org/ocs/index.php/ICWSM/ICWSM10/paper/download/1528/1846">application</a> on Twitter)</li>
+  <li><a href="https://arxiv.org/pdf/1003.0783.pdf">Supervised LDA</a>:  sLDA for different response types</li>
+  <li><a href="http://www.jmlr.org/papers/volume13/zhu12a/zhu12a.pdf">MedLDA:</a> changes objective function of sLDA that improve predictions (uses maximum margin similar to SVM to improve predictions)</li>
+</ul>
+
+<h2 id="embedding-topic-model">Embedding Topic Model</h2>
+
+<ul>
+  <li><a href="https://dl.acm.org/doi/fullHtml/10.1145/3366423.3380102">GATON</a>: leverages the graph structure and word embeddings</li>
+  <li><a href="https://arxiv.org/abs/1907.04907">ETM</a>: Learns a topic embedding and word embedding end-to-end</li>
+  <li><a href="https://arxiv.org/abs/1907.05545">DETM</a>: Similar to ETM but considers time</li>
+</ul>
+
+<h2 id="some-notes">Some notes</h2>
+
+<ul>
+  <li>Interesting <a href="http://www.cs.cmu.edu/~yohanj/research/papers/WSDM11.pdf">application</a> for reviews and sentiments</li>
+  <li>Thematic variation is a hard problem in topic models since we expect that documents won’t change while reading (e.g.a novel)</li>
+</ul>
+
+<p><a href="https://mimno.infosci.cornell.edu/topics.html">Bibliography</a></p>
+
+  </article>
+
+  
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname  = 'personal-website-mhncpoo8em';
+      var disqus_identifier = '/blog/2020/topic_model_review';
+      var disqus_title      = "Topic Model Applications";
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="sticky-bottom mt-5">
+  <div class="container">
+    &copy; Copyright 2022 Francisco Xavier Sumba T..
+    Powered by <a href="http://jekyllrb.com/" target="_blank">Jekyll</a>
+
+    
+    
+    Last updated: January 02, 2022.
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+
+</html>

@@ -11,7 +11,7 @@
   Xavier Sumba
 
 
-  | blog
+  | Graph Representation Learning notes
 
 </title>
 <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
@@ -23,8 +23,8 @@
 " />
 <meta property="og:type" content="object" />
 <meta property="og:title" content="" />
-<meta property="og:url" content="//blog/index.html" />
-<meta property="og:description" content="blog" />
+<meta property="og:url" content="//blog/2020/graph-representation-learning/" />
+<meta property="og:description" content="Graph Representation Learning notes" />
 <meta property="og:image" content="" />
 
 
@@ -45,7 +45,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏃</text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2020/graph-representation-learning/">
 
 <!-- JQuery -->
 <!-- jQuery -->
@@ -127,14 +127,10 @@
             <a class="nav-link" href="/blog/">
               blog
               
-              <span class="sr-only">(current)</span>
-              
             </a>
           </li>
           
           <!-- Other pages -->
-          
-          
           
           
           
@@ -184,60 +180,120 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
 
-  <div class="header-bar">
-    <h1>Welcome to my blog!</h1>
-    <h2>I write about AI, find some notes of projects or topics I am excited about.</h2>
-  </div>
+<div class="post">
 
+  <header class="post-header">
+    <h1 class="post-title">Graph Representation Learning notes</h1>
+    <p class="post-meta">January 25, 2020</p>
+  </header>
 
-  <ul class="post-list">
-    
+  <article class="post-content">
+    <h2 id="introduction">Introduction</h2>
+
+<p>Graphs are everywhere and most knowledge can be modeled with graphs. Graphs can be understood as a complex data structure that can be used as a universal language. Therefore, as any language, graphs communicate ideas using nodes (objects) and edges (interaction); thus any complex system can be modeled by creating relationships between points. We focus in the use machine learning on graphs, but the field of network analysis provide other approaches to analyze, understand and learn from graphs.</p>
+
+<h3 id="graphs-data-structure">Graphs: data structure</h3>
+<p>Graphs are composed with a set of nodes \(\mathcal{V}\) on a set de edges \(\mathcal{E}\) that define a relation \(\mathcal{G}=(\mathcal{V}, \mathcal{E})\).</p>
+
+\[u,v\in\mathcal{V}\]
+
+<p>Also, notice that <em>graph</em> and <em>network</em> are terms used interchangeably, but graphs involves properties of real-world data while a network provides mathematical properties for graphs.</p>
+
+<ul>
+  <li><strong>Adjacency Matrix</strong>: \(A\in \mathbb{R}^{\mid V\mid\times\mid V\mid}
+\begin{cases}
+  A_{uv}=1&amp; \text{if } (u,v)\in\mathcal{E}\\
+  A_{uv}=0              &amp; \text{otherwise}
+\end{cases}\)
+    <ul>
+      <li><em>directed</em>: no symmetric</li>
+      <li><em>undirected</em>: symmetric</li>
+      <li><em>weighted</em>: real values \(\{0,1\}\)</li>
+    </ul>
+  </li>
+  <li><strong>Graph Types</strong>
+    <ul>
+      <li><em>Simple Graph</em>: relation \((u,v)\in\mathcal{E}\)</li>
+      <li><em>Multi-relational</em>: considers type of edge with \(R\) types, i.e. \((u,\tau,v)\in\mathcal{E}, A_\tau\) and \(A\in\mathbb{R}^{\mid V\mid\times\mid V\mid\times\mid R\mid}\)</li>
+      <li><em>Attributes</em>: some graphs have information associated with each node \(X\in\mathbb{R}^{\mid V\mid\times\mid m\mid}\).</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="machine-learning-tasks-on-graphs">Machine Learning tasks on Graphs</h3>
+<p>ML on graphs involves common ML tasks such as 1) supervised learning: predict a target output; 2) unsupervised learning: infer patterns; 3) reinforcement learning: learn to act in an environment, but there are some task on graphs that lie on these categories.</p>
+
+<ul>
+  <li>
+    <p><strong>Node classification</strong>: Consist in predicting a label \(y_u\) associated with a node \(u\in\mathcal{V}\).</p>
+
+    <p>Modeling in graphs is different since nodes are interconnected with each other and they are not i.i.d. Thus, some connection between nodes is needed. For example:</p>
+    <ol>
+      <li>homophily: nodes share attributes.</li>
+      <li>structural equivalence: nodes with similar local neighborhood structure have similar labels.</li>
+      <li>monophily: nodes with unrelated labels.</li>
+    </ol>
+  </li>
+  <li>
+    <p><strong>Relation prediction</strong>: aka. link prediction or graph completion seeks to infer the relationship of a node with other nodes in the graph. The problems involves that given a set of nodes \(\mathcal{V}\) and an incomplete set of edges \(\mathcal{E}_{\text{train}}\in\mathcal{E}\), infer the missing edges \(\mathcal{E}\setminus\mathcal{E}_{\text{train}}\). Complexity is highly depend on the type of graph (i.e. simple graph or multi-relational graph) and it often requires inductive biases specific for each graph domain.</p>
+  </li>
+  <li>
+    <p><strong>Clustering and community detection</strong>: An unsupervised task that finds a community structure where nodes are more likely to form edges with nodes that belong to the same community. The challenge is to infer the <em>community structure</em> given an input graph \(\mathcal{G}=(\mathcal{V},\mathcal{E})\).</p>
+  </li>
+  <li>
+    <p><strong>Graph classification/clustering</strong>: Task over entire graphs. Graph classification involves that given multiple different graphs, learn predictions specific to each graph. And graph clustering (similarity matching) the goal is to learn an unsupervised measure of similarity between a set of i.i.d. graphs. Challenge is to define useful features that consider the relational structure of each datapoint.</p>
+  </li>
+</ul>
+
+<h3 id="traditional-approaches">Traditional approaches</h3>
+<p>Uses for node classification tasks</p>
+<ul>
+  <li>graph statistics</li>
+  <li>kernel methods
+Link prediction</li>
+  <li>measure overlap between node neighborhoods
+Clustering / community detection</li>
+  <li>spectral clustering (graph Laplacians)</li>
+</ul>
+
+<h4 id="graphs-statistics-and-kernel-methods">Graphs statistics and kernel methods</h4>
+<p>Extract statistics or features and use them in traditional machine learning classifiers.</p>
+<ul>
+  <li><strong>Node level statistics and features</strong>:
+    <ol>
       <li>
-        <h3><a class="post-title" href="/blog/2020/topic_model_review/">Topic Model Applications</a></h3>
-        <p class="post-meta">August 21, 2020</p>
-        <p></p>
+        <p><strong>Node degree</strong>: it is the number of incident edges to a node.</p>
+
+\[d_u=\sum_{v\in V}A_{u,v}\]
       </li>
-    
       <li>
-        <h3><a class="post-title" href="/blog/2020/neural_information_retrieval/">Neural Information Retrieval</a></h3>
-        <p class="post-meta">August 21, 2020</p>
-        <p></p>
+        <p><strong>Node centrality</strong>: measures the importance of a node; it takes into account the importance of a node’s neighbors.</p>
+
+\[e_u=\frac{1}{\lambda}\sum_{v\in V}A_{u,v}e_v \forall_u \in V \text{   (eigenvector centrality)}\]
+
+        <p>We can compute the vector of node centrality \(\mathbb{e}\) using the eigenvector equation with the adjacency matrix \(\lambda\mathbb{e}=A\mathbb{e}\).</p>
+
+        <p>We can use the eigenvector centrality to rank the likelihood that a node has visited infinity nodes on a random walk (due to the power of iteration) \(\mathbb{e}^{(t+1)}=A\mathbb{e^{(t)}}\).</p>
+
+        <p>Other measures:</p>
+        <ul>
+          <li><em>betweeness centrality</em>: measures how often a node lies on the shortest path between two other nodes.</li>
+          <li><em>closeness centrality</em>: measures the average shortest path length between a node and all other nodes.</li>
+        </ul>
       </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/graph-representation-learning/">Graph Representation Learning notes</a></h3>
-        <p class="post-meta">January 25, 2020</p>
-        <p></p>
-      </li>
-    
-  </ul>
+      <li><strong>Clustering coefficient</strong>:</li>
+      <li><strong>Motifs</strong>:</li>
+    </ol>
+  </li>
+</ul>
+
+<p>Graph-level stats -&gt; kernel methods</p>
+
+  </article>
 
   
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="blog">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="blog - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="blog - page 3">3</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/4/index.html" title="blog - page 4">4</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
-
-
 
 </div>
 

@@ -11,7 +11,7 @@
   Xavier Sumba
 
 
-  | blog
+  | Expectation Propagation Notes
 
 </title>
 <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
@@ -23,8 +23,8 @@
 " />
 <meta property="og:type" content="object" />
 <meta property="og:title" content="" />
-<meta property="og:url" content="//blog/index.html" />
-<meta property="og:description" content="blog" />
+<meta property="og:url" content="//blog/2019/expectation-propagation/" />
+<meta property="og:description" content="Expectation Propagation Notes" />
 <meta property="og:image" content="" />
 
 
@@ -45,7 +45,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏃</text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2019/expectation-propagation/">
 
 <!-- JQuery -->
 <!-- jQuery -->
@@ -127,14 +127,10 @@
             <a class="nav-link" href="/blog/">
               blog
               
-              <span class="sr-only">(current)</span>
-              
             </a>
           </li>
           
           <!-- Other pages -->
-          
-          
           
           
           
@@ -184,60 +180,131 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
 
-  <div class="header-bar">
-    <h1>Welcome to my blog!</h1>
-    <h2>I write about AI, find some notes of projects or topics I am excited about.</h2>
-  </div>
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Expectation Propagation Notes</h1>
+    <p class="post-meta">July 25, 2019</p>
+  </header>
+
+  <article class="post-content">
+    <p>Commonly in probabilistic models, we deal with expectations that are either too hard to compute or intractable. In Bayesian inference setting, we usually need to calculate the posterior \(p(z\mid x)\) for parameter estimation or the evidence \(p(x)\) for model selection, where \(z\) is a latent variable and \(x\) is known. We can use approximate inference to solve this complex integrals. There is many work that have been done in this area, but approximate methods can be classified in deterministic and sampling methods. The former evaluates the integral in several locations and constructs an approximate function. The latter relies in the law of large numbers and given enough samples, the integral will converge to the true value.</p>
+
+<ol>
+  <li>Sampling methods: Monte Carlo methods such as Importance sampling, Gibbs sampling, MCMC</li>
+  <li>Deterministic methods: Variational inference, Laplace approximation, Expectation Propagation</li>
+</ol>
+
+<p>This notes include explanations for ADF and Expectation Propagation.</p>
+
+<h2 id="assumed-density-filtering-adf">Assumed-density Filtering (ADF)</h2>
+
+<p>ADF (aka. moment matching, online Bayesian learning and weak marginalization) can be used when given the joint \(p(x, z)\), we want to calculate the posterior over the latent variable \(p(z \mid x)\) and the evidence \(p(x)\). This is a common task in statistical machine learning where we want to fit a parametric distribution.</p>
+
+<p><strong>The common setting</strong>: we are given a set of data points \(D=x_1,\dots,x_n\), which we assume are i.i.d. Thus, we can model the joint distribution as the product of its observations and the prior \(p(D,z) = p(z)\prod_i p(x_i\mid z)\).</p>
+
+<ol>
+  <li>
+    <p><strong>Factorization</strong>: We can factorize the joint distribution as needed, but it is recommendable that <strong>each factor is simple</strong> enough for being propagated. Also the <strong>fewer terms</strong>, entails fewer approximations. In general, we can define the joint distribution as follows where \(t_0\) is the prior.</p>
+
+\[p(D,z) = \prod_{i=0}^n t_i(z)\]
+  </li>
+  <li>
+    <p><strong>Choose a parametric approximating distribution</strong>: our goal is to approximate the posterior with a simple distribution; \(p(z\mid D) \approx q(z)\).</p>
+
+    <ul>
+      <li>This distribution has to belong to the exponential family, so we can propagate its sufficient statistics.</li>
+      <li>Pick \(q\) based in the nature and domain of \(z\).</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Incorporate each \(t_i\) term</strong>: Sequence and incorporate the term \(t_i\) into the approximate posterior \(q(z\)) going from an old posterior to a new posterior.</p>
+
+    <ul>
+      <li><strong>incorporate</strong>: \(\hat p(z) = \frac{q(z)t_i(z)}{\int_z q(z)t_i(z) dz}\)</li>
+      <li><strong>from old to new</strong>: \(\min D_{KL}(\hat p \parallel q^{new})\), which equivalent to match the moments.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="intuition">Intuition</h3>
+<p>Here is a graphical example of ADF in practice.</p>
+<ol>
+  <li>\(q(z)\) can be initialized to \(1\), and it’s not necessary to approximate.</li>
+</ol>
+
+<p><img src="/assets/img/adf/adf_step1.png" alt="ADF step 1" /></p>
+
+<ol>
+  <li>Incorporate \(t_1\), resulting in a one-step step posterior \(\hat p\). We approximate \(\hat p\) with \(q^{new}\).</li>
+</ol>
+
+<p><img src="/assets/img/adf/adf_step2.png" alt="ADF step 2" /></p>
+
+<ol>
+  <li>Repeat step 2, including \(t_2\).</li>
+</ol>
+
+<p><img src="/assets/img/adf/adf_step3.png" alt="ADF step 3" /></p>
+
+<p>We can notice that there’s a dependence in the order of the data points; <strong>order matters</strong>.</p>
+
+<p><strong>The error of ADF tend to increase when similar data points are processed</strong></p>
+
+<h2 id="expectation-propagation">Expectation Propagation</h2>
+<p>Expectation Propagation (<a href="https://arxiv.org/pdf/1301.2294.pdf">Minka</a>., NIPS 2001) is a generalization of ADF. We can notice that ADF is an iterative method that performs a one-pass to all data points. EP solves this problem by performing iterative refinements.</p>
+
+<p>ADF:</p>
+
+<ol>
+  <li>Treat \(t_i\) as it is.</li>
+  <li>Approximate \(q(z)\).</li>
+</ol>
+
+<p>EP:</p>
+
+<ol>
+  <li>Approximate \(t_i\) with \(\tilde t_i\).</li>
+  <li>Use exact posterior</li>
+</ol>
+
+<p>This refinements are always possible. It is the ratio of the new posterior to the old posterior times a constant:</p>
+
+\[\tilde t_i(z)=Z\frac{q^{new}(z)}{q(z)}\]
+
+<p>Let’s see how this looks in practice:</p>
+
+<p>First, let’s derive an intuition of ADF using \(\tilde t_i\).</p>
+
+<ol>
+  <li>We approximate \(t_1\) with \(\tilde t_1\) using the prior \(t_0=1\)m and go from \(q^{old}\) to \(q^{new}\).</li>
+</ol>
+
+<p><img src="/assets/img/adf/adf_approx_step1.png" alt="ADF approx step 1" /></p>
+
+<p>2.</p>
+
+<p><img src="/assets/img/adf/adf_approx_step2.png" alt="ADF approx step 2" /></p>
 
 
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/topic_model_review/">Topic Model Applications</a></h3>
-        <p class="post-meta">August 21, 2020</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/neural_information_retrieval/">Neural Information Retrieval</a></h3>
-        <p class="post-meta">August 21, 2020</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/graph-representation-learning/">Graph Representation Learning notes</a></h3>
-        <p class="post-meta">January 25, 2020</p>
-        <p></p>
-      </li>
-    
-  </ul>
+  </article>
 
   
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="blog">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="blog - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="blog - page 3">3</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/4/index.html" title="blog - page 4">4</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
-
-
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_shortname  = 'personal-website-mhncpoo8em';
+      var disqus_identifier = '/blog/2019/expectation-propagation';
+      var disqus_title      = "Expectation Propagation Notes";
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  
 
 </div>
 

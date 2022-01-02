@@ -11,7 +11,7 @@
   Xavier Sumba
 
 
-  | blog
+  | Sampling methods notes
 
 </title>
 <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
@@ -23,8 +23,8 @@
 " />
 <meta property="og:type" content="object" />
 <meta property="og:title" content="" />
-<meta property="og:url" content="//blog/index.html" />
-<meta property="og:description" content="blog" />
+<meta property="og:url" content="//blog/2019/sampling-methods/" />
+<meta property="og:description" content="Sampling methods notes" />
 <meta property="og:image" content="" />
 
 
@@ -45,7 +45,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏃</text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2019/sampling-methods/">
 
 <!-- JQuery -->
 <!-- jQuery -->
@@ -127,14 +127,10 @@
             <a class="nav-link" href="/blog/">
               blog
               
-              <span class="sr-only">(current)</span>
-              
             </a>
           </li>
           
           <!-- Other pages -->
-          
-          
           
           
           
@@ -184,60 +180,80 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
 
-  <div class="header-bar">
-    <h1>Welcome to my blog!</h1>
-    <h2>I write about AI, find some notes of projects or topics I am excited about.</h2>
-  </div>
+<div class="post">
 
+  <header class="post-header">
+    <h1 class="post-title">Sampling methods notes</h1>
+    <p class="post-meta">May 17, 2019</p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/topic_model_review/">Topic Model Applications</a></h3>
-        <p class="post-meta">August 21, 2020</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/neural_information_retrieval/">Neural Information Retrieval</a></h3>
-        <p class="post-meta">August 21, 2020</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/graph-representation-learning/">Graph Representation Learning notes</a></h3>
-        <p class="post-meta">January 25, 2020</p>
-        <p></p>
-      </li>
-    
-  </ul>
+  <article class="post-content">
+    <h1 id="monte-carlo-methods">Monte Carlo Methods</h1>
+
+<p>Randomized algorithms have two categories: Las Vegas and Monte Carlo algorithms.</p>
+
+<ol>
+  <li><em>Las Vegas:</em> always return an answer if available.</li>
+  <li><em>Monte Carlo</em>: return answers with a random amount of error.</li>
+</ol>
+
+<h2 id="monte-carlo-sampling">Monte Carlo sampling</h2>
+<p>Probability distributions are commonly used in Machine Learning. Sampling provides a flexible way to approximate many sums and integrals. When a sum or integral cannot be computed, it is possible to approximate with <strong>Monte Carlo sampling</strong>. The main idea is to see the sum or integral as an expectation, and approximate it by an avearge.</p>
+
+\[s=\sum_x p(x)f(x)=\mathbb{E}_p[f(\mathbf{x})]\]
+
+\[s=\int p(x)f(x) dx=\mathbb{E}_p[f(\mathbf{x})]\]
+
+<p>, where \(p\) is a PMF or PDF over the random variable \(\mathbf{x}\).</p>
+
+<p>\(s\) can be approximated by drawing \(n\) samples \(x^{(1)}, \dots, x^{(n)}\) from \(p\) and calculate the <strong>empirical average</strong> as follows:</p>
+
+\[\hat s_n=\frac{1}{n}\sum_{i=1}^n f(x^{(i)})\]
+
+<p>Some properties:</p>
+<ul>
+  <li>Estimator \(\hat s\) is unbiased.</li>
+  <li>By the <em><a href="https://en.wikipedia.org/wiki/Law_of_large_numbers">law of large numbers</a></em>, we say that if \(x^{(i)}\) are i.i.d. the average converges to the expected values (\(\lim_{n\to\infty} \hat s_n=s\)).</li>
+  <li>By calculating the variance \(Var[\hat s_n]\) as \(n\) increases, we can estimate the uncertainty of the Monte Carlo approximation.</li>
+  <li>MC sampling relies in sampling from \(p\). When <em>sampling</em> \(p\) <em>is not possible</em>, importance sampling or MCMC can be used.</li>
+</ul>
+
+<h2 id="importance-sampling">Importance Sampling</h2>
+<p>In Monte Carlo, we can use any decomposition of \(p(\mathbf{x})\) and \(f(\mathbf{x})\) since \(f\) can also be a probability (what factor plays which role of \(p\) or \(f\)). We can even have a different decomposition as follows (i.e. we sample \(q\) and average \(\frac{pf}{q})\):</p>
+
+\[p(\mathbf{x})f(\mathbf{x})=q(\mathbf{x})\frac{p(\mathbf{x})f(\mathbf{x})}{q(\mathbf{x})}\]
+
+<p>However, we might not be able to sample from \(p\) or we can pick another distribution to reach an optimal approximation. This optimal choice is \(q*\), know as <strong>optimal importance sampling</strong>. So, we replace the empirical average with an <strong>importance sampling estimator</strong>:</p>
+
+\[\hat s_q=\frac{1}{n}\sum_{i=1, \mathbf{x}^{(i)}\sim q}^n \frac{p(\mathbf{x}^{(i)})f(\mathbf{x}^{(i)})}{q(\mathbf{x}^{(i)})}\]
+
+<p>Essentially, any distribution \(q\) is valid. However, the choice of \(q\) can be sensitive to the variance of the <em>importance sampling estimator</em>.</p>
+
+<h4 id="biased-importance-sampling">Biased Importance Sampling</h4>
+<p>BIS doesn’t require to normalize \(p\) or \(q\), the estimator is given by:</p>
+
+\[\hat s_{BIS}=\frac{\sum_{i=1}^n\frac{\tilde p(\mathbf{x^{(i)}})}{\tilde q(\mathbf{x^{(i)}})}f(\mathbf{x^{(i)}})}{\sum_{i=1}^n\frac{\tilde p(\mathbf{x^{(i)}})}{\tilde q(\mathbf{x^{(i)}})}}\]
+
+<p>, where \(\tilde p\) and \(\tilde q\) are the unnormalized forms of \(p\) and \(q\). We take n samples \(\mathbf{x^{(i)}}\) from \(q\).</p>
+
+<p>In general importance sampling is handy when it comes to:</p>
+<ul>
+  <li>accelerate training in neural language models with a large vocabulary.</li>
+  <li>estimate a partition function.</li>
+  <li>estimate log-likelihood in deep directed models.</li>
+  <li>improve estimates of the gradient of the cost function.</li>
+</ul>
+
+<!-- 
+## Markov Chain Monte Carlo
+
+## Gibbs Sampling -->
+
+  </article>
 
   
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="blog">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="blog - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="blog - page 3">3</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/4/index.html" title="blog - page 4">4</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
-
-
 
 </div>
 

@@ -11,7 +11,7 @@
   Xavier Sumba
 
 
-  | blog
+  | CS224W notes - Machine learning with graphs
 
 </title>
 <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
@@ -23,8 +23,8 @@
 " />
 <meta property="og:type" content="object" />
 <meta property="og:title" content="" />
-<meta property="og:url" content="//blog/index.html" />
-<meta property="og:description" content="blog" />
+<meta property="og:url" content="//blog/2019/compcs224w-notes/" />
+<meta property="og:description" content="CS224W notes - Machine learning with graphs" />
 <meta property="og:image" content="" />
 
 
@@ -45,7 +45,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏃</text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="/blog/">
+<link rel="canonical" href="/blog/2019/compcs224w-notes/">
 
 <!-- JQuery -->
 <!-- jQuery -->
@@ -127,14 +127,10 @@
             <a class="nav-link" href="/blog/">
               blog
               
-              <span class="sr-only">(current)</span>
-              
             </a>
           </li>
           
           <!-- Other pages -->
-          
-          
           
           
           
@@ -184,60 +180,174 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
 
-  <div class="header-bar">
-    <h1>Welcome to my blog!</h1>
-    <h2>I write about AI, find some notes of projects or topics I am excited about.</h2>
-  </div>
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">CS224W notes - Machine learning with graphs</h1>
+    <p class="post-meta">May 17, 2019</p>
+  </header>
+
+  <article class="post-content">
+    <h2 id="introduction-and-graph-structure"><a href="(http://web.stanford.edu/class/cs224w/slides/01-intro.pdf)">Introduction and graph structure</a></h2>
+
+<h3 id="why-graphs">Why graphs?</h3>
+<p>Networks are general languages for describing complex systems of interacting entities. In other words, a network is a universal language for describing complex data.</p>
+
+<p>Network structure affects the robustness of a system</p>
+
+<p>Most real networks are sparse</p>
+
+<p>Tasks to perform in graphs:</p>
+<ul>
+  <li>node classification</li>
+  <li>link prediction</li>
+  <li>community detection</li>
+  <li>network similarity</li>
+</ul>
+
+<p><strong>Embedding nodes:</strong> map nodes to \(d\)-dimensional embeddings. Thus, nodes wit similar network neighbourhoods are embedded close together.</p>
+
+<p>Terminology:</p>
+<ul>
+  <li>Networks refer to a real system, e.g. Social Networks, Web.</li>
+  <li>Graph is a mathematical representation of a network e.g. graph, vertex, edge</li>
+</ul>
+
+<p>Graphs can be directed (followers on twitter) or undirected (friends on Facebook)</p>
+
+<p>Node degrees:
+  Undirected:</p>
+<ul>
+  <li>node degree: the number of edges adjacent to node i</li>
+  <li>avg. degree</li>
+</ul>
+
+<p>Directed:</p>
+<ul>
+  <li>in-degree</li>
+  <li>out-degree</li>
+  <li>the total degree of a node is the sum of in and out-degrees</li>
+</ul>
+
+<p>Complete Graph</p>
+<ul>
+  <li>maximum number of edges in an undirected graph on $N$ nodes is \(E_max=\frac{N(N-1)}{2}\) and when the number of edges is $E=E_max$, the undirected graph is called compete graph.</li>
+</ul>
+
+<p>Bipartite Graph</p>
+<ul>
+  <li>It is a graph whose nodes can be divided into two disjoints sets $U$ and $V$, which are independent sets.</li>
+</ul>
+
+<p>Representing Graphs
+  Adjacency matrix</p>
+<ul>
+  <li>\(A_{ij}=1\) if there is a link from node \(i\) to \(j\)</li>
+  <li>\(A_{ij}=0\) otherwise</li>
+  <li>they are sparse</li>
+</ul>
+
+<p>Edge List</p>
+<ul>
+  <li>graph as a set of edges</li>
+</ul>
+
+<p>Adjacency list</p>
+<ul>
+  <li>each row is a node and its line is the connected nodes
+1:
+2: 3,4
+3: 2,4
+4: 5</li>
+  <li>Easier to work with if network is large or sparse</li>
+</ul>
+
+<p>Edge attributes</p>
+<ul>
+  <li>weight (frequency of communication)</li>
+  <li>raking (best friend, 2nd best friend)</li>
+  <li>type (friend, relative)</li>
+  <li>Sign (Friend vs Foe)</li>
+</ul>
+
+<p>Other types of graphs:</p>
+<ul>
+  <li>self-edges: contain self-loops (proteins, hyperlinks)</li>
+  <li>multigraph: more than one edge between nodes (communication, collaboration)</li>
+</ul>
+
+<p>Connectivity:
+  Disconnected graph</p>
+<ul>
+  <li>a graph can become a disconnected graph, if the a subgraph becomes isolated. Thus it has more than one component…</li>
+  <li>bridge edge: if we delete an edge,</li>
+  <li>articulation node: if we erase a node</li>
+  <li>Each component can be represented in a block-diagonal form</li>
+</ul>
+
+<p>Strongly connected directed graph</p>
+<ul>
+  <li>has a path from each node to every other node and vice-versa.</li>
+</ul>
+
+<p>Weakly connected directed graph</p>
+<ul>
+  <li>is connected if we disregard the edge directions</li>
+</ul>
+
+<h2 id="properties-of-networks-and-random-graph-models"><a href="(http://web.stanford.edu/class/cs224w/slides/02-gnp-smallworld.pdf)">Properties of networks and random graph models</a></h2>
+
+<h3 id="how-to-measure-a-network">How to Measure a Network</h3>
+
+<ul>
+  <li>Degree distribution \(p(k)\): probability that a randomly node has degree \(k\).</li>
+</ul>
+
+<p>\(N_k\rightarrow\): number of nodes with degree \(k\)</p>
+
+\[p(k)=\frac{N_k}{N}\]
+
+<p><strong>Note:</strong> directed graphs have separate in- and out-degree distributions</p>
+
+<ul>
+  <li>Path: sequence of nodes in which each node is linked to the next one.</li>
+</ul>
+
+\[P_n=\{i_0,\dots,i_n\}\]
+
+\[P_n=\{(i_0,i_1),\dots,(i_{n-1},i_n)\}\]
+
+<ul>
+  <li>Distance between a pair of nodes \(h_{A,B}\): number of edges along the shortest path connecting the nodes.</li>
+</ul>
+
+<p>If node are not connected, distance is defined as <em>zero</em> or <em>infinity</em></p>
+
+<p>Directed graphs, paths need to follow the direction of the arrows, and as a consequence, distance is not symmetric \(h_{B,C}\neq h_{c,B}\)</p>
+
+<ul>
+  <li>
+    <p>Diameter: shortest path distance between any pair of nodes in a graph</p>
+  </li>
+  <li>
+    <p>Average path length \(\bar h\):</p>
+  </li>
+</ul>
+
+\[\bar h= \frac{1}{2E_{max}}\sum_{i,j\neq i}h_{ij}\]
+
+<p>\(E_{max}\): max number of edges (total number of node pairs) \(=\frac{n(n-1)}{2}\)</p>
+
+<ul>
+  <li>Clustering Coefficient</li>
+</ul>
 
 
-  <ul class="post-list">
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/topic_model_review/">Topic Model Applications</a></h3>
-        <p class="post-meta">August 21, 2020</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/neural_information_retrieval/">Neural Information Retrieval</a></h3>
-        <p class="post-meta">August 21, 2020</p>
-        <p></p>
-      </li>
-    
-      <li>
-        <h3><a class="post-title" href="/blog/2020/graph-representation-learning/">Graph Representation Learning notes</a></h3>
-        <p class="post-meta">January 25, 2020</p>
-        <p></p>
-      </li>
-    
-  </ul>
+  </article>
 
   
-<nav aria-label="Blog page naviation">
-  <ul class="pagination pagination-lg justify-content-center">
-    <li class="page-item disabled">
-      <a class="page-link" href="" tabindex="-1" aria-disabled="">Newer</a>
-    </li>
-    
-      
-        <li class="page-item active"><a class="page-link" href="/blog/index.html" title="blog">1</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/2/index.html" title="blog - page 2">2</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/3/index.html" title="blog - page 3">3</a></li>
-      
-        <li class="page-item "><a class="page-link" href="/blog/page/4/index.html" title="blog - page 4">4</a></li>
-      
-    
-    <li class="page-item ">
-      <a class="page-link" href="/blog/page/2/">Older</a>
-    </li>
-  </ul>
-</nav>
-
-
 
 </div>
 
