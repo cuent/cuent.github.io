@@ -47,7 +47,7 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 # Social integration
 # -----------------------------------------------------------------------------
 
-github_username: c.uent # your GitHub user name
+github_username: cuent # your GitHub user name
 gitlab_username: # your GitLab user name
 twitter_username: xavier_sumba # your Twitter handle
 linkedin_username: xavier-sumba-68423337 # your LinkedIn user name
