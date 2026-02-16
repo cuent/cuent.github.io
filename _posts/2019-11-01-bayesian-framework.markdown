@@ -379,4 +379,4 @@ $$
 
 # REINFORCE
 
-[1]: (https://en.wikipedia.org/wiki/Conjugate_prior)
+[1]: https://en.wikipedia.org/wiki/Conjugate_prior

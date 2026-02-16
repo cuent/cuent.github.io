@@ -121,5 +121,5 @@ $$E_{max}$$: max number of edges (total number of node pairs) $$=\frac{n(n-1)}{2
 
 
 
-[1]: (http://web.stanford.edu/class/cs224w/slides/01-intro.pdf)
-[2]: (http://web.stanford.edu/class/cs224w/slides/02-gnp-smallworld.pdf)
+[1]: http://web.stanford.edu/class/cs224w/slides/01-intro.pdf
+[2]: http://web.stanford.edu/class/cs224w/slides/02-gnp-smallworld.pdf

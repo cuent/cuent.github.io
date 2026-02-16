@@ -191,7 +191,7 @@ Capture semantic relation between words by learning latent topics (distribution 
   - **Word lists** are a good way of showing topics, use lists, sets, tables, bars for word probability.
   - **Word clouds** use size of words to convey information.
 
-      Also, [plot word clouds with word](Concurrent visualization of relationships between words and topics in topic models. In) [associations](https://www.aclweb.org/anthology/W14-3112.pdf)
+      Also, [plot word clouds with word associations](https://www.aclweb.org/anthology/W14-3112.pdf).
 
       ![Evaluation%20and%20Interpretation%20485a6b35e0644dfe8d7c0120d3be35a6/Untitled.png](/assets/img/topic_model/Untitled_00.png)
 

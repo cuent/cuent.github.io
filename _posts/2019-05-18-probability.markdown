@@ -13,7 +13,7 @@ Some interesting links:
 Notes of [chapter 3][1] of Deep Learning book.
 
 
-[1]: (http://www.deeplearningbook.org/contents/linear_algebra.html)
-[2]: (http://www.tina-vision.net/docs/memos/2003-003.pdf)
-[3]: (https://people.eecs.berkeley.edu/~jordan/courses/260-spring10/other-readings/chapter13.pdf)
-[4]: (http://www.herbrich.me/papers/EP.pdf)
+[1]: http://www.deeplearningbook.org/contents/linear_algebra.html
+[2]: http://www.tina-vision.net/docs/memos/2003-003.pdf
+[3]: https://people.eecs.berkeley.edu/~jordan/courses/260-spring10/other-readings/chapter13.pdf
+[4]: http://www.herbrich.me/papers/EP.pdf

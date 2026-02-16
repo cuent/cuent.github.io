@@ -2,7 +2,16 @@
 layout: about
 title: about
 permalink: /
-description: I am a third-year PhD student in Computer Science at <a href="https://www.imperial.ac.uk/computing/">Imperial College London</a>, supervised by <a href="http://yingzhenli.net/home/en/">Yingzhen Li</a>. My research focuses on deep generative models. Before starting my PhD, I worked as a Senior AI Developer at Heyday and Hootsuite, where I worked on conversational AI, information retrieval, and applied machine learning systems. I completed my Master of Applied Science at Concordia University and McGill University, where I focused on approximate Bayesian inference for count data modeling.
+description: >
+  I am a third-year PhD student in Computer Science at
+  <a href="https://www.imperial.ac.uk/computing/">Imperial College London</a>,
+  supervised by <a href="http://yingzhenli.net/home/en/">Yingzhen Li</a>.
+  My research focuses on deep generative models. Before starting my PhD, I worked as a Senior AI Developer
+  at <a href="https://app.heyday.ai/login">Heyday</a> and <a href="https://www.hootsuite.com/">Hootsuite</a>,
+  where I worked on conversational AI, information retrieval, and applied machine learning systems.
+  I completed my Master of Applied Science at <a href="https://www.concordia.ca/">Concordia University</a>
+  and <a href="https://www.mcgill.ca/">McGill University</a>, where I focused on approximate Bayesian inference
+  for count data modeling.
 
 
 profile:

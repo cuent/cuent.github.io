@@ -202,6 +202,6 @@ Matrix inversion **not defined** for non-square matrices, these can be calculate
 
 ### Determinant
 
-[1]: (http://www.deeplearningbook.org/contents/linear_algebra.html)
-[2]: (https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf)
-[3]: (https://people.maths.ox.ac.uk/gilesm/files/NA-08-01.pdf)
+[1]: http://www.deeplearningbook.org/contents/linear_algebra.html
+[2]: https://www.math.uwaterloo.ca/~hwolkowi/matrixcookbook.pdf
+[3]: https://people.maths.ox.ac.uk/gilesm/files/NA-08-01.pdf
