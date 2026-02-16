@@ -35,7 +35,6 @@ jobs:
           args: >
             --no-progress
             --verbose
-            --exclude-mail
             --exclude "https://scholar.google.com/.*"
             --exclude "https://www.linkedin.com/.*"
             --exclude "https://medium.com/.*"
