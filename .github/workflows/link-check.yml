@@ -35,6 +35,8 @@ jobs:
           args: >
             --no-progress
             --verbose
+            --exclude "^/.*"
+            --exclude "^//.*"
             --exclude "https://scholar.google.com/.*"
             --exclude "https://www.linkedin.com/.*"
             --exclude "https://medium.com/.*"
