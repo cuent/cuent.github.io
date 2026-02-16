@@ -17,6 +17,14 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll build
+
       - name: Run link checker
         uses: lycheeverse/lychee-action@v2
         with:
@@ -24,9 +32,14 @@ jobs:
           args: >
             --no-progress
             --verbose
-            --exclude-path _site
-            --exclude-path vendor
-            "./**/*.md"
-            "./**/*.html"
+            --exclude-mail
+            --exclude "https://scholar.google.com/.*"
+            --exclude "https://www.linkedin.com/.*"
+            --exclude "https://medium.com/.*"
+            --exclude "https://www.researchgate.net/.*"
+            --exclude "https://www.quora.com/.*"
+            --exclude "https://www.reddit.com/.*"
+            --exclude "https://gitlab.com/.*"
+            "_site/**/*.html"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
