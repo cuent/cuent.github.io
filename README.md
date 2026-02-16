@@ -1,35 +1,46 @@
 # Personal Website
 
-Main theme taken from [al-folio](https://github.com/alshedivat/al-folio)
+This repository contains the source for a Jekyll-based personal website, built on top of the [al-folio](https://github.com/alshedivat/al-folio) theme and customized for this site.
 
-### Installation
+## Local Development
 
-#### Local setup
+### Prerequisites
 
-Do the following:
+- Ruby (recommended via `rbenv`)
+- Bundler
 
-```bash
-$ bundle install
-$ bundle exec jekyll serve --incremental --watch --drafts
-```
-
-#### Deployment
-
-Deploying your website to [GitHub Pages](https://pages.github.com/) is the most popular option.
-
-**For personal and organization webpages:**
-- Rename your repository to `<your-github-username>.github.io` or `<your-github-orgname>.github.io`.
-- Click on **Actions** tab and **Enable GitHub Actions**; you no need to worry about creating any workflows as everything has already been set for you.
-- Make sure the `url` and `baseurl` fields in `_config.yml` are empty.
-- Make any other changes to your webpage, commit, and push. This will automatically trigger the **Deploy** action.
-- Wait for a few minutes and let the action complete. You can see the progress in the **Actions** tab. If completed successfully, in addition to the `master` branch, your repository should now have a newly built `gh-pages` branch.
-- Finally, in the **Settings**, in the Pages section, set the branch to `gh-pages` (**NOT** to `master`). See [Configuring a publishing source for your GitHub Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#choosing-a-publishing-source) for more details.
-
-#### Upgrading from a previous version
+### Install dependencies
 
 ```bash
-# Assuming the current directory is <your-repo-name>
-$ git remote add upstream https://github.com/alshedivat/al-folio.git
-$ git fetch upstream
-$ git rebase upstream/v0.3.5
+bundle install
 ```
+
+### Run locally
+
+```bash
+bundle exec jekyll serve --incremental --watch --drafts
+```
+
+Open `http://127.0.0.1:4000/` after the server starts.
+
+### Build without serving
+
+```bash
+bundle exec jekyll build --drafts
+```
+
+## Deployment (GitHub Pages via Actions)
+
+This repo is configured to deploy with GitHub Actions.
+
+1. Push changes to the default branch.
+2. Wait for the deploy workflow to finish in the **Actions** tab.
+3. In GitHub **Settings > Pages**, ensure the publishing source is set to **GitHub Actions**.
+
+## Basic Customization
+
+- Site-wide settings: `_config.yml`
+- Pages: `_pages/`
+- Blog posts: `_posts/`
+- Styles: `_sass/` and `assets/css/main.scss`
+- Images and static assets: `assets/`
